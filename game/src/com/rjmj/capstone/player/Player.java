@@ -1,5 +1,6 @@
 package com.rjmj.capstone.player;
 
+import com.rjmj.capstone.room.Room;
 import com.rjmj.capstone.room.Rooms;
 import java.util.Scanner;
 
@@ -9,8 +10,9 @@ public class Player {
     private String playerActionSelection;
     // currentRoom set to Dining Room as it is the games starting location.
     private String currentRoom = "Dining Room";
+    private Room theEnumCurrentRoom = Room.DINING_ROOM;
 
-    // enterName() will prompt the user to enter their desired name.
+    // enterName() will prompt the user to  enter their desired name.
     public void collectPlayerName() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("\nPlease enter your name: ");
@@ -19,47 +21,71 @@ public class Player {
     }
 
     // moveSelection() will handle the room navigation choice for the player, logic completed in the appropriate method.
-    public void moveSelection(Rooms room) {
+    public void moveSelection() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("Which direction would you like to move? (Up, Down, Left, Right)");
         this.playerMoveDirection = userInput.nextLine();
-        System.out.println("Moving " + getPlayerMoveDirection());
 
-        /*
-            TODO:
-             This switch case doesn't fully work currently.
-             When exiting the dining room the player is forced right regardless of choice.
-         */
-        switch(getPlayerMoveDirection().toUpperCase()){
+        switch(getPlayerMoveDirection().toUpperCase()) {
             case "UP":
-                if ((room.getROOMS().get(getCurrentRoom()).get("up") != null)) {
-                    moveUp(room);
-                    break;
-                }
+                System.out.println("Moving " + getPlayerMoveDirection());
+                moveUp(getTheEnumCurrentRoom());
             case "DOWN":
-               if ((room.getROOMS().get(getCurrentRoom()).get("down") != null)) {
-                   moveDown(room);
-                   break;
-               }
+                System.out.println("Moving " + getPlayerMoveDirection());
+                moveDown(getTheEnumCurrentRoom());
             case "LEFT":
-                if ((room.getROOMS().get(getCurrentRoom()).get("left") != null)) {
-                    moveLeft(room);
-                    break;
-                }
+                System.out.println("Moving " + getPlayerMoveDirection());
+                moveLeft(getTheEnumCurrentRoom());
             case "RIGHT":
-                if(room.getROOMS().get(getCurrentRoom()).get("right") != null) {
-                  moveRight(room);
-                  break;
-               }
+                System.out.println("Moving " + getPlayerMoveDirection());
+                moveRight(getTheEnumCurrentRoom());
             default:
                 // TODO: Create a custom exception for this down the line.
                 System.out.println("Error, Please select Up, Down, Left, or Right");
-                moveSelection(room);
+                moveSelection();
         }
     }
 
+    public void moveRight(Room input) {
+        if (!getTheEnumCurrentRoom().canMoveRight(input)) {
+            setTheEnumCurrentRoom(getTheEnumCurrentRoom().possibleRightMovement.get(0));
+            System.out.println(getTheEnumCurrentRoom());
+        } else {
+            moveSelection();
+        }
+    }
+
+    public void moveLeft(Room input) {
+        if (!getTheEnumCurrentRoom().canMoveLeft(input)) {
+            setTheEnumCurrentRoom(getTheEnumCurrentRoom().possibleLeftMovement.get(0));
+            System.out.println(getTheEnumCurrentRoom());
+        } else {
+            moveSelection();
+        }
+    }
+
+    public void moveDown(Room input) {
+        if (!getTheEnumCurrentRoom().canMoveDown(input)) {
+            setTheEnumCurrentRoom(getTheEnumCurrentRoom().possibleDownMovement.get(0));
+            System.out.println(getTheEnumCurrentRoom());
+        } else {
+            moveSelection();
+        }
+    }
+
+    public void moveUp(Room input) {
+        if (!getTheEnumCurrentRoom().canMoveUp(input)) {
+            setTheEnumCurrentRoom(getTheEnumCurrentRoom().possibleUpMovement.get(0));
+            System.out.println(getTheEnumCurrentRoom());
+        } else {
+            System.out.println("NOPE");
+            moveSelection();
+        }
+    }
+
+
     // availableActions() will prompt the player with a list of actions they can choose.
-    public void availableActions(Rooms room) {
+    public void availableActions() {
         System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
         Scanner userInput = new Scanner(System.in);
         System.out.println("Which action would you like to do?");
@@ -74,49 +100,21 @@ public class Player {
          */
         switch(getPlayerActionSelection().toUpperCase()) {
             case "MOVE":
-                moveSelection(room);
+                moveSelection();
                 break;
             case "LOOK AROUND":
                 System.out.println("You look around, no one is there.\n");
-                availableActions(room);
                 break;
             case "TALK":
                 System.out.println("No one is around, you say hello to yourself.\n");
-                availableActions(room);
                 break;
             case "TAKE ITEM":
                 System.out.println("You take the item\n");
-                availableActions(room);
                 break;
             default:
                 // TODO: Create a custom exception for this down the line.
                 System.out.println("Error, please select a valid item.\n");
-                availableActions(room);
         }
-    }
-
-    public void moveUp(Rooms room) {
-        setCurrentRoom(room.getROOMS().get(getCurrentRoom()).get("up"));
-        System.out.println("Moved Up to " + getCurrentRoom());
-        availableActions(room);
-    }
-
-    public void moveDown(Rooms room) {
-        setCurrentRoom(room.getROOMS().get(getCurrentRoom()).get("down"));
-        System.out.println("Moved Down to " + getCurrentRoom());
-        availableActions(room);
-    }
-
-    public void moveLeft(Rooms room) {
-        setCurrentRoom(room.getROOMS().get(getCurrentRoom()).get("left"));
-        System.out.println("Moved Left to " + getCurrentRoom());
-        availableActions(room);
-    }
-
-    public void moveRight(Rooms room) {
-        setCurrentRoom(room.getROOMS().get(getCurrentRoom()).get("right"));
-        System.out.println("Moved Right to " + getCurrentRoom());
-        availableActions(room);
     }
 
     public String getPlayerName() {
@@ -129,6 +127,14 @@ public class Player {
 
     public String getPlayerActionSelection() {
         return playerActionSelection;
+    }
+
+    public Room getTheEnumCurrentRoom() {
+        return theEnumCurrentRoom;
+    }
+
+    public void setTheEnumCurrentRoom(Room theEnumCurrentRoom) {
+        this.theEnumCurrentRoom = theEnumCurrentRoom;
     }
 
     public String getCurrentRoom() {
