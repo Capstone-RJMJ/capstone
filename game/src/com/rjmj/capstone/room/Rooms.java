@@ -65,11 +65,7 @@ public class Rooms {
             entry("Bathroom",Map.of(
                     "room", "Bathroom",
                     "item", "plunger",
-                    "right", "Kitchen")),
-            entry("PeterTest",Map.of(
-                    "rm", "",
-                    "im", "",
-                    "right", ""))
+                    "right", "Kitchen"))
     );
 
     public Map<String, Map<String,String>> getROOMS() {

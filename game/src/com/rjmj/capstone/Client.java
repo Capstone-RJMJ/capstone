@@ -15,7 +15,7 @@ public class Client {
         System.out.println(p1.getCurrentRoom());
         p1.enterName();
         p1.moveSelection(rooms);
-        System.out.println(p1.getCurrentRoom());
+
 
     }
 }
