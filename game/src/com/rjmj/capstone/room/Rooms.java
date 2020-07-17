@@ -3,6 +3,7 @@ import static java.util.Map.entry;
 import static java.util.Map.ofEntries;
 
 import java.util.Map;
+import java.util.Set;
 
 public class Rooms {
     private Map<String,Map<String,String>> ROOMS = Map.ofEntries(
@@ -13,8 +14,8 @@ public class Rooms {
                     "right", "Hall")),
             entry("Hall",Map.of(
                     "room", "Hall",
-                    "right", "Dining Room",
-                    "left", "Ball Room",
+                    "right", "Ball Room",
+                    "left", "Dining Room",
                     "down", "Kitchen")),
             entry("Ball Room", Map.of(
                     "room", "Ball Room",
@@ -67,6 +68,44 @@ public class Rooms {
                     "item", "plunger",
                     "right", "Kitchen"))
     );
+
+    public String lookAround(Rooms room, String currentRoom) {
+
+        Map<String,String> rm = room.getROOMS().get(currentRoom);
+        StringBuilder sb = new StringBuilder();
+        sb.append("As you look around the " + currentRoom + ", ");
+        Set<String> keys = rm.keySet();
+        String[] keyArr = keys.toArray(new String[keys.size()]);
+        for(String key : keyArr) {
+            if (rm.get("item") != null && "item".equals(key)) {
+                String item = rm.get("item");
+                sb.append("you see a " + item + "\n");
+            }
+            if (rm.get("character") != null && "character".equals(key)) {
+                String character = rm.get("character");
+                sb.append(character + " is in the room\n");
+            }
+            if (rm.get("left") != null && "left".equals(key)) {
+                String left = rm.get("left");
+                sb.append("a door to the " + rm.get("left") + " is to the LEFT\n");
+            }
+            if (rm.get("right") != null && "right".equals(key)) {
+                String right = rm.get("right");
+                sb.append("a door to the " + rm.get("right") + " is to the RIGHT\n");
+            }
+            if (rm.get("up") != null && rm.get("up").equals(key)) {
+                String up = rm.get("up");
+                sb.append("a door to the " + rm.get("up") + " is UP from the " + currentRoom+ "\n");
+            }
+            if (rm.get("down") != null && rm.get("down").equals(key)) {
+                String down = rm.get("down");
+                sb.append("a door to the " + rm.get("down") + " is DOWN from the " + currentRoom + "\n");
+            }
+        }
+        String result = sb.toString();
+        System.out.println(result);
+        return result;
+    }
 
     public Map<String, Map<String,String>> getROOMS() {
         return ROOMS;

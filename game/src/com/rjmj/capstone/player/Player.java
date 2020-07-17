@@ -77,7 +77,7 @@ public class Player {
                 moveSelection(room);
                 break;
             case "LOOK AROUND":
-                System.out.println("You look around, no one is there.\n");
+                room.lookAround(room,currentRoom);
                 availableActions(room);
                 break;
             case "TALK":
