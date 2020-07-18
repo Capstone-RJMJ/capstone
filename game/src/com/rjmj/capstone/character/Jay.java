@@ -1,13 +1,13 @@
 package com.rjmj.capstone.character;
 
-import com.rjmj.capstone.room.Rooms;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
+
 public class Jay implements Character {
+
+
     private final String name = "Jay";
 
     // TODO: Update with the correct question.
@@ -22,8 +22,10 @@ public class Jay implements Character {
 
     }
 
+
     @Override
-    public void askQuestion() throws IOException {
+    public String askQuestion() throws IOException {
+        String result = "";
         String url_open = "https://www.youtube.com/watch?v=hyctW2abkY4";
         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
         System.out.println("What band is Jay playing in this video?");
@@ -34,14 +36,15 @@ public class Jay implements Character {
 
         Scanner sc = new Scanner(System.in);
         String answer = sc.next();
-        if (answer == "C") {
+        System.out.println(answer);
+        if (answer.toUpperCase().equals("C")) {
             System.out.println("Correct");
-            Map.entry("item", "red liquid");
-            //inventory = push("red liquid");
+            result = "Red Liquid";
         } else {
             System.out.println("Incorrect, please try again.");
             askQuestion();
         }
+        return result;
 }
 
 

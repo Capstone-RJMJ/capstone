@@ -16,8 +16,8 @@ public class Zach implements Character{
     }
 
     @Override
-    public void askQuestion() {
-
+    public String askQuestion() {
+        return null;
     }
 
     @Override

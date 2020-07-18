@@ -16,9 +16,9 @@ public class Peter implements Character {
     }
 
     @Override
-    public void askQuestion() {
+    public String askQuestion() {
         System.out.println("How many possible permeations of the vaccine are there if each ingredient is used once?");
-
+        return null;
     }
 
     @Override

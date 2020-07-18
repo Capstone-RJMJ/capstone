@@ -5,7 +5,7 @@ import java.io.IOException;
 public interface Character {
     public abstract void talk();
 
-    public abstract void askQuestion() throws IOException;
+    public abstract String askQuestion() throws IOException;
 
     public abstract void answerQuestion();
 }
