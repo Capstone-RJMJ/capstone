@@ -1,30 +1,31 @@
 package com.rjmj.capstone.room;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-public enum Room {
+// TODO: Figure out if this can be used in a later iteration.
+
+public enum RoomEnum {
     DINING_ROOM, HALL, BALL_ROOM, MOVIE_ROOM, STAIRS, DOWN_STAIRS_HALL, BEDROOM, LIBRARY, CAVE, LAB, KITCHEN, BATHROOM;
 
-    public List<Room> possibleRightMovement;
-    public List<Room> possibleLeftMovement;
-    public List<Room> possibleDownMovement;
-    public List<Room> possibleUpMovement;
+    public List<RoomEnum> possibleRightMovement;
+    public List<RoomEnum> possibleLeftMovement;
+    public List<RoomEnum> possibleDownMovement;
+    public List<RoomEnum> possibleUpMovement;
 
-    public boolean canMoveRight(Room input) {
+    public boolean canMoveRight(RoomEnum input) {
         return possibleRightMovement.contains(input);
     }
 
-    public boolean canMoveLeft(Room input) {
+    public boolean canMoveLeft(RoomEnum input) {
         return possibleLeftMovement.contains(input);
     }
 
-    public boolean canMoveDown(Room input) {
+    public boolean canMoveDown(RoomEnum input) {
         return possibleDownMovement.contains(input);
     }
 
-    public boolean canMoveUp(Room input) {
+    public boolean canMoveUp(RoomEnum input) {
         return possibleUpMovement.contains(input);
     }
 

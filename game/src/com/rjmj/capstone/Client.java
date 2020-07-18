@@ -1,6 +1,5 @@
 package com.rjmj.capstone;
 
-import com.rjmj.capstone.character.Peter;
 import com.rjmj.capstone.player.Player;
 import com.rjmj.capstone.room.Rooms;
 
@@ -9,7 +8,6 @@ public class Client {
         Player player = new Player();
         Rooms startingRoom = new Rooms();
 
-        player.collectPlayerName();
-        player.availableActions(startingRoom);
+        player.availableActions();
     }
 }
