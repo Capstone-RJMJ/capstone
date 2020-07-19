@@ -9,6 +9,7 @@ import java.util.Set;
 
 public class MovementEngine {
     private String currentRoom = "DINING ROOM";
+    public Rooms room = new Rooms();
 //    public String move(String input) { return moveChoices(input); }
 
 //    public String moveChoices(String input) {
@@ -58,11 +59,9 @@ public class MovementEngine {
 //        return result;
 //    }
 
-    public String roomChoices(String currentRoom) {
-        String result;
+    private String questionBuilder(String currentRoom){
         StringBuilder sb = new StringBuilder("Which direction would you like to go? (");
         String left,right,down,up;
-        Rooms room = new Rooms();
         Map<String,String> rm = room.getROOMS().get(currentRoom);
         Set<String> roomKeys = rm.keySet();
         // Loop through keys to build custom question for player giving direction options
@@ -89,12 +88,17 @@ public class MovementEngine {
         sb.toString().substring(0, sb.toString().length() - 1);
 
         sb.append(" )");
+        return sb.toString();
 
+    }
+
+    public String roomChoices(String currentRoom) {
+        String result = getCurrentRoom();
+        String question = questionBuilder(currentRoom);
         Scanner scanner = new Scanner(System.in);
-        System.out.println(sb.toString());
+        System.out.println(question);
         String userChoice = scanner.nextLine().toLowerCase();
-
-        result = sb.toString();
+        Map<String,String> rm = room.getROOMS().get(currentRoom);
             if(rm.containsKey(userChoice)) {
                 setCurrentRoom(rm.get(userChoice).toUpperCase());
                 result = rm.get(userChoice).toUpperCase();
