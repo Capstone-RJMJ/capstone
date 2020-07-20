@@ -8,10 +8,8 @@ import java.util.Scanner;
 public class Player {
     private String playerName;
     private String playerActionSelection;
-    // TODO: Sprint 2 - Update room logic to align with the map or advanced structure besides Strings.
 
     MovementEngine movementEngine = new MovementEngine();
-//    private String currentRoom = movementEngine.getCurrentRoom();
 
     public Player() {
         // No Argument Constructor
