@@ -21,9 +21,9 @@ public class MovementEngine {
 //            case "HALL":
 //                result = hallRoomChoices(input);
 //                break;
-//            case "BALL ROOM":
-//                result = ballRoomChoices(input);
-//                break;
+//            case "BALL ROOM":ballRoomChoices(input);
+////                break;
+//                result =
 //            case "MOVIE ROOM":
 //                result = movieRoomChoices(input);
 //                break;

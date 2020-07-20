@@ -1,6 +1,8 @@
 package com.rjmj.capstone.room;
+
+import com.rjmj.capstone.player.Inventory;
+
 import static java.util.Map.entry;
-import static java.util.Map.ofEntries;
 
 import java.util.Map;
 import java.util.Set;
@@ -9,7 +11,7 @@ public class Rooms {
     private Map<String,Map<String,String>> ROOMS = Map.ofEntries(
             entry("DINING ROOM", Map.of(
                     "room", "Dining Room",
-                    "item", "Syringe",
+//                    "item", "Syringe",
                     "character", "Nelly",
                     "right", "Hall")),
             entry("HALL",Map.of(
@@ -19,18 +21,19 @@ public class Rooms {
                     "down", "Kitchen")),
             entry("BALL ROOM", Map.of(
                     "room", "Ball Room",
-                    "item", "key",
+//                    "item", "key",
                     "character", "John",
                     "left", "hall",
                     "right", "Movie Room")),
             entry("MOVIE ROOM", Map.of("room",
-                    "Movie Room","item", "red liquid",
+                    "Movie Room",
+//                    "item", "red liquid",
                     "character", "Jay",
                     "left", "Ball Room",
                     "right", "Stairs")),
             entry("STAIRS", Map.of(
                     "room", "Stairs",
-                    "item", "box",
+                    "item", "box", //need key to open box and get a time buff
                     "left", "Down Stairs Hall",
                     "back", "Movie Room")),
             entry("DOWN STAIRS HALL", Map.of(
@@ -50,7 +53,7 @@ public class Rooms {
                     "right", "Lab")),
             entry("CAVE", Map.of(
                     "room", "Cave",
-                    "item", "recipe",
+//                    "item", "recipe",
                     "character", "Zach",
                     "right", "Library")),
             entry("LAB", Map.of(
@@ -59,7 +62,7 @@ public class Rooms {
                     "left", "Library" )),
             entry("KITCHEN",Map.of(
                     "room", "Kitchen",
-                    "item", "blue liquid",
+//                    "item", "blue liquid",
                     "character", "Tom",
                     "up", "Hall",
                     "left", "bathroom")),
@@ -69,8 +72,8 @@ public class Rooms {
                     "right", "Kitchen"))
     );
 
-    public String lookAround(Rooms room, String currentRoom) {
-        Map<String,String> rm = room.getROOMS().get(currentRoom);
+    public String lookAround(String currentRoom) {
+        Map<String,String> rm = ROOMS.get(currentRoom);
         StringBuilder sb = new StringBuilder();
         sb.append("\nAs you look around the " + currentRoom + ":\n");
         Set<String> keys = rm.keySet();
@@ -104,6 +107,29 @@ public class Rooms {
         String result = sb.toString();
         System.out.println(result);
         return result;
+    }
+
+    public String getItem(Inventory inventory, String currentRoom) {
+        Map<String,String> rm = ROOMS.get(currentRoom);
+        if(rm.get("item") != null) {
+            //add a check for if the item is a box and you have the key in the inventory to add the time buff to the timer
+            if(inventory.getPlyrInv().contains(rm.get("item"))){
+                System.out.println("You already took the " + rm.get("item"));
+            }
+            else {
+                inventory.setPlyrInv(rm.get("item"));
+                System.out.println("The " + rm.get("item") + " was added to your inventory\n" +
+                        "You now have " + inventory.getPlyrInv().size() + " items in your inventory:");
+            // print items currently in Player inventory
+                for(String item : inventory.getPlyrInv()){
+                    System.out.println("  - " + item);
+                }
+            }
+        }
+        else {
+            System.out.println("there aren't any item to take in here!");
+        }
+        return rm.get("item");
     }
 
     public Map<String, Map<String,String>> getROOMS() {
