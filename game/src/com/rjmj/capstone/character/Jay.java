@@ -36,7 +36,6 @@ public class Jay implements Character {
 
         Scanner sc = new Scanner(System.in);
         String answer = sc.next();
-        System.out.println(answer);
         if (answer.toUpperCase().equals("C")) {
             System.out.println("Correct");
             result = "Red Liquid";

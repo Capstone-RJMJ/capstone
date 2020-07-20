@@ -23,6 +23,7 @@ public class Inventory {
         plyrInv.add(nelly.askQuestion());
         plyrInv.add(zach.askQuestion());
         plyrInv.add(peter.askQuestion());
+        plyrInv.add(nelly.askQuestion());
 
         System.out.println(plyrInv);
         //for (int i = 0; i < plyrInv.size(); i++) {

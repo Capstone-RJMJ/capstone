@@ -1,5 +1,7 @@
 package com.rjmj.capstone.character;
 
+import java.util.Scanner;
+
 public class Zach implements Character{
     private final String name = "Zach";
 
@@ -17,7 +19,24 @@ public class Zach implements Character{
 
     @Override
     public String askQuestion() {
-        return null;
+        String result = "";
+        System.out.println("What did the crew name the Dragon DEMO 2 capsule?");
+        System.out.println("A. Endeavor");
+        System.out.println("B. Atlantis");
+        System.out.println("C. Dragon");
+        System.out.println("D. Enterprise");
+
+        Scanner sc = new Scanner(System.in);
+        String answer = sc.next();
+        System.out.println(answer);
+        if (answer.toUpperCase().equals("A")) {
+            System.out.println("Correct");
+            result = "Recipe";
+        } else {
+            System.out.println("Incorrect, please try again.");
+            askQuestion();
+        }
+        return result;
     }
 
     @Override

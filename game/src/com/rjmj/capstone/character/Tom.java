@@ -29,7 +29,6 @@ public class Tom implements Character {
 
             Scanner sc = new Scanner(System.in);
             String answer = sc.next();
-            System.out.println(answer);
             if (answer.toUpperCase().equals("B")) {
                 System.out.println("Correct");
                 result = "Blue Liquid";
