@@ -29,33 +29,45 @@ public class Inventory {
             switch (character) {
                 case "Tom":
                     item = tom.askQuestion();
-                    inventory.setPlyrInv(item);
-                    inventoryMsg(item,inventory.getPlyrInv().size());
+                    if (!inventory.getPlyrInv().contains(item)) {
+                        inventory.setPlyrInv(item);
+                        inventoryMsg(item, inventory.getPlyrInv().size());
+                    }
                     break;
                 case "Jay":
                     item = jay.askQuestion();
-                    inventory.setPlyrInv(item);
-                    inventoryMsg(item,inventory.getPlyrInv().size());
+                    if (!inventory.getPlyrInv().contains(item)) {
+                        inventory.setPlyrInv(item);
+                        inventoryMsg(item, inventory.getPlyrInv().size());
+                    }
                     break;
                 case "John":
                     item = john.askQuestion();
-                    inventory.setPlyrInv(item);
-                    inventoryMsg(item,inventory.getPlyrInv().size());
+                    if (!inventory.getPlyrInv().contains(item)) {
+                        inventory.setPlyrInv(item);
+                        inventoryMsg(item, inventory.getPlyrInv().size());
+                    }
                     break;
                 case "Peter":
+                    System.out.println("\nPeter is standing at the entrance to the Library.  " +
+                            "He will not let you continue unless you correctly answer this math question:\n");
                     item = peter.askQuestion();
-                    inventory.setPlyrInv(item);
-                    inventoryMsg(item,inventory.getPlyrInv().size());
+                    System.out.println("\nPeter has granted you access to the LAB " +
+                            "and there is a secret CAVE behind the bookshelves!!!\n");
                     break;
                 case "Zach":
                     item = zach.askQuestion();
-                    inventory.setPlyrInv(item);
-                    inventoryMsg(item,inventory.getPlyrInv().size());
+                    if (!inventory.getPlyrInv().contains(item)) {
+                        inventory.setPlyrInv(item);
+                        inventoryMsg(item, inventory.getPlyrInv().size());
+                    }
                     break;
                 case "Nelly":
                     item = nelly.askQuestion();
-                    inventory.setPlyrInv(item);
-                    inventoryMsg(item,inventory.getPlyrInv().size());
+                    if (!inventory.getPlyrInv().contains(item)) {
+                        inventory.setPlyrInv(item);
+                        inventoryMsg(item, inventory.getPlyrInv().size());
+                    }
                     break;
             }
         }
