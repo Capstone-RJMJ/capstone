@@ -60,7 +60,7 @@ public class Player {
                 availableActions();
                 break;
             case "TALK":
-                inventory.talkToCharacter(room,movementEngine.getCurrentRoom());
+                inventory.talkToCharacter(room,movementEngine.getCurrentRoom(),inventory);
                 availableActions();
                 break;
             case "TAKE ITEM":
