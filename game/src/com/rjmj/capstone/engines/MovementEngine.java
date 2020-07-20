@@ -1,8 +1,10 @@
 package com.rjmj.capstone.engines;
 
+import com.rjmj.capstone.player.Inventory;
 import com.rjmj.capstone.room.RoomEnum;
 import com.rjmj.capstone.room.Rooms;
 
+import java.io.IOException;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
@@ -92,21 +94,25 @@ public class MovementEngine {
 
     }
 
-    public String roomChoices(String currentRoom) {
+    public String roomChoices(String currentRoom, Inventory inventory) throws IOException {
         String result = getCurrentRoom();
         String question = questionBuilder(currentRoom);
         Scanner scanner = new Scanner(System.in);
         System.out.println(question);
         String userChoice = scanner.nextLine().toLowerCase();
         Map<String,String> rm = room.getROOMS().get(currentRoom);
-            if(rm.containsKey(userChoice)) {
-                setCurrentRoom(rm.get(userChoice).toUpperCase());
-                result = rm.get(userChoice).toUpperCase();
-                }
-            else {
-                System.out.println("Invalid Selection, try again.");
-                roomChoices(getCurrentRoom());
+        if(rm.get("room").equals("Bedroom") && userChoice.equals("left")){
+            setCurrentRoom(rm.get(userChoice).toUpperCase());
+            inventory.talkToCharacter(room,"LIBRARY",inventory);// force talking to Peter when going into Library
+        }
+        if(rm.containsKey(userChoice)) {
+            setCurrentRoom(rm.get(userChoice).toUpperCase());
+            result = rm.get(userChoice).toUpperCase();
             }
+        else {
+            System.out.println("Invalid Selection, try again.");
+            roomChoices(getCurrentRoom(),inventory);
+        }
 
         return result;
     }

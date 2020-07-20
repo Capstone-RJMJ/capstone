@@ -52,7 +52,7 @@ public class Player {
          */
         switch(getPlayerActionSelection().toUpperCase()) {
             case "MOVE":
-                movementEngine.roomChoices(movementEngine.getCurrentRoom());
+                movementEngine.roomChoices(movementEngine.getCurrentRoom(),inventory);
                 availableActions();
                 break;
             case "LOOK AROUND":
