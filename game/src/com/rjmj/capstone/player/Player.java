@@ -11,7 +11,22 @@ public class Player {
     private String playerActionSelection;
     public Inventory inventory = new Inventory();
     MovementEngine movementEngine = new MovementEngine();
-    
+
+    public Player() {
+        // No Argument Constructor
+    }
+
+    // This will mainly be for testing
+    protected Player(String name) {
+        this.playerName = name;
+    }
+
+    // This will mainly be for testing
+    protected Player(String name, String playerActionSelection) {
+        this.playerName = name;
+        this.playerActionSelection = playerActionSelection;
+    }
+
     // enterName() will prompt the user to  enter their desired name.
     public void collectPlayerName() {
         Scanner userInput = new Scanner(System.in);
