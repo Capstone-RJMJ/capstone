@@ -43,7 +43,7 @@ public class Player {
                 break;
             case "LOOK AROUND":
                 Rooms room = new Rooms();
-                room.lookAround(room,movementEngine.getCurrentRoom());
+                room.lookAround(movementEngine.getCurrentRoom());
                 availableActions();
                 break;
             case "TALK":
@@ -68,12 +68,5 @@ public class Player {
     public String getPlayerActionSelection() {
         return playerActionSelection;
     }
-
-//    public String getCurrentRoom() {
-//        return currentRoom;
-//    }
-//
-//    public void setCurrentRoom(String currentRoom) {
-//        this.currentRoom = currentRoom;
-//    }
+    
 }
