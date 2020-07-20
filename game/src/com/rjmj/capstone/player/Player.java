@@ -1,14 +1,17 @@
 package com.rjmj.capstone.player;
 
 import com.rjmj.capstone.engines.MovementEngine;
+import com.rjmj.capstone.room.Rooms;
+
 import java.util.Scanner;
 
 public class Player {
     private String playerName;
     private String playerActionSelection;
     // TODO: Sprint 2 - Update room logic to align with the map or advanced structure besides Strings.
-    private String currentRoom = "DINING ROOM";
+
     MovementEngine movementEngine = new MovementEngine();
+//    private String currentRoom = movementEngine.getCurrentRoom();
 
 
     // enterName() will prompt the user to  enter their desired name.
@@ -22,7 +25,7 @@ public class Player {
     // availableActions() will prompt the player with a list of actions they can choose, based on current room.
     public void availableActions() {
         Scanner userInput = new Scanner(System.in);
-        System.out.println("You are currently in the " + getCurrentRoom());
+        System.out.println("You are currently in the " + movementEngine.getCurrentRoom());
         System.out.println("Which action would you like to do?");
         System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
         this.playerActionSelection = userInput.nextLine();
@@ -35,11 +38,12 @@ public class Player {
          */
         switch(getPlayerActionSelection().toUpperCase()) {
             case "MOVE":
-                setCurrentRoom(movementEngine.move(getCurrentRoom()));
+                movementEngine.roomChoices(movementEngine.getCurrentRoom());
                 availableActions();
                 break;
             case "LOOK AROUND":
-                System.out.println("You look around, no one is there.\n");
+                Rooms room = new Rooms();
+                room.lookAround(room,movementEngine.getCurrentRoom());
                 availableActions();
                 break;
             case "TALK":
@@ -65,11 +69,11 @@ public class Player {
         return playerActionSelection;
     }
 
-    public String getCurrentRoom() {
-        return currentRoom;
-    }
-
-    public void setCurrentRoom(String currentRoom) {
-        this.currentRoom = currentRoom;
-    }
+//    public String getCurrentRoom() {
+//        return currentRoom;
+//    }
+//
+//    public void setCurrentRoom(String currentRoom) {
+//        this.currentRoom = currentRoom;
+//    }
 }
