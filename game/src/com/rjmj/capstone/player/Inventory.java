@@ -17,39 +17,45 @@ public class Inventory {
         Zach zach = new Zach();
         Peter peter = new Peter();
 
-        private ArrayList<String> plyrInv = new ArrayList<String>();
-//        plyrInv.add(jay.askQuestion());
-//        plyrInv.add(john.askQuestion());
-//        plyrInv.add(tom.askQuestion());
-//        plyrInv.add(nelly.askQuestion());
-//        plyrInv.add(zach.askQuestion());
-//        plyrInv.add(peter.askQuestion());
-//        plyrInv.add(nelly.askQuestion());
+        private ArrayList<String> plyrInv = new ArrayList<>();
 
 
-    public String talkToCharacter(Rooms room, String currentRoom) throws IOException {
+    public String talkToCharacter(Rooms room, String currentRoom, Inventory inventory) throws IOException {
+        String item;
         Map<String,String> rm = room.getROOMS().get(currentRoom);
         if(rm.get("character") != null){
             String character = rm.get("character");
 
             switch (character) {
                 case "Tom":
-                    tom.askQuestion();
+                    item = tom.askQuestion();
+                    inventory.setPlyrInv(item);
+                    inventoryMsg(item,inventory.getPlyrInv().size());
                     break;
                 case "Jay":
-                    jay.askQuestion();
+                    item = jay.askQuestion();
+                    inventory.setPlyrInv(item);
+                    inventoryMsg(item,inventory.getPlyrInv().size());
                     break;
                 case "John":
-                    john.askQuestion();
+                    item = john.askQuestion();
+                    inventory.setPlyrInv(item);
+                    inventoryMsg(item,inventory.getPlyrInv().size());
                     break;
                 case "Peter":
-                    peter.askQuestion();
+                    item = peter.askQuestion();
+                    inventory.setPlyrInv(item);
+                    inventoryMsg(item,inventory.getPlyrInv().size());
                     break;
                 case "Zach":
-                    zach.askQuestion();
+                    item = zach.askQuestion();
+                    inventory.setPlyrInv(item);
+                    inventoryMsg(item,inventory.getPlyrInv().size());
                     break;
                 case "Nelly":
-                    nelly.askQuestion();
+                    item = nelly.askQuestion();
+                    inventory.setPlyrInv(item);
+                    inventoryMsg(item,inventory.getPlyrInv().size());
                     break;
             }
         }
@@ -57,6 +63,10 @@ public class Inventory {
             System.out.println("No one is around, you say hello to yourself.\n");
     }
         return "item";//return the item i guess
+    }
+    public void inventoryMsg(String item, int num){
+        System.out.println("The " + item + " was added to your inventory\n" +
+                "You now have " + num + " items in your inventory:");
     }
 
     public ArrayList<String> getPlyrInv() {
