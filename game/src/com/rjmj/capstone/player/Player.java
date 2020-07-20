@@ -3,17 +3,15 @@ package com.rjmj.capstone.player;
 import com.rjmj.capstone.engines.MovementEngine;
 import com.rjmj.capstone.room.Rooms;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Player {
     private String playerName;
     private String playerActionSelection;
-    // TODO: Sprint 2 - Update room logic to align with the map or advanced structure besides Strings.
-
+    public Inventory inventory = new Inventory();
     MovementEngine movementEngine = new MovementEngine();
-//    private String currentRoom = movementEngine.getCurrentRoom();
-
-
+    
     // enterName() will prompt the user to  enter their desired name.
     public void collectPlayerName() {
         Scanner userInput = new Scanner(System.in);
@@ -23,7 +21,8 @@ public class Player {
     }
 
     // availableActions() will prompt the player with a list of actions they can choose, based on current room.
-    public void availableActions() {
+    public void availableActions() throws IOException {
+        Rooms room = new Rooms();
         Scanner userInput = new Scanner(System.in);
         System.out.println("You are currently in the " + movementEngine.getCurrentRoom());
         System.out.println("Which action would you like to do?");
@@ -42,16 +41,15 @@ public class Player {
                 availableActions();
                 break;
             case "LOOK AROUND":
-                Rooms room = new Rooms();
-                room.lookAround(room,movementEngine.getCurrentRoom());
+                room.lookAround(movementEngine.getCurrentRoom());
                 availableActions();
                 break;
             case "TALK":
-                System.out.println("No one is around, you say hello to yourself.\n");
+                inventory.talkToCharacter(room,movementEngine.getCurrentRoom());
                 availableActions();
                 break;
             case "TAKE ITEM":
-                System.out.println("You take the item\n");
+                room.getItem(inventory, movementEngine.getCurrentRoom());
                 availableActions();
                 break;
             default:
@@ -68,4 +66,5 @@ public class Player {
     public String getPlayerActionSelection() {
         return playerActionSelection;
     }
+
 }

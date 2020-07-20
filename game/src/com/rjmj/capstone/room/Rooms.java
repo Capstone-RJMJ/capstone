@@ -1,5 +1,7 @@
 package com.rjmj.capstone.room;
 
+import com.rjmj.capstone.player.Inventory;
+
 import static java.util.Map.entry;
 
 import java.util.Map;
@@ -107,16 +109,25 @@ public class Rooms {
         return result;
     }
 
-    public String getItem(String currentRoom) {
-        Inventory inventory = new Inventory();
+    public String getItem(Inventory inventory, String currentRoom) {
         Map<String,String> rm = ROOMS.get(currentRoom);
         if(rm.get("item") != null) {
+            //add a check for if the item is a box and you have the key in the inventory to add the time buff to the timer
             if(inventory.getPlyrInv().contains(rm.get("item"))){
                 System.out.println("You already took the " + rm.get("item"));
             }
             else {
                 inventory.setPlyrInv(rm.get("item"));
+                System.out.println("The " + rm.get("item") + " was added to your inventory\n" +
+                        "You now have " + inventory.getPlyrInv().size() + " items in your inventory:");
+            // print items currently in Player inventory
+                for(String item : inventory.getPlyrInv()){
+                    System.out.println("  - " + item);
+                }
             }
+        }
+        else {
+            System.out.println("there aren't any item to take in here!");
         }
         return rm.get("item");
     }
