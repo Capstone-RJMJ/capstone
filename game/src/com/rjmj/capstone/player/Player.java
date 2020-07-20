@@ -1,102 +1,71 @@
 package com.rjmj.capstone.player;
 
+import com.rjmj.capstone.engines.MovementEngine;
+import com.rjmj.capstone.room.Rooms;
+
 import java.util.Scanner;
 
 public class Player {
-    private String name;
-    private String moveDirection;
-    private String playerSelection;
+    private String playerName;
+    private String playerActionSelection;
+    // TODO: Sprint 2 - Update room logic to align with the map or advanced structure besides Strings.
 
-    public void enterName() {
+    MovementEngine movementEngine = new MovementEngine();
+//    private String currentRoom = movementEngine.getCurrentRoom();
+
+
+    // enterName() will prompt the user to  enter their desired name.
+    public void collectPlayerName() {
         Scanner userInput = new Scanner(System.in);
         System.out.println("\nPlease enter your name: ");
-        this.name = userInput.nextLine();
-        System.out.println("Username has been set to: " + getName());
+        this.playerName = userInput.nextLine();
+        System.out.println("Username has been set to: " + getPlayerName());
     }
 
-    public void moveSelection() {
-        Scanner userInput = new Scanner(System.in);
-        System.out.println("Which direction would you like to move? (Up, Back, Left, Right");
-        this.moveDirection = userInput.nextLine();
-        System.out.println("Moving " + getMoveDirection());
-
-        switch(getMoveDirection().toUpperCase()){
-            case "UP":
-                moveUp();
-                break;
-            case "BACK":
-                moveDown();
-                break;
-            case "LEFT":
-                moveLeft();
-                break;
-            case "RIGHT":
-                moveRight();
-                break;
-            default:
-                System.out.println("Error, Please select Up, Down, Left, or Right");
-                moveSelection();
-        }
-    }
-
+    // availableActions() will prompt the player with a list of actions they can choose, based on current room.
     public void availableActions() {
-        System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
         Scanner userInput = new Scanner(System.in);
+        System.out.println("You are currently in the " + movementEngine.getCurrentRoom());
         System.out.println("Which action would you like to do?");
-        this.playerSelection = userInput.nextLine();
+        System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
+        this.playerActionSelection = userInput.nextLine();
 
-        switch(getPlayerSelection().toUpperCase()) {
+        /*
+            TODO:
+                1. Look Around Logic
+                2. Talk Logic
+                3. Take Item Logic
+         */
+        switch(getPlayerActionSelection().toUpperCase()) {
             case "MOVE":
-                moveSelection();
+                movementEngine.roomChoices(movementEngine.getCurrentRoom());
+                availableActions();
                 break;
             case "LOOK AROUND":
-                System.out.println("You look around, no one is there.");
+                Rooms room = new Rooms();
+                room.lookAround(room,movementEngine.getCurrentRoom());
                 availableActions();
                 break;
             case "TALK":
-                System.out.println("No one is around, you say hello to yourself.");
+                System.out.println("No one is around, you say hello to yourself.\n");
                 availableActions();
                 break;
             case "TAKE ITEM":
-                System.out.println("You take the item");
+                System.out.println("You take the item\n");
                 availableActions();
                 break;
             default:
-                System.out.println("Error, please select a valid item.");
+                // TODO: Create a custom exception for this down the line.
+                System.out.println("Error, please select a valid item.\n");
                 availableActions();
         }
     }
 
-    public void moveUp() {
-        System.out.println("Moved Up");
-        availableActions();
+    public String getPlayerName() {
+        return playerName;
     }
 
-    public void moveDown() {
-        System.out.println("Moved Down");
-        availableActions();
+    public String getPlayerActionSelection() {
+        return playerActionSelection;
     }
-
-    public void moveLeft() {
-        System.out.println("Moved Left");
-        availableActions();
-    }
-
-    public void moveRight() {
-        System.out.println("Moved Right");
-        availableActions();
-    }
-
-    public String getName () {
-        return name;
-    }
-
-    public String getMoveDirection() {
-        return moveDirection;
-    }
-
-    public String getPlayerSelection() {
-        return playerSelection;
-    }
-
 }
