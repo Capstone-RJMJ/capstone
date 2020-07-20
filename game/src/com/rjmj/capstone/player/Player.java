@@ -68,12 +68,4 @@ public class Player {
     public String getPlayerActionSelection() {
         return playerActionSelection;
     }
-
-//    public String getCurrentRoom() {
-//        return currentRoom;
-//    }
-//
-//    public void setCurrentRoom(String currentRoom) {
-//        this.currentRoom = currentRoom;
-//    }
 }
