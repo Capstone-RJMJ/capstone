@@ -36,6 +36,19 @@ public class PlayerTest {
         assertEquals("LOOK AROUND", player.getPlayerActionSelection());
     }
 
+    // TODO: Change Player.class after the Demo back to getter handling the uppercase.
+    @Test
+    public void movementTestingToUpperCaseTest() {
+        Player player = new Player("TEST", "lOoK aRoUnD");
+        assertEquals("LOOK AROUND", player.getPlayerActionSelection());
+    }
+
+    @Test
+    public void movementTestingTalk() {
+        Player player = new Player("RJ", "move");
+        assertEquals("MOVE", "MOVE");
+    }
+
     @Test
     public void movementIncorrect() {
         Player player = new Player("Hello", "DONT LOOK AROUND");
