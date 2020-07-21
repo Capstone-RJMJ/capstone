@@ -12,8 +12,8 @@ public class Player {
     public Inventory inventory = new Inventory();
     MovementEngine movementEngine = new MovementEngine();
 
+    // This empty constructor to be here for the client class to run the program.
     public Player() {
-        // No Argument Constructor
     }
 
     // This will mainly be for testing
@@ -44,12 +44,6 @@ public class Player {
         System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
         this.playerActionSelection = userInput.nextLine();
 
-        /*
-            TODO:
-                1. Look Around Logic
-                2. Talk Logic
-                3. Take Item Logic
-         */
         switch(getPlayerActionSelection().toUpperCase()) {
             case "MOVE":
                 movementEngine.roomChoices(movementEngine.getCurrentRoom(),inventory);
