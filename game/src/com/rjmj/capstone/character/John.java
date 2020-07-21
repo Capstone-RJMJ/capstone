@@ -5,13 +5,7 @@ import java.util.Scanner;
 public class John implements Character {
 
     @Override
-    public void talk() {
-
-    }
-
-    @Override
-    public String askQuestion() {
-        String result = "";
+    public String askTheQuestionAndCollectInput() {
         System.out.println("What is AWS' DNS Service ");
         System.out.println("A. S3");
         System.out.println("B. EC2");
@@ -19,20 +13,20 @@ public class John implements Character {
         System.out.println("D. Lambda");
 
         Scanner sc = new Scanner(System.in);
-        String answer = sc.next();
-        System.out.println(answer);
-        if (answer.toUpperCase().equals("C")) {
+        return sc.next();
+    }
+
+    @Override
+    public String processQuestionAnswer(String questionAnswer) {
+        String result = "";
+        if (questionAnswer.toUpperCase().equals("C")) {
             System.out.println("Correct");
             result = "Key";
         } else {
             System.out.println("Incorrect, please try again.");
-            askQuestion();
+            processQuestionAnswer(questionAnswer);
         }
         return result;
     }
 
-    @Override
-    public void answerQuestion() {
-
-    }
 }
