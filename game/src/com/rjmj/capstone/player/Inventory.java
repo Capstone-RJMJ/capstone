@@ -28,21 +28,21 @@ public class Inventory {
 
             switch (character) {
                 case "Tom":
-                    item = tom.askQuestion();
+                    item = tom.processQuestionAnswer(tom.askTheQuestionAndCollectInput());
                     if (!inventory.getPlyrInv().contains(item)) {
                         inventory.setPlyrInv(item);
                         inventoryMsg(item, inventory.getPlyrInv().size());
                     }
                     break;
                 case "Jay":
-                    item = jay.askQuestion();
+                    item = jay.processQuestionAnswer(jay.askTheQuestionAndCollectInput());
                     if (!inventory.getPlyrInv().contains(item)) {
                         inventory.setPlyrInv(item);
                         inventoryMsg(item, inventory.getPlyrInv().size());
                     }
                     break;
                 case "John":
-                    item = john.askQuestion();
+                    item = john.processQuestionAnswer(john.askTheQuestionAndCollectInput());
                     if (!inventory.getPlyrInv().contains(item)) {
                         inventory.setPlyrInv(item);
                         inventoryMsg(item, inventory.getPlyrInv().size());
@@ -51,19 +51,19 @@ public class Inventory {
                 case "Peter":
                     System.out.println("\nPeter is standing at the entrance to the Library.  " +
                             "He will not let you continue unless you correctly answer this math question:\n");
-                    item = peter.askQuestion();
+                    item = peter.processQuestionAnswer(peter.askTheQuestionAndCollectInput());
                     System.out.println("\nPeter has granted you access to the LAB " +
                             "and there is a secret CAVE behind the bookshelves!!!\n");
                     break;
                 case "Zach":
-                    item = zach.askQuestion();
+                    item = zach.processQuestionAnswer(zach.askTheQuestionAndCollectInput());
                     if (!inventory.getPlyrInv().contains(item)) {
                         inventory.setPlyrInv(item);
                         inventoryMsg(item, inventory.getPlyrInv().size());
                     }
                     break;
                 case "Nelly":
-                    item = nelly.askQuestion();
+                    item = nelly.processQuestionAnswer(nelly.askTheQuestionAndCollectInput());
                     if (!inventory.getPlyrInv().contains(item)) {
                         inventory.setPlyrInv(item);
                         inventoryMsg(item, inventory.getPlyrInv().size());
