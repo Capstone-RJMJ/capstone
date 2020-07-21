@@ -3,13 +3,6 @@ package com.rjmj.capstone.character;
 import java.util.Scanner;
 
 public class Nelly implements Character {
-    private final String name = "Nelly";
-
-    // TODO: Update with the correct question.
-    private final String question = null;
-
-    // TODO: Update with correct room assignment.
-    private final String room = "Dinning Room";
 
     @Override
     public void talk() {

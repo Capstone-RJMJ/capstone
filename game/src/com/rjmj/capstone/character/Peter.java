@@ -3,14 +3,6 @@ package com.rjmj.capstone.character;
 import java.util.Scanner;
 
 public class Peter implements Character {
-    private final String name = "Peter";
-
-    // TODO: Update with the correct question.
-    private final String question = null;
-
-    // TODO: Update with correct room assignment.
-    private final String room = "Library";
-
 
     @Override
     public void talk() {
@@ -41,12 +33,6 @@ public class Peter implements Character {
 
     @Override
     public void answerQuestion() {
-        if(true){
-            //allow access
-        } else {
-            //do this
-        }
-        return;
 
     }
 }

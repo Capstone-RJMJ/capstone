@@ -13,8 +13,8 @@ public class Player {
     private Inventory inventory = new Inventory();
     MovementEngine movementEngine = new MovementEngine();
 
+    // This empty constructor to be here for the client class to run the program.
     public Player() {
-        // No Argument Constructor
     }
 
     // This will mainly be for testing
