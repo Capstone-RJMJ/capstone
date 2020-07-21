@@ -1,27 +1,15 @@
 package com.rjmj.capstone.character;
 
-
 import java.io.IOException;
 import java.util.Scanner;
 
 
 public class Jay implements Character {
 
-
-    private final String name = "Jay";
-
-    // TODO: Update with the correct question.
-    private final String question = null;
-
-    // TODO: Update with correct room assignment.
-    private final String room = "Movie Room";
-
-
     @Override
     public void talk() {
 
     }
-
 
     @Override
     public String askQuestion() throws IOException {
