@@ -4,12 +4,13 @@ import com.rjmj.capstone.engines.MovementEngine;
 import com.rjmj.capstone.room.Rooms;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Player {
     private String playerName;
     private String playerActionSelection;
-    public Inventory inventory = new Inventory();
+    private Inventory inventory = new Inventory();
     MovementEngine movementEngine = new MovementEngine();
 
     public Player() {
@@ -41,18 +42,19 @@ public class Player {
         Scanner userInput = new Scanner(System.in);
         System.out.println("You are currently in the " + movementEngine.getCurrentRoom());
         System.out.println("Which action would you like to do?");
-        System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
+        ArrayList pi = getInventory().getPlyrInv();
+        if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("beaker")){
+            System.out.println("You now have all the items necessary to Mix the vaccine ingredients...but in what order??");
+            System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move, Mix (ingredients).");
+        }
+        else {
+            System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
+        }
         this.playerActionSelection = userInput.nextLine();
 
-        /*
-            TODO:
-                1. Look Around Logic
-                2. Talk Logic
-                3. Take Item Logic
-         */
         switch(getPlayerActionSelection().toUpperCase()) {
             case "MOVE":
-                movementEngine.roomChoices(movementEngine.getCurrentRoom(),inventory);
+                movementEngine.roomChoices(movementEngine.getCurrentRoom(),getInventory());
                 availableActions();
                 break;
             case "LOOK AROUND":
@@ -60,13 +62,18 @@ public class Player {
                 availableActions();
                 break;
             case "TALK":
-                inventory.talkToCharacter(room,movementEngine.getCurrentRoom(),inventory);
+                getInventory().talkToCharacter(room,movementEngine.getCurrentRoom(),getInventory());
                 availableActions();
                 break;
             case "TAKE ITEM":
-                room.getItem(inventory, movementEngine.getCurrentRoom());
+                room.getItem(getInventory(), movementEngine.getCurrentRoom());
                 availableActions();
                 break;
+            case "MIX":
+                System.out.println("need to write the function for mixing and checking");
+                availableActions();
+                break;
+
             default:
                 // TODO: Create a custom exception for this down the line.
                 System.out.println("Error, please select a valid item.\n");
@@ -82,4 +89,7 @@ public class Player {
         return playerActionSelection;
     }
 
+    public Inventory getInventory() {
+        return inventory;
+    }
 }

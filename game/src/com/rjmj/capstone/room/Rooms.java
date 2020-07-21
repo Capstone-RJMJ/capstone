@@ -11,7 +11,6 @@ public class Rooms {
     private Map<String,Map<String,String>> ROOMS = Map.ofEntries(
             entry("DINING ROOM", Map.of(
                     "room", "Dining Room",
-//                    "item", "Syringe",
                     "character", "Nelly",
                     "right", "Hall")),
             entry("HALL",Map.of(
@@ -21,19 +20,17 @@ public class Rooms {
                     "down", "Kitchen")),
             entry("BALL ROOM", Map.of(
                     "room", "Ball Room",
-//                    "item", "key",
                     "character", "John",
                     "left", "hall",
                     "right", "Movie Room")),
             entry("MOVIE ROOM", Map.of("room",
                     "Movie Room",
-//                    "item", "red liquid",
                     "character", "Jay",
                     "left", "Ball Room",
                     "right", "Stairs")),
             entry("STAIRS", Map.of(
                     "room", "Stairs",
-                    "item", "box", //need key to open box and get a time buff
+                    "item", "box",
                     "left", "Down Stairs Hall",
                     "back", "Movie Room")),
             entry("DOWN STAIRS HALL", Map.of(
@@ -53,7 +50,6 @@ public class Rooms {
                     "right", "Lab")),
             entry("CAVE", Map.of(
                     "room", "Cave",
-//                    "item", "recipe",
                     "character", "Zach",
                     "right", "Library")),
             entry("LAB", Map.of(
@@ -62,7 +58,6 @@ public class Rooms {
                     "left", "Library" )),
             entry("KITCHEN",Map.of(
                     "room", "Kitchen",
-//                    "item", "blue liquid",
                     "character", "Tom",
                     "up", "Hall",
                     "left", "bathroom")),
@@ -113,6 +108,12 @@ public class Rooms {
         Map<String,String> rm = ROOMS.get(currentRoom);
         if(rm.get("item") != null) {
             //add a check for if the item is a box and you have the key in the inventory to add the time buff to the timer
+            if((rm.get("item").equals("box") && inventory.getPlyrInv().contains("key")) ||
+                    (rm.get("item").equals("key") && inventory.getPlyrInv().contains("box"))){
+                System.out.println("You see that the box is locked so you use your key to unlock it\n" +
+                        "this is no ordinary box, you just unlocked Time itself and rolled back 2 minutes!");
+                //TODO: call function to add 2 minutes to timer, or however long
+            }
             if(inventory.getPlyrInv().contains(rm.get("item"))){
                 System.out.println("You already took the " + rm.get("item"));
             }
@@ -127,7 +128,7 @@ public class Rooms {
             }
         }
         else {
-            System.out.println("there aren't any item to take in here!");
+            System.out.println("there aren't any items to take in here!");
         }
         return rm.get("item");
     }
