@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class John implements Character {
 
     @Override
-    public String askTheQuestionAndCollectInput() {
+    public void askTheQuestionAndCollectInput() {
         System.out.println("What is AWS' DNS Service ");
         System.out.println("A. S3");
         System.out.println("B. EC2");
@@ -13,7 +13,7 @@ public class John implements Character {
         System.out.println("D. Lambda");
 
         Scanner sc = new Scanner(System.in);
-        return sc.next();
+        processQuestionAnswer(sc.next());
     }
 
     @Override
@@ -24,9 +24,8 @@ public class John implements Character {
             result = "Key";
         } else {
             System.out.println("Incorrect, please try again.");
-            processQuestionAnswer(questionAnswer);
+            askTheQuestionAndCollectInput();
         }
         return result;
     }
-
 }
