@@ -8,7 +8,6 @@ import java.io.IOException;
 public class Client {
     public static void main(String[] args) throws IOException {
         Player player = new Player();
-        Rooms startingRoom = new Rooms();
 
         player.collectPlayerName();
         player.availableActions();
