@@ -13,14 +13,39 @@ import java.util.TimerTask;
 public class Countdown {
     private int delay = 1000; //milliseconds
     private Timer timer = new Timer();
-    private int timeLeft = 600000;
+    private int timeLeft = 60000;
 
 
-    public int setTimeLeft() {
+    public void setTimeLeft() {
         setTimeLeft(getTimeLeft() - getDelay());
-        System.out.println(getTimeLeft());
-        return getTimeLeft();
+//        System.out.println(getTimeLeft());
     }
+
+    public void startTimer(){
+        timer.scheduleAtFixedRate(new TimerTask() {
+
+            public void run() {
+                setTimeLeft();
+
+                if (getTimeLeft()< 0) {
+                    System.out.println("Game Over, times up your are dead");
+                    timer.cancel();
+                    System.exit(1);
+                }
+            }
+        }, 0, 1000);
+    }
+    public void displayTimeLeft(){
+        System.out.println(convertTimeLeftToMmSs(getTimeLeft()));
+    }
+
+    public static String convertTimeLeftToMmSs(int timeLeft) {
+        int s = timeLeft % 60;
+        int m = (timeLeft / 60) % 60;
+//        long h = (seconds / (60 * 60)) % 24;
+        return String.format("%02d:%02d", m,s);
+    }
+
 
     public Timer getTimer() {
         return timer;

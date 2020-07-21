@@ -2,6 +2,7 @@ package com.rjmj.capstone.player;
 
 import com.rjmj.capstone.engines.MovementEngine;
 import com.rjmj.capstone.room.Rooms;
+import com.rjmj.capstone.timer.Countdown;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +13,7 @@ public class Player {
     private String playerActionSelection;
     private Inventory inventory = new Inventory();
     MovementEngine movementEngine = new MovementEngine();
+    Countdown cd = new Countdown();
 
     // This empty constructor to be here for the client class to run the program.
     public Player() {
@@ -34,6 +36,7 @@ public class Player {
         System.out.println("\nPlease enter your name: ");
         this.playerName = userInput.nextLine();
         System.out.println("Username has been set to: " + getPlayerName());
+        cd.startTimer();
     }
 
     // availableActions() will prompt the player with a list of actions they can choose, based on current room.
@@ -71,6 +74,10 @@ public class Player {
                 break;
             case "MIX":
                 System.out.println("need to write the function for mixing and checking");
+                availableActions();
+                break;
+            case "TIME":
+                cd.displayTimeLeft();
                 availableActions();
                 break;
 
