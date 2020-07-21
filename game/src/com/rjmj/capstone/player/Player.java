@@ -58,7 +58,7 @@ public class Player {
                 availableActions();
                 break;
             case "LOOK AROUND":
-                room.lookAround(movementEngine.getCurrentRoom());
+                room.lookAround(movementEngine.getCurrentRoom(), getInventory());
                 availableActions();
                 break;
             case "TALK":

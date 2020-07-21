@@ -67,36 +67,38 @@ public class Rooms {
                     "right", "Kitchen"))
     );
 
-    public String lookAround(String currentRoom) {
+    public String lookAround(String currentRoom, Inventory inventory) {
         Map<String,String> rm = ROOMS.get(currentRoom);
         StringBuilder sb = new StringBuilder();
         sb.append("\nAs you look around the " + currentRoom + ":\n");
         Set<String> keys = rm.keySet();
         String[] keyArr = keys.toArray(new String[keys.size()]);
         for(String key : keyArr) {
-            if (rm.get("item") != null && "item".equals(key)) {
-                String item = rm.get("item");
-                sb.append("  you see a " + item + "\n");
-            }
-            if (rm.get("character") != null && "character".equals(key)) {
-                String character = rm.get("character");
-                sb.append("  " + character + " is in the room\n");
-            }
-            if (rm.get("left") != null && "left".equals(key)) {
-                String left = rm.get("left");
-                sb.append("  a door to the " + rm.get("left") + " is to the LEFT\n");
-            }
-            if (rm.get("right") != null && "right".equals(key)) {
-                String right = rm.get("right");
-                sb.append("  a door to the " + rm.get("right") + " is to the RIGHT\n");
-            }
-            if (rm.get("up") != null && rm.get("up").equals(key)) {
-                String up = rm.get("up");
-                sb.append("  a door to the " + rm.get("up") + " is UP from the " + currentRoom+ "\n");
-            }
-            if (rm.get("down") != null && rm.get("down").equals(key)) {
-                String down = rm.get("down");
-                sb.append("  a door to the " + rm.get("down") + " is DOWN from the " + currentRoom + "\n");
+            if(!inventory.getPlyrInv().contains(rm.get(key))) {
+                if (rm.get("item") != null && "item".equals(key)) {
+                    String item = rm.get("item");
+                    sb.append("  you see a " + item + "\n");
+                }
+                if (rm.get("character") != null && "character".equals(key)) {
+                    String character = rm.get("character");
+                    sb.append("  " + character + " is in the room\n");
+                }
+                if (rm.get("left") != null && "left".equals(key)) {
+                    String left = rm.get("left");
+                    sb.append("  a door to the " + rm.get("left") + " is to the LEFT\n");
+                }
+                if (rm.get("right") != null && "right".equals(key)) {
+                    String right = rm.get("right");
+                    sb.append("  a door to the " + rm.get("right") + " is to the RIGHT\n");
+                }
+                if (rm.get("up") != null && rm.get("up").equals(key)) {
+                    String up = rm.get("up");
+                    sb.append("  a door to the " + rm.get("up") + " is UP from the " + currentRoom + "\n");
+                }
+                if (rm.get("down") != null && rm.get("down").equals(key)) {
+                    String down = rm.get("down");
+                    sb.append("  a door to the " + rm.get("down") + " is DOWN from the " + currentRoom + "\n");
+                }
             }
         }
         String result = sb.toString();
