@@ -10,6 +10,7 @@ public class Client {
         Player player = new Player();
         Rooms startingRoom = new Rooms();
 
+        player.collectPlayerName();
         player.availableActions();
     }
 }
