@@ -1,10 +1,5 @@
 package com.rjmj.capstone.engine;
 
-// Imports go here
-import java.util.Scanner.*;
-
-
-
 public class GameEngine {
 
     //call to timer
