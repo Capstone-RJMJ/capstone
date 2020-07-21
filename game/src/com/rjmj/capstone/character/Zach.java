@@ -3,14 +3,6 @@ package com.rjmj.capstone.character;
 import java.util.Scanner;
 
 public class Zach implements Character{
-    private final String name = "Zach";
-
-    // TODO: Update with the correct question.
-    private final String question = null;
-
-    // TODO: Update with correct room assignment.
-    private final String room = null;
-
 
     @Override
     public void talk() {
