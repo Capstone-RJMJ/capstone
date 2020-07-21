@@ -4,9 +4,10 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Jay implements Character {
+    private String questionAnswer;
 
     @Override
-    public void askTheQuestionAndCollectInput() throws IOException {
+    public String askTheQuestionAndCollectInput() throws IOException {
         String url_open = "https://www.youtube.com/watch?v=hyctW2abkY4";
         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
         System.out.println("What band is Jay playing in this video?");
@@ -16,7 +17,8 @@ public class Jay implements Character {
         System.out.println("D. Judas Priest");
 
         Scanner sc = new Scanner(System.in);
-        processQuestionAnswer(sc.next());
+        setQuestionAnswer(sc.next());
+        return getQuestionAnswer();
     }
 
     @Override
@@ -30,5 +32,13 @@ public class Jay implements Character {
             result = processQuestionAnswer(questionAnswer);
         }
         return result;
+    }
+
+    public String getQuestionAnswer() {
+        return questionAnswer;
+    }
+
+    public void setQuestionAnswer(String questionAnswer) {
+        this.questionAnswer = questionAnswer;
     }
 }

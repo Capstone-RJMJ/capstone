@@ -3,9 +3,10 @@ package com.rjmj.capstone.character;
 import java.util.Scanner;
 
 public class John implements Character {
+    private String questionAnswer;
 
     @Override
-    public void askTheQuestionAndCollectInput() {
+    public String askTheQuestionAndCollectInput() {
         System.out.println("What is AWS' DNS Service ");
         System.out.println("A. S3");
         System.out.println("B. EC2");
@@ -13,7 +14,8 @@ public class John implements Character {
         System.out.println("D. Lambda");
 
         Scanner sc = new Scanner(System.in);
-        processQuestionAnswer(sc.next());
+        setQuestionAnswer(sc.next());
+        return getQuestionAnswer();
     }
 
     @Override
@@ -27,5 +29,13 @@ public class John implements Character {
             askTheQuestionAndCollectInput();
         }
         return result;
+    }
+
+    public String getQuestionAnswer() {
+        return questionAnswer;
+    }
+
+    public void setQuestionAnswer(String questionAnswer) {
+        this.questionAnswer = questionAnswer;
     }
 }

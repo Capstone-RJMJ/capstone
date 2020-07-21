@@ -3,8 +3,10 @@ package com.rjmj.capstone.character;
 import java.util.Scanner;
 
 public class Zach implements Character{
+    private String questionAnswer;
+
     @Override
-    public void askTheQuestionAndCollectInput() {
+    public String askTheQuestionAndCollectInput() {
         System.out.println("What did the crew name the Dragon DEMO 2 capsule?");
         System.out.println("A. Endeavor");
         System.out.println("B. Atlantis");
@@ -12,7 +14,8 @@ public class Zach implements Character{
         System.out.println("D. Enterprise");
 
         Scanner sc = new Scanner(System.in);
-        processQuestionAnswer(sc.next());
+        setQuestionAnswer(sc.next());
+        return getQuestionAnswer();
     }
 
     @Override
@@ -26,5 +29,13 @@ public class Zach implements Character{
             askTheQuestionAndCollectInput();
         }
         return result;
+    }
+
+    public String getQuestionAnswer() {
+        return questionAnswer;
+    }
+
+    public void setQuestionAnswer(String questionAnswer) {
+        this.questionAnswer = questionAnswer;
     }
 }

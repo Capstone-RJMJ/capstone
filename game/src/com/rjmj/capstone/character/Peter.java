@@ -3,9 +3,10 @@ package com.rjmj.capstone.character;
 import java.util.Scanner;
 
 public class Peter implements Character {
+    private String questionAnswer;
 
     @Override
-    public void askTheQuestionAndCollectInput() {
+    public String askTheQuestionAndCollectInput() {
         System.out.println("How many possible versions of the vaccine are there if each ingredient is used once?");
         System.out.println("A. 3");
         System.out.println("B. 27");
@@ -13,7 +14,8 @@ public class Peter implements Character {
         System.out.println("D. 6");
 
         Scanner sc = new Scanner(System.in);
-        processQuestionAnswer(sc.next());
+        setQuestionAnswer(sc.next());
+        return getQuestionAnswer();
     }
 
     @Override
@@ -28,5 +30,13 @@ public class Peter implements Character {
             result = processQuestionAnswer(questionAnswer);
         }
         return result;
+    }
+
+    public String getQuestionAnswer() {
+        return questionAnswer;
+    }
+
+    public void setQuestionAnswer(String questionAnswer) {
+        this.questionAnswer = questionAnswer;
     }
 }
