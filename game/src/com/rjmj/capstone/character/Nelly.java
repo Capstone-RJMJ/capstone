@@ -15,13 +15,13 @@ public class Nelly implements Character {
         System.out.println("To get you started here is a Syringe.  You will need to find the remaining items");
         System.out.println("Type Start if you are ready to get started.");
         Scanner sc = new Scanner(System.in);
-        setQuestionAnswer(sc.next());
+        processQuestionAnswer(sc.next());
     }
 
     @Override
     public String processQuestionAnswer(String questionAnswer) {
         String result = "";
-        if (getQuestionAnswer().toUpperCase().equals("START")) {
+        if (questionAnswer.toUpperCase().equals("START")) {
             askTheQuestionAndCollectInput();
             System.out.println("Good Luck");
             result = "Syringe";
@@ -30,13 +30,5 @@ public class Nelly implements Character {
             System.exit(1);
         }
         return result;
-    }
-
-    public String getQuestionAnswer() {
-        return questionAnswer;
-    }
-
-    public void setQuestionAnswer(String questionAnswer) {
-        this.questionAnswer = questionAnswer;
     }
 }

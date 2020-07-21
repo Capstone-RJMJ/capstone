@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Jay implements Character {
-    private String questionAnswer;
 
     @Override
     public void askTheQuestionAndCollectInput() throws IOException {
@@ -17,13 +16,13 @@ public class Jay implements Character {
         System.out.println("D. Judas Priest");
 
         Scanner sc = new Scanner(System.in);
-        setQuestionAnswer(sc.next());
+        processQuestionAnswer(sc.next());
     }
 
     @Override
     public String processQuestionAnswer(String questionAnswer) {
         String result;
-        if (getQuestionAnswer().toUpperCase().equals("C")) {
+        if (questionAnswer.toUpperCase().equals("C")) {
             System.out.println("Correct");
             result = "Red Liquid";
         } else {
@@ -31,13 +30,5 @@ public class Jay implements Character {
             result = processQuestionAnswer(questionAnswer);
         }
         return result;
-    }
-
-    public String getQuestionAnswer() {
-        return questionAnswer;
-    }
-
-    public void setQuestionAnswer(String questionAnswer) {
-        this.questionAnswer = questionAnswer;
     }
 }

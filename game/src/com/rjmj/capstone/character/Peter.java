@@ -3,7 +3,6 @@ package com.rjmj.capstone.character;
 import java.util.Scanner;
 
 public class Peter implements Character {
-    private String questionAnswer;
 
     @Override
     public void askTheQuestionAndCollectInput() {
@@ -14,13 +13,13 @@ public class Peter implements Character {
         System.out.println("D. 6");
 
         Scanner sc = new Scanner(System.in);
-        setQuestionAnswer(sc.next());
+        processQuestionAnswer(sc.next());
     }
 
     @Override
     public String processQuestionAnswer(String questionAnswer) {
         String result;
-        if (getQuestionAnswer().toUpperCase().equals("D")) {
+        if (questionAnswer.toUpperCase().equals("D")) {
             System.out.println("Correct");
             // TODO: Make this return a value that is not Null - Needs to be updated later.
             result = null;
@@ -29,13 +28,5 @@ public class Peter implements Character {
             result = processQuestionAnswer(questionAnswer);
         }
         return result;
-    }
-
-    public String getQuestionAnswer() {
-        return questionAnswer;
-    }
-
-    public void setQuestionAnswer(String questionAnswer) {
-        this.questionAnswer = questionAnswer;
     }
 }

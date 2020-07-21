@@ -3,7 +3,6 @@ package com.rjmj.capstone.character;
 import java.util.Scanner;
 
 public class Tom implements Character {
-    private String questionAnswer;
 
     @Override
     public void askTheQuestionAndCollectInput() {
@@ -14,13 +13,13 @@ public class Tom implements Character {
         System.out.println("D. Elder Scrolls");
 
         Scanner sc = new Scanner(System.in);
-        setQuestionAnswer(sc.next());
+        processQuestionAnswer(sc.next());
     }
 
     @Override
     public String processQuestionAnswer(String questionAnswer) {
         String result = "";
-        if (getQuestionAnswer().toUpperCase().equals("B")) {
+        if (questionAnswer.toUpperCase().equals("B")) {
             System.out.println("Correct");
             result = "Blue Liquid";
         } else {
@@ -28,13 +27,5 @@ public class Tom implements Character {
             askTheQuestionAndCollectInput();
         }
         return result;
-    }
-
-    public String getQuestionAnswer() {
-        return questionAnswer;
-    }
-
-    public void setQuestionAnswer(String questionAnswer) {
-        this.questionAnswer = questionAnswer;
     }
 }
