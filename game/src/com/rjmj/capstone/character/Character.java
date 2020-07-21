@@ -3,9 +3,8 @@ package com.rjmj.capstone.character;
 import java.io.IOException;
 
 public interface Character {
-    public abstract void talk();
+    // This will warn you that the return value is never used, but it is in the characters.
+    String askTheQuestionAndCollectInput() throws IOException;
 
-    public abstract String askQuestion() throws IOException;
-
-    public abstract void answerQuestion();
+    String processQuestionAnswer(String questionAnswer);
 }
