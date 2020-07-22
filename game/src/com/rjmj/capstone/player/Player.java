@@ -1,9 +1,8 @@
 package com.rjmj.capstone.player;
 
-import com.rjmj.capstone.character.Nelly;
 import com.rjmj.capstone.engines.MovementEngine;
 import com.rjmj.capstone.room.Rooms;
-import com.rjmj.capstone.room.GameTestArt;
+import com.rjmj.capstone.room.GameTextArt;
 import com.rjmj.capstone.timer.Countdown;
 
 import java.io.IOException;
@@ -33,10 +32,10 @@ public class Player {
     }
 
     public void playGame() throws IOException {
-        GameTestArt gameTestArt = new GameTestArt();
+        GameTextArt gameTextARt = new GameTextArt();
         Scanner userInput = new Scanner(System.in);
-        gameTestArt.introArt();
-        gameTestArt.authorInformationDisplay();
+        gameTextARt.introArt();
+        gameTextARt.authorInformationDisplay();
 
         switch (userInput.next().toUpperCase()) {
             case "START":
@@ -44,7 +43,7 @@ public class Player {
                 availableActions();
                 break;
             case "INTRO":
-                gameTestArt.introText();
+                gameTextARt.introText();
                 collectPlayerName();
                 availableActions();
                 break;
@@ -102,8 +101,8 @@ public class Player {
             case "MIX":
                 if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("Beaker")
                         && pi.contains("Recipe")){
-                    GameTestArt gameTestArt = new GameTestArt();
-                    gameTestArt.winningArtDisplay();
+                    GameTextArt gameTextARt = new GameTextArt();
+                    gameTextARt.winningArtDisplay();
                 } else {
                     System.out.println("You do not have all of the required items, keep looking around.");
                     availableActions();
