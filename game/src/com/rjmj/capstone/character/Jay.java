@@ -22,14 +22,14 @@ public class Jay implements Character {
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) {
+    public String processQuestionAnswer(String questionAnswer) throws IOException {
         String result = "";
         if (questionAnswer.toUpperCase().equals("C")) {
             System.out.println("Correct");
             result = getItem();
         } else {
             System.out.println("Incorrect, please try again.");
-            result = processQuestionAnswer(questionAnswer);
+            askTheQuestionAndCollectInput();
         }
         return result;
     }
