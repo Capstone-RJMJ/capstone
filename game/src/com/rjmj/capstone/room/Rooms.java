@@ -20,7 +20,6 @@ public class Rooms {
                     "left", "Dining Room",
                     "down", "Kitchen")),
             entry("BALL ROOM", Map.of(
-                    // TODO: No Item - Needs Item
                     "room", "Ball Room",
                     "character", "John",
                     "left", "Hall",
@@ -51,7 +50,6 @@ public class Rooms {
                     "left", "Cave",
                     "right", "Lab")),
             entry("CAVE", Map.of(
-                    // TODO: No Item - Needs Item
                     "room", "Cave",
                     "character", "Zach",
                     "right", "Library")),
@@ -60,7 +58,6 @@ public class Rooms {
                     "item", "Needle",
                     "left", "Library" )),
             entry("KITCHEN",Map.of(
-                    // TODO: No Item - Needs Item
                     "room", "Kitchen",
                     "character", "Tom",
                     "up", "Hall",
