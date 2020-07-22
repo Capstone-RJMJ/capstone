@@ -38,7 +38,7 @@ public class Player {
         gameTestArt.introArt();
         gameTestArt.authorInformationDisplay();
 
-        switch (userInput.next().toUpperCase()) {
+        switch (userInput.next().toUpperCase().trim()) {
             case "START":
                 collectPlayerName();
                 availableActions();
@@ -80,7 +80,7 @@ public class Player {
             System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
         }
 
-        this.playerActionSelection = userInput.nextLine();
+        this.playerActionSelection = userInput.nextLine().trim();
 
         switch(getPlayerActionSelection().toUpperCase()) {
             case "MOVE":

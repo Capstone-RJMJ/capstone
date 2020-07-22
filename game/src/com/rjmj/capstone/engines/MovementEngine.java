@@ -50,7 +50,7 @@ public class MovementEngine {
         String question = questionBuilder(currentRoom);
         Scanner scanner = new Scanner(System.in);
         System.out.println(question);
-        String userChoice = scanner.nextLine().toLowerCase();
+        String userChoice = scanner.nextLine().toLowerCase().trim();
         Map<String,String> rm = room.getROOMS().get(currentRoom);
         if(rm.get("room").equals("Bedroom") && userChoice.equals("left")){
             inventory.talkToCharacter(room,"LIBRARY",inventory);// force talking to Peter when going into Library
