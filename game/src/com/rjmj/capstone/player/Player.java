@@ -40,10 +40,12 @@ public class Player {
 
         switch (userInput.next().toUpperCase()) {
             case "START":
+                collectPlayerName();
                 availableActions();
                 break;
             case "INTRO":
                 gameTestArt.introText();
+                collectPlayerName();
                 availableActions();
                 break;
             case "EXIT":
