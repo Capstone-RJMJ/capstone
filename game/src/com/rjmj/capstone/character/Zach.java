@@ -20,10 +20,10 @@ public class Zach implements Character{
 
     @Override
     public String processQuestionAnswer(String questionAnswer) {
-        String result = "";
+        String result = null;
         if (questionAnswer.toUpperCase().equals("A")) {
             System.out.println("Correct");
-            result = "Recipe";
+            result = getItem();
         } else {
             System.out.println("Incorrect, please try again.");
             askTheQuestionAndCollectInput();
@@ -37,5 +37,9 @@ public class Zach implements Character{
 
     public void setQuestionAnswer(String questionAnswer) {
         this.questionAnswer = questionAnswer;
+    }
+
+    public String getItem() {
+        return "Recipe";
     }
 }
