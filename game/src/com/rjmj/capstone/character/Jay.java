@@ -26,7 +26,7 @@ public class Jay implements Character {
         String result;
         if (questionAnswer.toUpperCase().equals("C")) {
             System.out.println("Correct");
-            result = "Red Liquid";
+            result = getItem();
         } else {
             System.out.println("Incorrect, please try again.");
             result = processQuestionAnswer(questionAnswer);
@@ -40,5 +40,9 @@ public class Jay implements Character {
 
     public void setQuestionAnswer(String questionAnswer) {
         this.questionAnswer = questionAnswer;
+    }
+
+    public String getItem() {
+        return "Red Liquid";
     }
 }
