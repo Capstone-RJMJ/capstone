@@ -17,10 +17,8 @@ public class Nelly implements Character {
 
     @Override
     public String processQuestionAnswer(String questionAnswer) {
-        String result = "";
         System.out.println("Good Luck");
-        result = "Syringe";
-        return result;
+        return getItem();
     }
 
     public String getQuestionAnswer() {
@@ -29,5 +27,9 @@ public class Nelly implements Character {
 
     public void setQuestionAnswer(String questionAnswer) {
         this.questionAnswer = questionAnswer;
+    }
+
+    public String getItem() {
+        return "Syringe";
     }
 }

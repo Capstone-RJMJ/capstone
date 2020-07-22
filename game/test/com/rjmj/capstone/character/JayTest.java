@@ -2,12 +2,14 @@ package com.rjmj.capstone.character;
 
 import org.junit.Test;
 
+import java.io.IOException;
+
 import static org.junit.Assert.*;
 
 public class JayTest {
 
     @Test
-    public void answerWithCNegative() {
+    public void answerWithCNegative() throws IOException {
         Jay zach = new Jay();
         assertEquals("Red Liquid", zach.processQuestionAnswer("C"));
     }
@@ -15,19 +17,19 @@ public class JayTest {
     // These three tests pass, during the test run they will go straight into Scanner In with the question asked again.
     // This is the behavior that is designed, causing a "passing" test.
     @Test
-    public void answerWithBNegative() {
+    public void answerWithBNegative() throws IOException {
         Jay zach = new Jay();
         assertEquals("\"Incorrect, please try again.\"", zach.processQuestionAnswer("B"));
     }
 
     @Test
-    public void answerWithANegative() {
+    public void answerWithANegative() throws IOException {
         Jay zach = new Jay();
         assertEquals("\"Incorrect, please try again.\"", zach.processQuestionAnswer("A"));
     }
 
     @Test
-    public void answerWithDNegative() {
+    public void answerWithDNegative() throws IOException {
         Jay zach = new Jay();
         assertEquals("\"Incorrect, please try again.\"", zach.processQuestionAnswer("D"));
     }

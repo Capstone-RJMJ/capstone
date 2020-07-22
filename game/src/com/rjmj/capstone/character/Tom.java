@@ -23,7 +23,7 @@ public class Tom implements Character {
         String result = "";
         if (questionAnswer.toUpperCase().equals("B")) {
             System.out.println("Correct");
-            result = "Blue Liquid";
+            result = getItem();
         } else {
             System.out.println("Incorrect, please try again.");
             askTheQuestionAndCollectInput();
@@ -37,5 +37,9 @@ public class Tom implements Character {
 
     public void setQuestionAnswer(String questionAnswer) {
         this.questionAnswer = questionAnswer;
+    }
+
+    public String getItem() {
+        return "Blue Liquid";
     }
 }

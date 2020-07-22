@@ -22,14 +22,14 @@ public class Jay implements Character {
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) {
-        String result;
+    public String processQuestionAnswer(String questionAnswer) throws IOException {
+        String result = "";
         if (questionAnswer.toUpperCase().equals("C")) {
             System.out.println("Correct");
-            result = "Red Liquid";
+            result = getItem();
         } else {
             System.out.println("Incorrect, please try again.");
-            result = processQuestionAnswer(questionAnswer);
+            askTheQuestionAndCollectInput();
         }
         return result;
     }
@@ -40,5 +40,9 @@ public class Jay implements Character {
 
     public void setQuestionAnswer(String questionAnswer) {
         this.questionAnswer = questionAnswer;
+    }
+
+    public String getItem() {
+        return "Red Liquid";
     }
 }

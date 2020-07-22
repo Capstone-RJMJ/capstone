@@ -7,6 +7,8 @@ public class Peter implements Character {
 
     @Override
     public String askTheQuestionAndCollectInput() {
+        System.out.println("\nPeter is standing at the entrance to the Library. " +
+                "He will not let you continue unless you correctly answer this math question:\n");
         System.out.println("How many possible versions of the vaccine are there if each ingredient is used once?");
         System.out.println("A. 3");
         System.out.println("B. 27");
@@ -23,8 +25,7 @@ public class Peter implements Character {
         String result = "";
         if (questionAnswer.toUpperCase().equals("D")) {
             System.out.println("Correct");
-            // TODO: Make this return a value that is not Null - Needs to be updated later.
-            result = null;
+            result = getItem();
         } else {
             System.out.println("Incorrect, please try again.");
             askTheQuestionAndCollectInput();
@@ -38,5 +39,11 @@ public class Peter implements Character {
 
     public void setQuestionAnswer(String questionAnswer) {
         this.questionAnswer = questionAnswer;
+    }
+
+    // Note: This is never actually passed into the players inventory, just for verification purposes.
+    // Book of Knowledge sounded a lot better then "Thing" or "Check".
+    public String getItem() {
+        return "The Book of Knowledge";
     }
 }

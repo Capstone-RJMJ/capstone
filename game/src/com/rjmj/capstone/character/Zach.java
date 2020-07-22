@@ -23,7 +23,7 @@ public class Zach implements Character{
         String result = "";
         if (questionAnswer.toUpperCase().equals("A")) {
             System.out.println("Correct");
-            result = "Recipe";
+            result = getItem();
         } else {
             System.out.println("Incorrect, please try again.");
             askTheQuestionAndCollectInput();
@@ -37,5 +37,9 @@ public class Zach implements Character{
 
     public void setQuestionAnswer(String questionAnswer) {
         this.questionAnswer = questionAnswer;
+    }
+
+    public String getItem() {
+        return "Recipe";
     }
 }

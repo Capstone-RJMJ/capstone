@@ -72,7 +72,7 @@ public class GameTextArt {
                     "|   Read the Intro           [Command: Intro]          |\n" +
                     "|   Exit this Program        [Command: Exit]           |\n" +
                     "|                                                      |\n" +
-                    "|  Developed by Michael Lennerblom, Josh Jenson and    |\n" +
+                    "|  Developed by Michael Lennerblom, Josh Jensen and    |\n" +
                     "|  RJ Smith. https://github.com/Capstone-RJMJ/capstone |\n" +
                     "|______________________________________________________|\n" + ANSI_RESET);
     }

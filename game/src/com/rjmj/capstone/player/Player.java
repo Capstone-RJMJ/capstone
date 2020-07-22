@@ -51,6 +51,7 @@ public class Player {
                 System.exit(1);
             default:
                 System.out.println("Error, please try another entry.");
+                playGame();
                 break;
         }
     }
