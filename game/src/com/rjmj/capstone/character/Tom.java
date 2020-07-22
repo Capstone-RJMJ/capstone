@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Tom implements Character {
     private String questionAnswer;
+    private String item;
 
     @Override
     public String askTheQuestionAndCollectInput() {
@@ -20,10 +21,10 @@ public class Tom implements Character {
 
     @Override
     public String processQuestionAnswer(String questionAnswer) {
-        String result = "";
+        String result = null;
         if (questionAnswer.toUpperCase().equals("B")) {
             System.out.println("Correct");
-            result = "Blue Liquid";
+            result = getItem();
         } else {
             System.out.println("Incorrect, please try again.");
             askTheQuestionAndCollectInput();
@@ -37,5 +38,9 @@ public class Tom implements Character {
 
     public void setQuestionAnswer(String questionAnswer) {
         this.questionAnswer = questionAnswer;
+    }
+
+    public String getItem() {
+        return "Blue Liquid";
     }
 }
