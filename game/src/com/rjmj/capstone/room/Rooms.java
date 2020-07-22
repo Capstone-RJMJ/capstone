@@ -33,7 +33,7 @@ public class Rooms {
                     "room", "Stairs",
                     "item", "Box",
                     "left", "Down Stairs Hall",
-                    "back", "Movie Room")),
+                    "up", "Movie Room")),
             entry("DOWN STAIRS HALL", Map.of(
                     "room", "Down Stairs Hall",
                     "item", "Beaker",
