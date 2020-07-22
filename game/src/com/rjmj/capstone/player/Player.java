@@ -84,7 +84,7 @@ public class Player {
 
         switch(getPlayerActionSelection().toUpperCase()) {
             case "MOVE":
-                movementEngine.roomChoices(movementEngine.getCurrentRoom(),getInventory());
+                movementEngine.changeRoom(getInventory());
                 availableActions();
                 break;
             case "LOOK AROUND":
@@ -108,6 +108,9 @@ public class Player {
                     System.out.println("You do not have all of the required items, keep looking around.");
                     availableActions();
                 }
+                break;
+            case "EXIT":
+                playGame();
                 break;
             default:
                 // TODO: Create a custom exception for this down the line.

@@ -12,10 +12,10 @@ public class MovementEngine {
     private String currentRoom = "DINING ROOM";
     public Rooms room = new Rooms();
 
-    private String questionBuilder(String currentRoom){
+    private String questionBuilder(){
         StringBuilder sb = new StringBuilder("Which direction would you like to go? (");
         String left,right,down,up;
-        Map<String,String> rm = room.getROOMS().get(currentRoom);
+        Map<String,String> rm = room.getROOMS().get(getCurrentRoom());
         Set<String> roomKeys = rm.keySet();
         // Loop through keys to build custom question for player giving direction options
         for(String moveOption : roomKeys){
@@ -45,23 +45,28 @@ public class MovementEngine {
 
     }
 
-    public String roomChoices(String currentRoom, Inventory inventory) throws IOException {
-        String result = getCurrentRoom();
-        String question = questionBuilder(currentRoom);
+    public String roomChoices(){
+        String question = questionBuilder();
         Scanner scanner = new Scanner(System.in);
         System.out.println(question);
         String userChoice = scanner.nextLine().toLowerCase().trim();
-        Map<String,String> rm = room.getROOMS().get(currentRoom);
+        return userChoice;
+    }
+
+    public String changeRoom(Inventory inventory) throws IOException {
+        String userChoice = roomChoices();
+        String result = getCurrentRoom();
+        Map<String,String> rm = room.getROOMS().get(getCurrentRoom());
         if(rm.get("room").equals("Bedroom") && userChoice.equals("left")){
             inventory.talkToCharacter(room,"LIBRARY",inventory);// force talking to Peter when going into Library
         }
         if(rm.containsKey(userChoice)) {
             setCurrentRoom(rm.get(userChoice).toUpperCase());
             result = rm.get(userChoice).toUpperCase();
-            }
+        }
         else {
             System.out.println("Invalid Selection, try again.");
-            roomChoices(getCurrentRoom(),inventory);
+            roomChoices();
         }
 
         return result;
