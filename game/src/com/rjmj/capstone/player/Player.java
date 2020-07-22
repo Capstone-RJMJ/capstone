@@ -41,12 +41,13 @@ public class Player {
 
     // availableActions() will prompt the player with a list of actions they can choose, based on current room.
     public void availableActions() throws IOException {
+        cd.displayTimeLeft();
         Rooms room = new Rooms();
         Scanner userInput = new Scanner(System.in);
         System.out.println("You are currently in the " + movementEngine.getCurrentRoom());
         System.out.println("Which action would you like to do?");
         ArrayList pi = getInventory().getPlyrInv();
-        if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("beaker")){
+        if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("Beaker")){
             System.out.println("You now have all the items necessary to Mix the vaccine ingredients...but in what order??");
             System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move, Mix (ingredients).");
         }
@@ -69,18 +70,13 @@ public class Player {
                 availableActions();
                 break;
             case "TAKE ITEM":
-                room.getItem(getInventory(), movementEngine.getCurrentRoom());
+                room.getItem(getInventory(), movementEngine.getCurrentRoom(),cd);
                 availableActions();
                 break;
             case "MIX":
                 System.out.println("need to write the function for mixing and checking");
                 availableActions();
                 break;
-            case "TIME":
-                cd.displayTimeLeft();
-                availableActions();
-                break;
-
             default:
                 // TODO: Create a custom exception for this down the line.
                 System.out.println("Error, please select a valid item.\n");

@@ -1,6 +1,7 @@
 package com.rjmj.capstone.room;
 
 import com.rjmj.capstone.player.Inventory;
+import com.rjmj.capstone.timer.Countdown;
 
 import static java.util.Map.entry;
 
@@ -21,26 +22,26 @@ public class Rooms {
             entry("BALL ROOM", Map.of(
                     "room", "Ball Room",
                     "character", "John",
-                    "left", "hall",
+                    "left", "Hall",
                     "right", "Movie Room")),
-            entry("MOVIE ROOM", Map.of("room",
-                    "Movie Room",
+            entry("MOVIE ROOM", Map.of(
+                    "room", "Movie Room",
                     "character", "Jay",
                     "left", "Ball Room",
                     "right", "Stairs")),
             entry("STAIRS", Map.of(
                     "room", "Stairs",
-                    "item", "box",
+                    "item", "Box",
                     "left", "Down Stairs Hall",
                     "back", "Movie Room")),
             entry("DOWN STAIRS HALL", Map.of(
                     "room", "Down Stairs Hall",
-                    "item", "beaker",
+                    "item", "Beaker",
                     "left", "Bedroom",
                     "right", "Stairs")),
             entry("BEDROOM", Map.of(
                     "room", "Bedroom",
-                    "item", "green liquid",
+                    "item", "Green Liquid",
                     "left", "Library",
                     "right", "Down Stairs Hall")),
             entry("LIBRARY", Map.of(
@@ -54,7 +55,7 @@ public class Rooms {
                     "right", "Library")),
             entry("LAB", Map.of(
                     "room", "Lab",
-                    "item", "needle",
+                    "item", "Needle",
                     "left", "Library" )),
             entry("KITCHEN",Map.of(
                     "room", "Kitchen",
@@ -63,7 +64,7 @@ public class Rooms {
                     "left", "bathroom")),
             entry("BATHROOM",Map.of(
                     "room", "Bathroom",
-                    "item", "plunger",
+                    "item", "Plunger",
                     "right", "Kitchen"))
     );
 
@@ -106,15 +107,16 @@ public class Rooms {
         return result;
     }
 
-    public String getItem(Inventory inventory, String currentRoom) {
+    public String getItem(Inventory inventory, String currentRoom, Countdown cd) {
         Map<String,String> rm = ROOMS.get(currentRoom);
         if(rm.get("item") != null) {
             //add a check for if the item is a box and you have the key in the inventory to add the time buff to the timer
-            if((rm.get("item").equals("box") && inventory.getPlyrInv().contains("key")) ||
-                    (rm.get("item").equals("key") && inventory.getPlyrInv().contains("box"))){
+            if((rm.get("item").equals("Box") && inventory.getPlyrInv().contains("Key")) ||
+                    (rm.get("item").equals("Key") && inventory.getPlyrInv().contains("Box"))){
                 System.out.println("You see that the box is locked so you use your key to unlock it\n" +
-                        "this is no ordinary box, you just unlocked Time itself and rolled back 2 minutes!");
-                //TODO: call function to add 2 minutes to timer, or however long
+                        "this is no ordinary box, you just unlocked Time itself and rolled back 1 minute!");
+                //TODO: call function to add 1 minute to timer, or however long
+                cd.addTimeBuff();
             }
             if(inventory.getPlyrInv().contains(rm.get("item"))){
                 System.out.println("You already took the " + rm.get("item"));
