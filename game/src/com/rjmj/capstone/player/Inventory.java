@@ -29,44 +29,66 @@ public class Inventory {
             switch (character) {
                 case "Tom":
                     item = tom.processQuestionAnswer(tom.askTheQuestionAndCollectInput());
-                    if (!inventory.getPlyrInv().contains(item)) {
-                        inventory.setPlyrInv(item);
-                        inventoryMsg(item, inventory.getPlyrInv().size());
+                    if (item.equals(tom.getItem())) {
+                        if (!inventory.getPlyrInv().contains(item)) {
+                            inventory.setPlyrInv(item);
+                            inventoryMsg(item, inventory.getPlyrInv().size());
+                        }
+                    } else {
+                        talkToCharacter(room, currentRoom, inventory);
                     }
                     break;
                 case "Jay":
                     item = jay.processQuestionAnswer(jay.askTheQuestionAndCollectInput());
-                    if (!inventory.getPlyrInv().contains(item)) {
-                        inventory.setPlyrInv(item);
-                        inventoryMsg(item, inventory.getPlyrInv().size());
+                    if (item.equals(jay.getItem())) {
+                        if (!inventory.getPlyrInv().contains(item)) {
+                            inventory.setPlyrInv(item);
+                            inventoryMsg(item, inventory.getPlyrInv().size());
+                        }
+                    } else {
+                        talkToCharacter(room, currentRoom, inventory);
                     }
                     break;
                 case "John":
                     item = john.processQuestionAnswer(john.askTheQuestionAndCollectInput());
-                    if (!inventory.getPlyrInv().contains(item)) {
-                        inventory.setPlyrInv(item);
-                        inventoryMsg(item, inventory.getPlyrInv().size());
+                    if (item.equals(john.getItem())) {
+                        if (!inventory.getPlyrInv().contains(item)) {
+                            inventory.setPlyrInv(item);
+                            inventoryMsg(item, inventory.getPlyrInv().size());
+                        }
+                    } else {
+                        talkToCharacter(room, currentRoom, inventory);
                     }
                     break;
                 case "Peter":
-                    System.out.println("\nPeter is standing at the entrance to the Library.  " +
-                            "He will not let you continue unless you correctly answer this math question:\n");
                     item = peter.processQuestionAnswer(peter.askTheQuestionAndCollectInput());
-                    System.out.println("\nPeter has granted you access to the LAB " +
-                            "and there is a secret CAVE behind the bookshelves!!!\n");
+                    if (item.equals(peter.getItem())) {
+                        System.out.println("\nPeter has granted you access to the LAB " +
+                                "and there is a secret CAVE behind the bookshelves!!!\n");
+                    } else {
+                        talkToCharacter(room, currentRoom, inventory);
+                    }
                     break;
                 case "Zach":
                     item = zach.processQuestionAnswer(zach.askTheQuestionAndCollectInput());
-                    if (!inventory.getPlyrInv().contains(item)) {
-                        inventory.setPlyrInv(item);
-                        inventoryMsg(item, inventory.getPlyrInv().size());
+                    if (item.equals(zach.getItem())) {
+                        if (!inventory.getPlyrInv().contains(item)) {
+                            inventory.setPlyrInv(item);
+                            inventoryMsg(item, inventory.getPlyrInv().size());
+                        }
+                    } else {
+                        talkToCharacter(room, currentRoom, inventory);
                     }
                     break;
                 case "Nelly":
                     item = nelly.processQuestionAnswer(nelly.askTheQuestionAndCollectInput());
-                    if (!inventory.getPlyrInv().contains(item)) {
-                        inventory.setPlyrInv(item);
-                        inventoryMsg(item, inventory.getPlyrInv().size());
+                    if (item.equals(nelly.getItem())) {
+                        if (!inventory.getPlyrInv().contains(item)) {
+                            inventory.setPlyrInv(item);
+                            inventoryMsg(item, inventory.getPlyrInv().size());
+                        }
+                    } else {
+                        talkToCharacter(room, currentRoom, inventory);
                     }
                     break;
             }

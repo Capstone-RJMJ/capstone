@@ -1,6 +1,6 @@
 package com.rjmj.capstone.room;
 
-public class GameTestArt {
+public class GameTextArt {
     // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_BLACK = "\u001B[30m";
@@ -72,7 +72,7 @@ public class GameTestArt {
                     "|   Read the Intro           [Command: Intro]          |\n" +
                     "|   Exit this Program        [Command: Exit]           |\n" +
                     "|                                                      |\n" +
-                    "|  Developed by Michael Lennerblom, Josh Jenson and    |\n" +
+                    "|  Developed by Michael Lennerblom, Josh Jensen and    |\n" +
                     "|  RJ Smith. https://github.com/Capstone-RJMJ/capstone |\n" +
                     "|______________________________________________________|\n" + ANSI_RESET);
     }
@@ -83,8 +83,6 @@ public class GameTestArt {
         System.out.println("are located in this Mansion.  If you fail to properly mix and administer the vaccine");
         System.out.println("within 10 minutes you will die.");
         System.out.println("To move around, you simply will type 'Up' 'Back' 'Left' and 'Right' as applicable.");
-        System.out.println("To get you started here is a Syringe.  You will need to find the remaining items");
-        System.out.println("Type Start if you are ready to get started.");
     }
 }
 
