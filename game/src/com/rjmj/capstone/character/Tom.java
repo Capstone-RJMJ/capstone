@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Tom implements Character {
     private String questionAnswer;
-    private String item;
 
     @Override
     public String askTheQuestionAndCollectInput() {
