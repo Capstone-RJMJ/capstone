@@ -75,14 +75,8 @@ public class Player {
         ArrayList pi = getInventory().getPlyrInv();
         if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("Beaker")){
             System.out.println("You now have all the items necessary to Mix the vaccine ingredients...you will need to find the recipe now.");
-            System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
-        }
-        else if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("Beaker")
-                && pi.contains("Recipe")){
-            System.out.println("You have found the recipe and have all of the required ingredients!");
-            System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move, Mix (ingredients).");
-        }
-        else {
+            System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move, Mix.");
+        } else {
             System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
         }
 
@@ -112,6 +106,7 @@ public class Player {
                     gameTestArt.winningArtDisplay();
                 } else {
                     System.out.println("You do not have all of the required items, keep looking around.");
+                    availableActions();
                 }
                 break;
             default:

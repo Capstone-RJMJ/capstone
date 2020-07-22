@@ -79,6 +79,9 @@ public class Inventory {
     public void inventoryMsg(String item, int num){
         System.out.println("The " + item + " was added to your inventory\n" +
                 "You now have " + num + " items in your inventory:");
+        for (String playerItems : getPlyrInv()) {
+            System.out.println("- " + playerItems);
+        }
     }
 
     public ArrayList<String> getPlyrInv() {
