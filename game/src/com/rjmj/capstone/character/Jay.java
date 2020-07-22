@@ -23,7 +23,7 @@ public class Jay implements Character {
 
     @Override
     public String processQuestionAnswer(String questionAnswer) {
-        String result;
+        String result = "";
         if (questionAnswer.toUpperCase().equals("C")) {
             System.out.println("Correct");
             result = getItem();

@@ -20,7 +20,7 @@ public class Zach implements Character{
 
     @Override
     public String processQuestionAnswer(String questionAnswer) {
-        String result = null;
+        String result = "";
         if (questionAnswer.toUpperCase().equals("A")) {
             System.out.println("Correct");
             result = getItem();

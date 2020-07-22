@@ -20,7 +20,7 @@ public class Tom implements Character {
 
     @Override
     public String processQuestionAnswer(String questionAnswer) {
-        String result = null;
+        String result = "";
         if (questionAnswer.toUpperCase().equals("B")) {
             System.out.println("Correct");
             result = getItem();
