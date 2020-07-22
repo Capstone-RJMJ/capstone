@@ -53,7 +53,6 @@ public class MovementEngine {
         String userChoice = scanner.nextLine().toLowerCase();
         Map<String,String> rm = room.getROOMS().get(currentRoom);
         if(rm.get("room").equals("Bedroom") && userChoice.equals("left")){
-            setCurrentRoom(rm.get(userChoice).toUpperCase());
             inventory.talkToCharacter(room,"LIBRARY",inventory);// force talking to Peter when going into Library
         }
         if(rm.containsKey(userChoice)) {
