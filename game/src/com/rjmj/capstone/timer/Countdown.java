@@ -34,6 +34,10 @@ public class Countdown {
     public void displayTimeLeft() {
         System.out.println("Time remaining: " + convertTimeLeftToMmSs(getTimeLeft()) + "\n");
     }
+    
+    public String displayTimeInsideArt() {
+        return "Time remaining: " + convertTimeLeftToMmSs(getTimeLeft());
+    }
 
     public static String convertTimeLeftToMmSs(long timeLeft) {
         String ms = String.format("%02d:%02d",

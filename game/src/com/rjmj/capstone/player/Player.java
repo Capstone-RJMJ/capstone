@@ -7,14 +7,18 @@ import com.rjmj.capstone.timer.Countdown;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
     private String playerName;
     private String playerActionSelection;
     private Inventory inventory = new Inventory();
-    MovementEngine movementEngine = new MovementEngine();
-    Countdown cd = new Countdown();
+    private MovementEngine movementEngine = new MovementEngine();
+    private Countdown cd = new Countdown();
+    private static final String ANSI_RESET = "\u001B[0m";
+    private static final String ANSI_CYAN = "\u001B[36m";
 
     // This empty constructor to be here for the client class to run the program.
     public Player() {
@@ -67,11 +71,10 @@ public class Player {
 
     // availableActions() will prompt the player with a list of actions they can choose, based on current room.
     public void availableActions() throws IOException {
-        cd.displayTimeLeft();
+//        cd.displayTimeLeft();
         Rooms room = new Rooms();
         Scanner userInput = new Scanner(System.in);
-        System.out.println("You are currently in the " + movementEngine.getCurrentRoom());
-        System.out.println("Which action would you like to do?");
+        currentLocationDisplay();
         ArrayList pi = getInventory().getPlyrInv();
         if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("Beaker")){
             System.out.println("You now have all the items necessary to Mix the vaccine ingredients...you will need to find the recipe now.");
@@ -129,5 +132,21 @@ public class Player {
 
     public Inventory getInventory() {
         return inventory;
+    }
+//[Syringe, Blue Liquid, Plunger, Key, Red Liquid, Box, Beaker, Green Liquid, Recipe, Needle]
+    public void currentLocationDisplay() {
+        System.out.println(ANSI_CYAN + "___________________________________________________________________________________________________________________________________________________________________________                                    \n" +
+                "|                                                                                                                                                                          |\n" +
+                "|                You are currently in the:                                                                                                                                 |\n" +
+                "|                      "+ movementEngine.getCurrentRoom() +"                                                                                                               \n" +
+                "|   Move to a new location      [Command: Move]                                                                                                                            |\n" +
+                "|   Look Around the Room        [Command: Look Around]                        Current Inventory                                                                            |\n" +
+                "|   Talk to someone             [Command: Talk]                             "+ inventory.getPlyrInv() +"                                                                   \n" +
+                "|   Take any available item     [Command: Take Item]                                                                                                                       |\n" +
+                "|   Exit this Program           [Command: Exit]                                                                                                                            |\n" +
+                "|                                                                                                                                                                          |\n" +
+                "|                                                                                                                                                                          |\n" +
+                "|              "+ cd.displayTimeInsideArt() +"                                                                                                                                       |\n" +
+                "|__________________________________________________________________________________________________________________________________________________________________________|\n" + ANSI_RESET);
     }
 }
