@@ -20,14 +20,14 @@ public class Peter implements Character {
 
     @Override
     public String processQuestionAnswer(String questionAnswer) {
-        String result;
+        String result = "";
         if (questionAnswer.toUpperCase().equals("D")) {
             System.out.println("Correct");
             // TODO: Make this return a value that is not Null - Needs to be updated later.
             result = null;
         } else {
             System.out.println("Incorrect, please try again.");
-            result = processQuestionAnswer(questionAnswer);
+            askTheQuestionAndCollectInput();
         }
         return result;
     }
