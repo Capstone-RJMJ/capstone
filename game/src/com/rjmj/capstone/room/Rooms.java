@@ -75,6 +75,7 @@ public class Rooms {
         Set<String> keys = rm.keySet();
         String[] keyArr = keys.toArray(new String[keys.size()]);
         for(String key : keyArr) {
+            System.out.println("key: " + key);
             if(!inventory.getPlyrInv().contains(rm.get(key))) {
                 if (rm.get("item") != null && "item".equals(key)) {
                     String item = rm.get("item");
@@ -85,19 +86,15 @@ public class Rooms {
                     sb.append("  " + character + " is in the room\n");
                 }
                 if (rm.get("left") != null && "left".equals(key)) {
-                    String left = rm.get("left");
                     sb.append("  a door to the " + rm.get("left") + " is to the LEFT\n");
                 }
                 if (rm.get("right") != null && "right".equals(key)) {
-                    String right = rm.get("right");
                     sb.append("  a door to the " + rm.get("right") + " is to the RIGHT\n");
                 }
-                if (rm.get("up") != null && rm.get("up").equals(key)) {
-                    String up = rm.get("up");
+                if (rm.get("up") != null && "up".equals(key)) {
                     sb.append("  a door to the " + rm.get("up") + " is UP from the " + currentRoom + "\n");
                 }
-                if (rm.get("down") != null && rm.get("down").equals(key)) {
-                    String down = rm.get("down");
+                if (rm.get("down") != null && "down".equals(key)) {
                     sb.append("  a door to the " + rm.get("down") + " is DOWN from the " + currentRoom + "\n");
                 }
             }
@@ -115,7 +112,6 @@ public class Rooms {
                     (rm.get("item").equals("Key") && inventory.getPlyrInv().contains("Box"))){
                 System.out.println("You see that the box is locked so you use your key to unlock it\n" +
                         "this is no ordinary box, you just unlocked Time itself and rolled back 1 minute!");
-                //TODO: call function to add 1 minute to timer, or however long
                 cd.addTimeBuff();
             }
             if(inventory.getPlyrInv().contains(rm.get("item"))){
