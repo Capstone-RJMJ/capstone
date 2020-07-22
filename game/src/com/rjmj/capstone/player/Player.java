@@ -37,7 +37,7 @@ public class Player {
         gameTextARt.introArt();
         gameTextARt.authorInformationDisplay();
 
-        switch (userInput.next().toUpperCase()) {
+        switch (userInput.next().toUpperCase().trim()) {
             case "START":
                 collectPlayerName();
                 availableActions();
@@ -80,11 +80,11 @@ public class Player {
             System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
         }
 
-        this.playerActionSelection = userInput.nextLine();
+        this.playerActionSelection = userInput.nextLine().trim();
 
         switch(getPlayerActionSelection().toUpperCase()) {
             case "MOVE":
-                movementEngine.roomChoices(movementEngine.getCurrentRoom(),getInventory());
+                movementEngine.changeRoom(getInventory());
                 availableActions();
                 break;
             case "LOOK AROUND":
@@ -108,6 +108,9 @@ public class Player {
                     System.out.println("You do not have all of the required items, keep looking around.");
                     availableActions();
                 }
+                break;
+            case "EXIT":
+                playGame();
                 break;
             default:
                 // TODO: Create a custom exception for this down the line.
