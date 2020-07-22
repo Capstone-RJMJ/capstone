@@ -1,7 +1,9 @@
 package com.rjmj.capstone.player;
 
+import com.rjmj.capstone.character.Nelly;
 import com.rjmj.capstone.engines.MovementEngine;
 import com.rjmj.capstone.room.Rooms;
+import com.rjmj.capstone.room.GameTestArt;
 import com.rjmj.capstone.timer.Countdown;
 
 import java.io.IOException;
@@ -30,6 +32,28 @@ public class Player {
         this.playerActionSelection = playerActionSelection;
     }
 
+    public void playGame() throws IOException {
+        GameTestArt gameTestArt = new GameTestArt();
+        Scanner userInput = new Scanner(System.in);
+        gameTestArt.introArt();
+        gameTestArt.authorInformationDisplay();
+
+        switch (userInput.next().toUpperCase()) {
+            case "START":
+                availableActions();
+                break;
+            case "INTRO":
+                gameTestArt.introText();
+                availableActions();
+                break;
+            case "EXIT":
+                System.exit(1);
+            default:
+                System.out.println("Error, please try another entry.");
+                break;
+        }
+    }
+
     // enterName() will prompt the user to  enter their desired name.
     public void collectPlayerName() {
         Scanner userInput = new Scanner(System.in);
@@ -48,12 +72,18 @@ public class Player {
         System.out.println("Which action would you like to do?");
         ArrayList pi = getInventory().getPlyrInv();
         if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("Beaker")){
-            System.out.println("You now have all the items necessary to Mix the vaccine ingredients...but in what order??");
+            System.out.println("You now have all the items necessary to Mix the vaccine ingredients...you will need to find the recipe now.");
+            System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
+        }
+        else if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("Beaker")
+                && pi.contains("Recipe")){
+            System.out.println("You have found the recipe and have all of the required ingredients!");
             System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move, Mix (ingredients).");
         }
         else {
             System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
         }
+
         this.playerActionSelection = userInput.nextLine();
 
         switch(getPlayerActionSelection().toUpperCase()) {
@@ -74,8 +104,13 @@ public class Player {
                 availableActions();
                 break;
             case "MIX":
-                System.out.println("need to write the function for mixing and checking");
-                availableActions();
+                if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("Beaker")
+                        && pi.contains("Recipe")){
+                    GameTestArt gameTestArt = new GameTestArt();
+                    gameTestArt.winningArtDisplay();
+                } else {
+                    System.out.println("You do not have all of the required items, keep looking around.");
+                }
                 break;
             default:
                 // TODO: Create a custom exception for this down the line.
