@@ -1,5 +1,6 @@
 package com.rjmj.capstone.engines;
 
+import com.rjmj.capstone.engine.UserInput;
 import com.rjmj.capstone.player.Inventory;
 import com.rjmj.capstone.room.Rooms;
 
@@ -10,12 +11,13 @@ import java.util.Set;
 
 public class MovementEngine {
     private String currentRoom = "DINING ROOM";
-    public Rooms room = new Rooms();
+    private Rooms room = new Rooms();
+
 
     private String questionBuilder(){
         StringBuilder sb = new StringBuilder("Which direction would you like to go? (");
         String left,right,down,up;
-        Map<String,String> rm = room.getROOMS().get(getCurrentRoom());
+        Map<String,String> rm = getRoom().getROOMS().get(getCurrentRoom());
         Set<String> roomKeys = rm.keySet();
         // Loop through keys to build custom question for player giving direction options
         for(String moveOption : roomKeys){
@@ -46,19 +48,16 @@ public class MovementEngine {
     }
 
     public String roomChoices(){
-        String question = questionBuilder();
-        Scanner scanner = new Scanner(System.in);
-        System.out.println(question);
-        String userChoice = scanner.nextLine().toLowerCase().trim();
+        UserInput input = new UserInput();
+        String userChoice = input.getInput(questionBuilder());
         return userChoice;
     }
 
-    public String changeRoom(Inventory inventory) throws IOException {
-        String userChoice = roomChoices();
+    public String changeRoom(Inventory inventory, String userChoice) throws IOException {
         String result = getCurrentRoom();
-        Map<String,String> rm = room.getROOMS().get(getCurrentRoom());
+        Map<String,String> rm = getRoom().getROOMS().get(getCurrentRoom());
         if(rm.get("room").equals("Bedroom") && userChoice.equals("left")){
-            inventory.talkToCharacter(room,"LIBRARY",inventory);// force talking to Peter when going into Library
+            inventory.talkToCharacter(getRoom(),"LIBRARY",inventory);// force talking to Peter when going into Library
         }
         if(rm.containsKey(userChoice)) {
             setCurrentRoom(rm.get(userChoice).toUpperCase());
@@ -78,4 +77,9 @@ public class MovementEngine {
     public void setCurrentRoom(String currentRoom) {
         this.currentRoom = currentRoom;
     }
+
+    public Rooms getRoom() {
+        return room;
+    }
+
 }
