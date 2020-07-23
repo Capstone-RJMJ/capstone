@@ -53,7 +53,7 @@ public class MovementEngine {
         return userChoice;
     }
 
-    public String changeRoom(Inventory inventory) throws IOException {
+    public String changeRoom(Inventory inventory) throws IOException, InterruptedException {
         String userChoice = roomChoices();
         String result = getCurrentRoom();
         Map<String,String> rm = room.getROOMS().get(getCurrentRoom());

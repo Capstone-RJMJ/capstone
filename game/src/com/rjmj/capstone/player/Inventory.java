@@ -20,7 +20,10 @@ public class Inventory {
         private ArrayList<String> plyrInv = new ArrayList<>();
 
 
-    public String talkToCharacter(Rooms room, String currentRoom, Inventory inventory) throws IOException {
+    // TODO: Uncomment out the inventoryMsg and each display of them if the Ascii Art panel is scrapped.
+    // TODO: Currently they are commented to allow for the display to give all of the UI information.
+
+    public String talkToCharacter(Rooms room, String currentRoom, Inventory inventory) throws IOException, InterruptedException {
         String item;
         Map<String,String> rm = room.getROOMS().get(currentRoom);
         if(rm.get("character") != null){
@@ -32,7 +35,7 @@ public class Inventory {
                     if (item.equals(tom.getItem())) {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
-                            inventoryMsg(item, inventory.getPlyrInv().size());
+                        //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
                         talkToCharacter(room, currentRoom, inventory);
@@ -43,7 +46,7 @@ public class Inventory {
                     if (item.equals(jay.getItem())) {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
-                            inventoryMsg(item, inventory.getPlyrInv().size());
+                        //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
                         talkToCharacter(room, currentRoom, inventory);
@@ -54,7 +57,7 @@ public class Inventory {
                     if (item.equals(john.getItem())) {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
-                            inventoryMsg(item, inventory.getPlyrInv().size());
+                        //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
                         talkToCharacter(room, currentRoom, inventory);
@@ -74,7 +77,7 @@ public class Inventory {
                     if (item.equals(zach.getItem())) {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
-                            inventoryMsg(item, inventory.getPlyrInv().size());
+                        //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
                         talkToCharacter(room, currentRoom, inventory);
@@ -85,7 +88,7 @@ public class Inventory {
                     if (item.equals(nelly.getItem())) {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
-                            inventoryMsg(item, inventory.getPlyrInv().size());
+                            //   inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
                         talkToCharacter(room, currentRoom, inventory);
@@ -98,13 +101,13 @@ public class Inventory {
     }
         return "item";//return the item i guess
     }
-    public void inventoryMsg(String item, int num){
-        System.out.println("The " + item + " was added to your inventory\n" +
-                "You now have " + num + " items in your inventory:");
-        for (String playerItems : getPlyrInv()) {
-            System.out.println("- " + playerItems);
-        }
-    }
+//    public void inventoryMsg(String item, int num){
+//        System.out.println("The " + item + " was added to your inventory\n" +
+//                "You now have " + num + " items in your inventory:");
+//        for (String playerItems : getPlyrInv()) {
+//            System.out.println("- " + playerItems);
+//        }
+//    }
 
     public ArrayList<String> getPlyrInv() {
         return plyrInv;
@@ -112,5 +115,13 @@ public class Inventory {
 
     public void setPlyrInv(String item) {
         plyrInv.add(item);
+    }
+
+    public String textArtDisplayInventory() {
+        String result = "";
+        for (String playerItems : getPlyrInv()) {
+            result = playerItems;
+        }
+        return result;
     }
 }
