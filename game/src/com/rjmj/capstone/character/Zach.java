@@ -6,12 +6,21 @@ public class Zach implements Character{
     private String questionAnswer;
 
     @Override
-    public String askTheQuestionAndCollectInput() {
-        System.out.println("What did the crew name the Dragon DEMO 2 capsule?");
-        System.out.println("A. Endeavor");
-        System.out.println("B. Atlantis");
-        System.out.println("C. Dragon");
-        System.out.println("D. Enterprise");
+    public String askTheQuestionAndCollectInput() throws InterruptedException {
+        String[] zachInput = {
+                ANSI_CYAN,
+                "What did the crew name the Dragon DEMO 2 capsule?",
+                "A. Endeavor",
+                "B. Atlantis",
+                "C. Dragon",
+                "D. Enterprise",
+                ANSI_RESET
+        };
+
+        for (String zach : zachInput) {
+            Thread.sleep(1000);
+            System.out.println(zach);
+        }
 
         Scanner sc = new Scanner(System.in);
         setQuestionAnswer(sc.next());
@@ -19,7 +28,7 @@ public class Zach implements Character{
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) {
+    public String processQuestionAnswer(String questionAnswer) throws InterruptedException {
         String result = "";
         if (questionAnswer.toUpperCase().equals("A")) {
             System.out.println("Correct");
