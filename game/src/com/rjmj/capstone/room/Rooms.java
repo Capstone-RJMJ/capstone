@@ -52,7 +52,8 @@ public class Rooms {
                     "room", "Library",
                     "character", "Peter",
                     "left", "Cave",
-                    "right", "Lab")),
+                    "right", "Lab",
+                    "up", "Bedroom")),
             entry("CAVE", Map.of(
                     "room", "Cave",
                     "character", "Zach",

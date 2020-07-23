@@ -22,6 +22,8 @@ public class Player {
     private static final String ANSI_PURPLE = "\u001B[35m";
     private static final String ANSI_YELLOW = "\u001B[33m";
     private static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_GREEN = "\u001B[32m";
 
 
     // This empty constructor to be here for the client class to run the program.
@@ -81,8 +83,7 @@ public class Player {
         Scanner userInput = new Scanner(System.in);
         currentLocationDisplay();
         ArrayList pi = getInventory().getPlyrInv();
-        if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("Beaker")){
-            System.out.println(ANSI_PURPLE + "You now have all the items necessary to Mix the vaccine ingredients...you will need to find the recipe now."  + ANSI_RESET);
+        if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")){
             System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move, Mix.");
         } else {
             System.out.println(ANSI_YELLOW + "You can do the following actions: Look Around, Talk, Take Item, Move." + ANSI_RESET);
@@ -108,7 +109,7 @@ public class Player {
                 availableActions();
                 break;
             case "MIX":
-                if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("Beaker")
+                if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")
                         && pi.contains("Recipe")){
                     GameTextArt gameTextARt = new GameTextArt();
                     gameTextARt.winningArtDisplay();
@@ -140,7 +141,10 @@ public class Player {
     }
 //[Syringe, Blue Liquid, Plunger, Key, Red Liquid, Box, Beaker, Green Liquid, Recipe, Needle]
     public void currentLocationDisplay() {
-        System.out.println(ANSI_CYAN + "___________________________________________________________________________________________________________________________________________________________________________                                    \n" +
+        ArrayList pi = getInventory().getPlyrInv();
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(ANSI_CYAN + "___________________________________________________________________________________________________________________________________________________________________________                                    \n" +
                 "|                                                                                                                                                                          |\n" +
                 "|                You are currently in the:                                                                                                                                 |\n" +
                 "|                      "+ movementEngine.getCurrentRoom() +"                                                                                                               \n" +
@@ -148,10 +152,16 @@ public class Player {
                 "|   Look Around the Room        [Command: Look Around]                        Current Inventory                                                                            |\n" +
                 "|   Talk to someone             [Command: Talk]                             "+ inventory.getPlyrInv() +"                                                                   \n" +
                 "|   Take any available item     [Command: Take Item]                                                                                                                       |\n" +
-                "|   Exit this Program           [Command: Exit]                                                                                                                            |\n" +
-                "|                                                                                                                                                                          |\n" +
+                "|   Exit this Program           [Command: Exit]                                                                                                                            |\n");
+
+        if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")) {
+            System.out.println(ANSI_PURPLE + "You now have all the items necessary to Mix the vaccine ingredients...you will need to find the recipe now." + ANSI_RESET);
+            sb.append("|   Mix the vaccine ingredients [Command: MIX]                                                                                                                             |\n");
+        }
+        sb.append("|                                                                                                                                                                          |\n" +
                 "|                                                                                                                                                                          |\n" +
                 "|              "+ cd.displayTimeInsideArt() +"                                                                                                                                       |\n" +
                 "|__________________________________________________________________________________________________________________________________________________________________________|\n" + ANSI_RESET);
+        System.out.println(sb.toString());
     }
 }
