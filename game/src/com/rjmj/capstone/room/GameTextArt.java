@@ -4,6 +4,7 @@ import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class GameTextArt {
     // https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
@@ -179,6 +180,9 @@ public class GameTextArt {
  ANSI_RESET + ANSI_PURPLE +"                        |           |           " + ANSI_RESET + ANSI_YELLOW +          "|          |\n"+
  ANSI_RESET + ANSI_PURPLE +"                        +-----------+           " + ANSI_RESET + ANSI_YELLOW +          "+----------+\n"+
 "                                                                                                                                             \n" + ANSI_RESET);
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(ANSI_CYAN + "Enter any command to return." + ANSI_RESET);
+        scanner.next();
     }
 
 }

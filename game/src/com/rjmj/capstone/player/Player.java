@@ -125,6 +125,7 @@ public class Player {
             case "MAP":
                 GameTextArt gameTextArt = new GameTextArt();
                 gameTextArt.mapDisplay();
+                availableActions();
                 break;
             case "EXIT":
                 playGame();
