@@ -3,6 +3,7 @@ package com.rjmj.capstone.engines;
 import com.rjmj.capstone.engine.UserInput;
 import com.rjmj.capstone.player.Inventory;
 import com.rjmj.capstone.room.Rooms;
+import com.rjmj.capstone.timer.Countdown;
 
 import java.io.IOException;
 import java.util.Map;
@@ -53,11 +54,11 @@ public class MovementEngine {
         return userChoice;
     }
 
-    public String changeRoom(Inventory inventory, String userChoice) throws IOException, InterruptedException {
+    public String changeRoom(Inventory inventory, String userChoice, Countdown cd) throws IOException, InterruptedException {
         String result = getCurrentRoom();
         Map<String,String> rm = getRoom().getROOMS().get(getCurrentRoom());
         if(rm.get("room").equals("Bedroom") && userChoice.equals("left")){
-            inventory.talkToCharacter(getRoom(),"LIBRARY",inventory);// force talking to Peter when going into Library
+            inventory.talkToCharacter(getRoom(),"LIBRARY",inventory,cd);// force talking to Peter when going into Library
         }
         if(rm.containsKey(userChoice)) {
             setCurrentRoom(rm.get(userChoice).toUpperCase());

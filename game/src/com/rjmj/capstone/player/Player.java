@@ -97,7 +97,7 @@ public class Player {
 
         switch(getPlayerActionSelection().toUpperCase()) {
             case "MOVE":
-                movementEngine.changeRoom(getInventory(), movementEngine.roomChoices());
+                movementEngine.changeRoom(getInventory(), movementEngine.roomChoices(),cd);
                 availableActions();
                 break;
             case "LOOK AROUND":
@@ -105,7 +105,7 @@ public class Player {
                 availableActions();
                 break;
             case "TALK":
-                getInventory().talkToCharacter(room,movementEngine.getCurrentRoom(),getInventory());
+                getInventory().talkToCharacter(room,movementEngine.getCurrentRoom(),getInventory(),cd);
                 availableActions();
                 break;
             case "TAKE ITEM":
