@@ -20,7 +20,10 @@ public class Inventory {
         private ArrayList<String> plyrInv = new ArrayList<>();
 
 
-    public String talkToCharacter(Rooms room, String currentRoom, Inventory inventory) throws IOException {
+    // TODO: Uncomment out the inventoryMsg and each display of them if the Ascii Art panel is scrapped.
+    // TODO: Currently they are commented to allow for the display to give all of the UI information.
+
+    public String talkToCharacter(Rooms room, String currentRoom, Inventory inventory) throws IOException, InterruptedException {
         String item;
         Map<String,String> rm = room.getROOMS().get(currentRoom);
         if(rm.get("character") != null){
