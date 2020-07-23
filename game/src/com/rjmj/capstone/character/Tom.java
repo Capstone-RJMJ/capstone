@@ -49,6 +49,6 @@ public class Tom implements Character {
     }
 
     public String getItem() {
-        return "Blue Liquid";
+        return ANSI_BLUE + "Blue Liquid" + ANSI_CYAN;
     }
 }
