@@ -53,7 +53,7 @@ public class MovementEngine {
         return userChoice;
     }
 
-    public String changeRoom(Inventory inventory, String userChoice) throws IOException {
+    public String changeRoom(Inventory inventory, String userChoice) throws IOException, InterruptedException {
         String result = getCurrentRoom();
         Map<String,String> rm = getRoom().getROOMS().get(getCurrentRoom());
         if(rm.get("room").equals("Bedroom") && userChoice.equals("left")){

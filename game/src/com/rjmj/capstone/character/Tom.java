@@ -6,12 +6,21 @@ public class Tom implements Character {
     private String questionAnswer;
 
     @Override
-    public String askTheQuestionAndCollectInput() {
-        System.out.println("What Online video game did Tom perform a wedding?");
-        System.out.println("A. Dungeons and Dragons");
-        System.out.println("B. World of Warcraft");
-        System.out.println("C. Diablo II");
-        System.out.println("D. Elder Scrolls");
+    public String askTheQuestionAndCollectInput() throws InterruptedException {
+        String[] tomInput = {
+                ANSI_CYAN,
+                "Tom: \"What Online video game did Tom perform a wedding?\"",
+                "A. Dungeons and Dragons",
+                "B. World of Warcraft",
+                "C. Diablo II",
+                "D. Elder Scrolls",
+                ANSI_RESET
+        };
+
+        for (String tom : tomInput) {
+            Thread.sleep(1000);
+            System.out.println(tom);
+        }
 
         Scanner sc = new Scanner(System.in);
         setQuestionAnswer(sc.next());
@@ -19,7 +28,7 @@ public class Tom implements Character {
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) {
+    public String processQuestionAnswer(String questionAnswer) throws InterruptedException {
         String result = "";
         if (questionAnswer.toUpperCase().equals("B")) {
             System.out.println("Correct");

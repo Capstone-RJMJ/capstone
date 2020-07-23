@@ -75,7 +75,6 @@ public class Rooms {
         Set<String> keys = rm.keySet();
         String[] keyArr = keys.toArray(new String[keys.size()]);
         for(String key : keyArr) {
-            System.out.println("key: " + key);
             if(!inventory.getPlyrInv().contains(rm.get(key))) {
                 if (rm.get("item") != null && "item".equals(key)) {
                     String item = rm.get("item");

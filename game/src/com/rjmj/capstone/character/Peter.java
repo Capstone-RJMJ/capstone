@@ -6,14 +6,24 @@ public class Peter implements Character {
     private String questionAnswer;
 
     @Override
-    public String askTheQuestionAndCollectInput() {
+    public String askTheQuestionAndCollectInput() throws InterruptedException {
+        String[] peterInput = {
+                ANSI_CYAN,
+                "Peter: \"How many possible versions of the vaccine are there if each ingredient is used once?\"",
+                "A. 3",
+                "B. 27",
+                "C. 9",
+                "D. 6",
+                ANSI_RESET
+        };
+
         System.out.println("\nPeter is standing at the entrance to the Library. " +
                 "He will not let you continue unless you correctly answer this math question:\n");
-        System.out.println("How many possible versions of the vaccine are there if each ingredient is used once?");
-        System.out.println("A. 3");
-        System.out.println("B. 27");
-        System.out.println("C. 9");
-        System.out.println("D. 6");
+
+        for (String peter : peterInput) {
+            Thread.sleep(1000);
+            System.out.println(peter);
+        }
 
         Scanner sc = new Scanner(System.in);
         setQuestionAnswer(sc.next());
@@ -21,7 +31,7 @@ public class Peter implements Character {
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) {
+    public String processQuestionAnswer(String questionAnswer) throws InterruptedException {
         String result = "";
         if (questionAnswer.toUpperCase().equals("D")) {
             System.out.println("Correct");

@@ -3,8 +3,11 @@ package com.rjmj.capstone.character;
 import java.io.IOException;
 
 public interface Character {
-    // This will warn you that the return value is never used, but it is in the characters.
-    String askTheQuestionAndCollectInput() throws IOException;
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_CYAN = "\u001B[36m";
 
-    String processQuestionAnswer(String questionAnswer) throws IOException;
+    // This will warn you that the return value is never used, but it is in the characters.
+    String askTheQuestionAndCollectInput() throws IOException, InterruptedException;
+
+    String processQuestionAnswer(String questionAnswer) throws IOException, InterruptedException;
 }
