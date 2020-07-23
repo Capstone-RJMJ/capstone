@@ -46,6 +46,11 @@ public class Countdown {
         return ms;
     }
 
+    // This is so the timer will reset when the player starts a new game via Exit - otherwise it will continue.
+    public void resetTimerNewGame() {
+        setTimeLeft(600000);
+    }
+
     public long getDelay() {
         return delay;
     }
