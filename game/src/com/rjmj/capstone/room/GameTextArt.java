@@ -67,7 +67,7 @@ public class GameTextArt {
                 ANSI_RESET);
     }
 
-    public void authorInformationDisplay() {
+    public void introTextDelayed() {
             System.out.println(ANSI_CYAN + "________________________________________________________\n" +
                     "|   Welcome to Apprenticeship, Escape from COVID-19    |\n" +
                     "|   This game was developed as a Capstone Project for  |\n" +
@@ -82,12 +82,21 @@ public class GameTextArt {
                     "|______________________________________________________|\n" + ANSI_RESET);
     }
 
-    public void introText() {
-        System.out.println("Welcome to the Apprenticeship!  Your journey has been hard, but I will help you");
-        System.out.println("You have been intentionally injected with CoVID.  Luckily the vaccine ingredients");
-        System.out.println("are located in this Mansion.  If you fail to properly mix and administer the vaccine");
-        System.out.println("within 10 minutes you will die.");
-        System.out.println("To move around, you simply will type 'Up' 'Back' 'Left' and 'Right' as applicable.");
+    public void introText() throws InterruptedException {
+        String[] infoText = {
+                ANSI_BLUE,
+                "Welcome to the Apprenticeship!  Your journey has been hard, but I will help you",
+                "You have been intentionally injected with CoVID.  Luckily the vaccine ingredients",
+                "are located in this Mansion.  If you fail to properly mix and administer the vaccine",
+                "within 10 minutes you will die.",
+                "To move around, you simply will type 'Up' 'Back' 'Left' and 'Right' as applicable.",
+                ANSI_RESET
+        };
+
+        for (String messages : infoText) {
+            Thread.sleep(750);
+            System.out.println(messages);
+        }
     }
 }
 
