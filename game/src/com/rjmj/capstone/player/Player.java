@@ -57,8 +57,12 @@ public class Player {
                 collectPlayerName();
                 availableActions();
                 break;
+            case "MAP":
+                gameTextARt.mapDisplay();
+                break;
             case "EXIT":
-                System.exit(1);
+                System.exit(0);
+                break;
             default:
                 System.out.println("Error, please try another entry.");
                 playGame();
@@ -117,6 +121,11 @@ public class Player {
                     System.out.println("You do not have all of the required items, keep looking around.");
                     availableActions();
                 }
+                break;
+            case "MAP":
+                movementEngine.getCurrentRoom();
+                GameTextArt gameTextArt = new GameTextArt();
+                gameTextArt.mapDisplay();
                 break;
             case "EXIT":
                 playGame();
