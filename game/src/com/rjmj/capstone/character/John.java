@@ -9,7 +9,7 @@ public class John implements Character {
     public String askTheQuestionAndCollectInput() throws InterruptedException {
         String[] johnInput = {
                 ANSI_CYAN,
-                "What is AWS' DNS Service?",
+                "John: \"What is AWS' DNS Service?\"",
                 "A. S3",
                 "B. EC2",
                 "C. Route 53",

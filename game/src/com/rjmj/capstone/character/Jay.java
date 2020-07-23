@@ -10,7 +10,7 @@ public class Jay implements Character {
     public String askTheQuestionAndCollectInput() throws IOException, InterruptedException {
         String[] jayInput = {
                 ANSI_CYAN,
-                "What band is Jay playing in this video?",
+                "Jay: \"What band is Jay playing in this video?\"",
                 "A. Aerosmith",
                 "B. Daft Punk",
                 "C. Queen",

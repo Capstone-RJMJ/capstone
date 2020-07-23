@@ -9,7 +9,7 @@ public class Peter implements Character {
     public String askTheQuestionAndCollectInput() throws InterruptedException {
         String[] peterInput = {
                 ANSI_CYAN,
-                "How many possible versions of the vaccine are there if each ingredient is used once?",
+                "Peter: \"How many possible versions of the vaccine are there if each ingredient is used once?\"",
                 "A. 3",
                 "B. 27",
                 "C. 9",

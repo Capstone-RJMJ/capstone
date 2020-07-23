@@ -9,7 +9,7 @@ public class Tom implements Character {
     public String askTheQuestionAndCollectInput() throws InterruptedException {
         String[] tomInput = {
                 ANSI_CYAN,
-                "What Online video game did Tom perform a wedding?",
+                "Tom: \"What Online video game did Tom perform a wedding?\"",
                 "A. Dungeons and Dragons",
                 "B. World of Warcraft",
                 "C. Diablo II",

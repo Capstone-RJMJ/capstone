@@ -9,7 +9,7 @@ public class Zach implements Character{
     public String askTheQuestionAndCollectInput() throws InterruptedException {
         String[] zachInput = {
                 ANSI_CYAN,
-                "What did the crew name the Dragon DEMO 2 capsule?",
+                "Zach: \"What did the crew name the Dragon DEMO 2 capsule?\"",
                 "A. Endeavor",
                 "B. Atlantis",
                 "C. Dragon",
