@@ -71,6 +71,7 @@ public class Player {
         this.playerName = userInput.nextLine();
         System.out.println(ANSI_PURPLE + "Username has been set to: " + ANSI_RESET + ANSI_RED + getPlayerName() + ANSI_RESET);
         cd.startTimer();
+        cd.resetTimerNewGame();
     }
 
     // availableActions() will prompt the player with a list of actions they can choose, based on current room.
