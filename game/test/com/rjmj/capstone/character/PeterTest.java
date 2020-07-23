@@ -21,13 +21,13 @@ public class PeterTest {
     @Test
     public void processQuestionAnswerNegativeB() throws InterruptedException {
         Peter peter = new Peter();
-        assertNotEquals("The Book of Knowledge", peter.processQuestionAnswer("A"));
+        assertNotEquals("The Book of Knowledge", peter.processQuestionAnswer("B"));
     }
 
     @Test
     public void processQuestionAnswerNegativeC() throws InterruptedException {
         Peter peter = new Peter();
-        assertNotEquals("The Book of Knowledge", peter.processQuestionAnswer("A"));
+        assertNotEquals("The Book of Knowledge", peter.processQuestionAnswer("C"));
     }
 
     @Test
