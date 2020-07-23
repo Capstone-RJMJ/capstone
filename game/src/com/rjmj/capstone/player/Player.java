@@ -47,8 +47,11 @@ public class Player {
                 collectPlayerName();
                 availableActions();
                 break;
+            case "MAP":
+                gameTextARt.bathroomDisplay();
             case "EXIT":
-                System.exit(1);
+                System.exit(0);
+                break;
             default:
                 System.out.println("Error, please try another entry.");
                 playGame();
