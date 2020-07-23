@@ -123,7 +123,6 @@ public class Player {
                 }
                 break;
             case "MAP":
-                movementEngine.getCurrentRoom();
                 GameTextArt gameTextArt = new GameTextArt();
                 gameTextArt.mapDisplay();
                 break;
@@ -160,7 +159,8 @@ public class Player {
                 "|   Move to a new location      [Command: Move]                                                                                                                            |\n" +
                 "|   Look Around the Room        [Command: Look Around]                        Current Inventory                                                                            |\n" +
                 "|   Talk to someone             [Command: Talk]                             "+ inventory.getPlyrInv() +"                                                                   \n" +
-                "|   Take any available item     [Command: Take Item]                                                                                                                       |\n" +
+                "|   Take any available item     [Command: Take Item]                                                                                                                       |\n"+
+                "|   Display the game map        [Command: Map]                                                                                                                             |\n" +
                 "|   Exit this Program           [Command: Exit]                                                                                                                            |\n");
 
         if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")) {
