@@ -7,28 +7,39 @@ import static org.junit.Assert.*;
 public class ZachTest {
 
     @Test
-    public void answerWithAPositive() throws InterruptedException {
+    public void processQuestionAnswerPositiveA() throws InterruptedException {
         Zach zach = new Zach();
         assertEquals("Recipe", zach.processQuestionAnswer("A"));
     }
 
-    // These three tests pass, during the test run they will go straight into Scanner In with the question asked again.
-    // This is the behavior that is designed, causing a "passing" test.
     @Test
-    public void answerWithBNegative() throws InterruptedException {
+    public void processQuestionAnswerNegativeB() throws InterruptedException {
         Zach zach = new Zach();
-        assertEquals("\"Incorrect, please try again.\"", zach.processQuestionAnswer("B"));
+        assertNotEquals("Recipe", zach.processQuestionAnswer("B"));
     }
 
     @Test
-    public void answerWithCNegative() throws InterruptedException {
+    public void processQuestionAnswerNegativeC() throws InterruptedException {
         Zach zach = new Zach();
-        assertEquals("\"Incorrect, please try again.\"", zach.processQuestionAnswer("C"));
+        assertNotEquals("Recipe", zach.processQuestionAnswer("C"));
     }
 
     @Test
-    public void answerWithDNegative() throws InterruptedException {
+    public void processQuestionAnswerNegativeD() throws InterruptedException {
         Zach zach = new Zach();
-        assertEquals("\"Incorrect, please try again.\"", zach.processQuestionAnswer("D"));
+        assertNotEquals("Recipe", zach.processQuestionAnswer("D"));
+    }
+
+    @Test
+    public void getItemPositive() {
+        Zach zach = new Zach();
+        assertEquals("Recipe", zach.getItem());
+    }
+
+    @Test
+    public void getQuestionAnswerPositive() {
+        Zach zach = new Zach();
+        zach.setQuestionAnswer("A");
+        assertEquals("A", zach.getQuestionAnswer());
     }
 }
