@@ -6,12 +6,21 @@ public class John implements Character {
     private String questionAnswer;
 
     @Override
-    public String askTheQuestionAndCollectInput() {
-        System.out.println("What is AWS' DNS Service ");
-        System.out.println("A. S3");
-        System.out.println("B. EC2");
-        System.out.println("C. Route 53");
-        System.out.println("D. Lambda");
+    public String askTheQuestionAndCollectInput() throws InterruptedException {
+        String[] johnInput = {
+                ANSI_CYAN,
+                "What is AWS' DNS Service?",
+                "A. S3",
+                "B. EC2",
+                "C. Route 53",
+                "D. Lambda",
+                ANSI_RESET
+        };
+
+        for (String john : johnInput) {
+            Thread.sleep(1000);
+            System.out.println(john);
+        }
 
         Scanner sc = new Scanner(System.in);
         setQuestionAnswer(sc.next());
@@ -19,7 +28,7 @@ public class John implements Character {
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) {
+    public String processQuestionAnswer(String questionAnswer) throws InterruptedException {
         String result = "";
         if (questionAnswer.toUpperCase().equals("C")) {
             System.out.println("Correct");
