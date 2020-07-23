@@ -19,6 +19,10 @@ public class Player {
     private Countdown cd = new Countdown();
     private static final String ANSI_RESET = "\u001B[0m";
     private static final String ANSI_CYAN = "\u001B[36m";
+    private static final String ANSI_PURPLE = "\u001B[35m";
+    private static final String ANSI_YELLOW = "\u001B[33m";
+    private static final String ANSI_RED = "\u001B[31m";
+
 
     // This empty constructor to be here for the client class to run the program.
     public Player() {
@@ -35,11 +39,11 @@ public class Player {
         this.playerActionSelection = playerActionSelection;
     }
 
-    public void playGame() throws IOException {
+    public void playGame() throws IOException, InterruptedException {
         GameTextArt gameTextARt = new GameTextArt();
         Scanner userInput = new Scanner(System.in);
         gameTextARt.introArt();
-        gameTextARt.authorInformationDisplay();
+        gameTextARt.introTextDelayed();
 
         switch (userInput.next().toUpperCase().trim()) {
             case "START":
@@ -63,24 +67,24 @@ public class Player {
     // enterName() will prompt the user to  enter their desired name.
     public void collectPlayerName() {
         Scanner userInput = new Scanner(System.in);
-        System.out.println("\nPlease enter your name: ");
+        System.out.println(ANSI_PURPLE + "\nPlease enter your name: " + ANSI_RESET);
         this.playerName = userInput.nextLine();
-        System.out.println("Username has been set to: " + getPlayerName());
+        System.out.println(ANSI_PURPLE + "Username has been set to: " + ANSI_RESET + ANSI_RED + getPlayerName() + ANSI_RESET);
         cd.startTimer();
     }
 
     // availableActions() will prompt the player with a list of actions they can choose, based on current room.
-    public void availableActions() throws IOException {
+    public void availableActions() throws IOException, InterruptedException {
 //        cd.displayTimeLeft();
         Rooms room = new Rooms();
         Scanner userInput = new Scanner(System.in);
         currentLocationDisplay();
         ArrayList pi = getInventory().getPlyrInv();
         if(pi.contains("Red Liquid") && pi.contains("Blue Liquid") && pi.contains("Green Liquid") && pi.contains("Beaker")){
-            System.out.println("You now have all the items necessary to Mix the vaccine ingredients...you will need to find the recipe now.");
+            System.out.println(ANSI_PURPLE + "You now have all the items necessary to Mix the vaccine ingredients...you will need to find the recipe now."  + ANSI_RESET);
             System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move, Mix.");
         } else {
-            System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move.");
+            System.out.println(ANSI_YELLOW + "You can do the following actions: Look Around, Talk, Take Item, Move." + ANSI_RESET);
         }
 
         this.playerActionSelection = userInput.nextLine().trim();
