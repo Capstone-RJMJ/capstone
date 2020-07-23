@@ -9,6 +9,10 @@ import java.util.Map;
 import java.util.Set;
 
 public class Rooms {
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_RESET = "\u001B[0m";
+
     private Map<String,Map<String,String>> ROOMS = Map.ofEntries(
             entry("DINING ROOM", Map.of(
                     "room", "Dining Room",
@@ -41,7 +45,7 @@ public class Rooms {
                     "right", "Stairs")),
             entry("BEDROOM", Map.of(
                     "room", "Bedroom",
-                    "item", "Green Liquid",
+                    "item", ANSI_GREEN + "Green Liquid" + ANSI_CYAN,
                     "left", "Library",
                     "right", "Down Stairs Hall")),
             entry("LIBRARY", Map.of(
@@ -118,12 +122,12 @@ public class Rooms {
             }
             else {
                 inventory.setPlyrInv(rm.get("item"));
-                System.out.println("The " + rm.get("item") + " was added to your inventory\n" +
+                System.out.println("The " + rm.get("item") + ANSI_RESET + " was added to your inventory\n" +
                         "You now have " + inventory.getPlyrInv().size() + " items in your inventory:");
             // print items currently in Player inventory
-                for(String item : inventory.getPlyrInv()){
-                    System.out.println("  - " + item);
-                }
+//                for(String item : inventory.getPlyrInv()){
+//                    System.out.println("  - " + item);
+//                }
             }
         }
         else {

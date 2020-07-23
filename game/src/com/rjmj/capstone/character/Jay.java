@@ -1,5 +1,7 @@
 package com.rjmj.capstone.character;
 
+import com.rjmj.capstone.room.GameTextArt;
+
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -53,6 +55,6 @@ public class Jay implements Character {
     }
 
     public String getItem() {
-        return "Red Liquid";
+        return ANSI_RED +"Red Liquid" + ANSI_CYAN;
     }
 }
