@@ -48,7 +48,8 @@ public class Player {
                 availableActions();
                 break;
             case "MAP":
-                gameTextARt.bathroomDisplay();
+                gameTextARt.mapDisplay();
+                break;
             case "EXIT":
                 System.exit(0);
                 break;
@@ -111,6 +112,11 @@ public class Player {
                     System.out.println("You do not have all of the required items, keep looking around.");
                     availableActions();
                 }
+                break;
+            case "MAP":
+                movementEngine.getCurrentRoom();
+                GameTextArt gameTextArt = new GameTextArt();
+                gameTextArt.mapDisplay();
                 break;
             case "EXIT":
                 playGame();
