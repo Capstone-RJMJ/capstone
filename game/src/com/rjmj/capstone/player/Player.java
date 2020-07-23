@@ -7,13 +7,12 @@ import com.rjmj.capstone.timer.Countdown;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
     private String playerName;
     private String playerActionSelection;
+    private String playInput;
     private Inventory inventory = new Inventory();
     private MovementEngine movementEngine = new MovementEngine();
     private Countdown cd = new Countdown();
@@ -22,50 +21,40 @@ public class Player {
     private static final String ANSI_PURPLE = "\u001B[35m";
     private static final String ANSI_YELLOW = "\u001B[33m";
     private static final String ANSI_RED = "\u001B[31m";
-    public static final String ANSI_BLUE = "\u001B[34m";
-    public static final String ANSI_GREEN = "\u001B[32m";
+    private static final String ANSI_BLUE = "\u001B[34m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    private GameTextArt gameTextArt = new GameTextArt();
+    private ArrayList pi = getInventory().getPlyrInv();
 
 
-    // This empty constructor to be here for the client class to run the program.
-    public Player() {
-    }
-
-    // This will mainly be for testing
-    protected Player(String name) {
-        this.playerName = name;
-    }
-
-    // This will mainly be for testing
-    protected Player(String name, String playerActionSelection) {
-        this.playerName = name;
-        this.playerActionSelection = playerActionSelection;
-    }
-
-    public void playGame() throws IOException, InterruptedException {
-        GameTextArt gameTextARt = new GameTextArt();
+    public String play() {
         Scanner userInput = new Scanner(System.in);
-        gameTextARt.introArt();
-        gameTextARt.introTextDelayed();
+        gameTextArt.introArt();
+        gameTextArt.introTextDelayed();
+        setPlayInput(userInput.next().toUpperCase().trim());
+        return getPlayInput();
+    }
 
-        switch (userInput.next().toUpperCase().trim()) {
+    public void playGame(String input) throws IOException, InterruptedException {
+        switch (input) {
             case "START":
                 collectPlayerName();
-                availableActions();
+                backToMenu();
                 break;
             case "INTRO":
-                gameTextARt.introText();
+                gameTextArt.introText();
                 collectPlayerName();
-                availableActions();
+                backToMenu();
                 break;
             case "MAP":
-                gameTextARt.mapDisplay();
+                gameTextArt.mapDisplay();
                 break;
             case "EXIT":
                 System.exit(0);
                 break;
             default:
                 System.out.println("Error, please try another entry.");
-                playGame();
+                play();
                 break;
         }
     }
@@ -80,78 +69,60 @@ public class Player {
         cd.resetTimerNewGame();
     }
 
-    // availableActions() will prompt the player with a list of actions they can choose, based on current room.
-    public void availableActions() throws IOException, InterruptedException {
-//        cd.displayTimeLeft();
-        Rooms room = new Rooms();
+    public String collectPlayerActionInput() {
         Scanner userInput = new Scanner(System.in);
         currentLocationDisplay();
-        ArrayList pi = getInventory().getPlyrInv();
-        if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")){
-            System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move, Mix.");
+
+        if (pi.contains(ANSI_RED + "Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")){
+            System.out.println("You can do the following actions: Look Around, Talk, Take Item, Move, Map, Mix, Exit");
         } else {
-            System.out.println(ANSI_YELLOW + "You can do the following actions: Look Around, Talk, Take Item, Move." + ANSI_RESET);
+            System.out.println(ANSI_YELLOW + "You can do the following actions: Look Around, Talk, Take Item, Move, Map, Exit." + ANSI_RESET);
         }
 
-        this.playerActionSelection = userInput.nextLine().trim();
+        setPlayerActionSelection(userInput.nextLine().toUpperCase());
+        return getPlayerActionSelection();
+    }
 
-        switch(getPlayerActionSelection().toUpperCase()) {
+    // availableActions() will prompt the player with a list of actions they can choose, based on current room.
+    private void availableActions(String input) throws IOException, InterruptedException {
+        Rooms room = new Rooms();
+
+        switch(input) {
             case "MOVE":
                 movementEngine.changeRoom(getInventory(), movementEngine.roomChoices(),cd);
-                availableActions();
+                backToMenu();
                 break;
             case "LOOK AROUND":
                 room.lookAround(movementEngine.getCurrentRoom(), getInventory());
-                availableActions();
+                backToMenu();
                 break;
             case "TALK":
-                getInventory().talkToCharacter(room,movementEngine.getCurrentRoom(),getInventory(),cd);
-                availableActions();
+                getInventory().talkToCharacter(room, movementEngine.getCurrentRoom(), getInventory(),cd);
+                backToMenu();
+
                 break;
             case "TAKE ITEM":
-                room.getItem(getInventory(), movementEngine.getCurrentRoom(),cd);
-                availableActions();
+                room.getItem(getInventory(), movementEngine.getCurrentRoom(), cd);
+                backToMenu();
                 break;
             case "MIX":
-                if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")
-                        && pi.contains("Recipe")){
-                    GameTextArt gameTextARt = new GameTextArt();
-                    gameTextARt.winningArtDisplay();
-                } else {
-                    System.out.println("You do not have all of the required items, keep looking around.");
-                    availableActions();
-                }
+                winCheck();
                 break;
             case "MAP":
-                GameTextArt gameTextArt = new GameTextArt();
                 gameTextArt.mapDisplay();
-                availableActions();
+                backToMenu();
                 break;
             case "EXIT":
-                playGame();
+                play();
                 break;
             default:
-                // TODO: Create a custom exception for this down the line.
                 System.out.println("Error, please select a valid item.\n");
-                availableActions();
+                backToMenu();
         }
     }
 
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public String getPlayerActionSelection() {
-        return playerActionSelection;
-    }
-
-    public Inventory getInventory() {
-        return inventory;
-    }
-//[Syringe, Blue Liquid, Plunger, Key, Red Liquid, Box, Beaker, Green Liquid, Recipe, Needle]
-    public void currentLocationDisplay() {
-        ArrayList pi = getInventory().getPlyrInv();
-
+    //[Syringe, Blue Liquid, Plunger, Key, Red Liquid, Box, Beaker, Green Liquid, Recipe, Needle]
+    private void currentLocationDisplay() {
         StringBuilder sb = new StringBuilder();
         sb.append(ANSI_CYAN + "___________________________________________________________________________________________________________________________________________________________________________                                    \n" +
                 "|                                                                                                                                                                          |\n" +
@@ -173,5 +144,44 @@ public class Player {
                 "|              "+ cd.displayTimeInsideArt() +"                                                                                                                                       |\n" +
                 "|__________________________________________________________________________________________________________________________________________________________________________|\n" + ANSI_RESET);
         System.out.println(sb.toString());
+    }
+
+    private void winCheck() throws IOException, InterruptedException {
+        if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")
+                && pi.contains("Recipe")){
+            gameTextArt.winningArtDisplay();
+        } else {
+            System.out.println("You do not have all of the required items, keep looking around.");
+            backToMenu();
+        }
+    }
+
+    private void backToMenu() throws IOException, InterruptedException {
+        availableActions(collectPlayerActionInput());
+    }
+
+
+    public String getPlayerName() {
+        return playerName;
+    }
+
+    public String getPlayerActionSelection() {
+        return playerActionSelection;
+    }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public String getPlayInput() {
+        return playInput;
+    }
+
+    public void setPlayInput(String playInput) {
+        this.playInput = playInput;
+    }
+
+    public void setPlayerActionSelection(String playerActionSelection) {
+        this.playerActionSelection = playerActionSelection;
     }
 }
