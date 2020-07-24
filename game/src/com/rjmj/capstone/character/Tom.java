@@ -18,7 +18,7 @@ public class Tom implements Character {
         };
 
         for (String tom : tomInput) {
-            Thread.sleep(1000);
+            Thread.sleep(sleep);
             System.out.println(tom);
         }
 
