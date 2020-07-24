@@ -12,6 +12,7 @@ public class Rooms {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
 
     private Map<String,Map<String,String>> ROOMS = Map.ofEntries(
             entry("DINING ROOM", Map.of(
@@ -116,10 +117,7 @@ public class Rooms {
         Map<String,String> rm = ROOMS.get(currentRoom);
         if(rm.get("item") != null) {
             //add a check for if the item is a box and you have the key in the inventory to add the time buff to the timer
-            if((rm.get("item").equals("Box") && inventory.getPlyrInv().contains("Key")) ||
-                    (rm.get("item").equals("Key") && inventory.getPlyrInv().contains("Box"))){
-                System.out.println("You see that the box is locked so you use your key to unlock it\n" +
-                        "this is no ordinary box, you just unlocked Time itself and rolled back 1 minute!");
+            if((rm.get("item").equals("Box") && inventory.getPlyrInv().contains("Key"))) {
                 cd.addTimeBuff();
             }
             if(inventory.getPlyrInv().contains(rm.get("item"))){

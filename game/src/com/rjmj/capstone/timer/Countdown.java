@@ -9,8 +9,12 @@ public class Countdown {
     private Timer timer = new Timer();
     private long timeLeft = 600000;
     private long timeBuff = 60000;
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
     public void addTimeBuff(){
+        System.out.println(ANSI_PURPLE + "You see that the box is locked so you use your key to unlock it\n" +
+                "this is no ordinary box, you just unlocked Time itself and rolled back 1 minute!" + ANSI_RESET);
         setTimeLeft(getTimeLeft() + getTimeBuff());
     }
 
@@ -22,7 +26,7 @@ public class Countdown {
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 updateTimeLeft();
-                if (getTimeLeft() < 0) {
+                if (getTimeLeft() <= 0) {
                     System.out.println("Game Over, times up your are dead");
                     timer.cancel();
                     System.exit(1);

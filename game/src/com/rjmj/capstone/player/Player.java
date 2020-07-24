@@ -89,7 +89,7 @@ public class Player {
 
         switch(input) {
             case "MOVE":
-                movementEngine.changeRoom(getInventory(), movementEngine.roomChoices());
+                movementEngine.changeRoom(getInventory(), movementEngine.roomChoices(),cd);
                 backToMenu();
                 break;
             case "LOOK AROUND":
@@ -97,8 +97,9 @@ public class Player {
                 backToMenu();
                 break;
             case "TALK":
-                getInventory().talkToCharacter(room, movementEngine.getCurrentRoom(), getInventory());
+                getInventory().talkToCharacter(room, movementEngine.getCurrentRoom(), getInventory(),cd);
                 backToMenu();
+
                 break;
             case "TAKE ITEM":
                 room.getItem(getInventory(), movementEngine.getCurrentRoom(), cd);

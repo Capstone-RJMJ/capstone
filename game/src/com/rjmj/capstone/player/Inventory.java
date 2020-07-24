@@ -3,8 +3,10 @@ package com.rjmj.capstone.player;
 
 import com.rjmj.capstone.character.*;
 import com.rjmj.capstone.room.Rooms;
+import com.rjmj.capstone.timer.Countdown;
 
 import java.io.IOException;
+import java.lang.Character;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -23,7 +25,7 @@ public class Inventory {
     // TODO: Uncomment out the inventoryMsg and each display of them if the Ascii Art panel is scrapped.
     // TODO: Currently they are commented to allow for the display to give all of the UI information.
 
-    public String talkToCharacter(Rooms room, String currentRoom, Inventory inventory) throws IOException, InterruptedException {
+    public String talkToCharacter(Rooms room, String currentRoom, Inventory inventory, Countdown cd) throws IOException, InterruptedException {
         String item;
         Map<String,String> rm = room.getROOMS().get(currentRoom);
         if(rm.get("character") != null){
@@ -38,7 +40,7 @@ public class Inventory {
                         //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
-                        talkToCharacter(room, currentRoom, inventory);
+                        talkToCharacter(room, currentRoom, inventory, cd);
                     }
                     break;
                 case "Jay":
@@ -49,7 +51,7 @@ public class Inventory {
                         //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
-                        talkToCharacter(room, currentRoom, inventory);
+                        talkToCharacter(room, currentRoom, inventory, cd);
                     }
                     break;
                 case "John":
@@ -57,10 +59,13 @@ public class Inventory {
                     if (item.equals(john.getItem())) {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
+                            if (inventory.getPlyrInv().contains("Box")){
+                                cd.addTimeBuff();
+                            }
                         //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
-                        talkToCharacter(room, currentRoom, inventory);
+                        talkToCharacter(room, currentRoom, inventory, cd);
                     }
                     break;
                 case "Peter":
@@ -69,7 +74,7 @@ public class Inventory {
                         System.out.println("\nPeter has granted you access to the LAB " +
                                 "and there is a secret CAVE behind the bookshelves!!!\n");
                     } else {
-                        talkToCharacter(room, currentRoom, inventory);
+                        talkToCharacter(room, currentRoom, inventory,cd);
                     }
                     break;
                 case "Zach":
@@ -80,7 +85,7 @@ public class Inventory {
                         //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
-                        talkToCharacter(room, currentRoom, inventory);
+                        talkToCharacter(room, currentRoom, inventory, cd);
                     }
                     break;
                 case "Nelly":
@@ -91,7 +96,7 @@ public class Inventory {
                             //   inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
-                        talkToCharacter(room, currentRoom, inventory);
+                        talkToCharacter(room, currentRoom, inventory,cd);
                     }
                     break;
             }
