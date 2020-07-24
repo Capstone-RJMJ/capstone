@@ -13,10 +13,11 @@ public class CountdownTest {
         assertEquals("Time remaining: 11:00", cd.displayTimeInsideArt());
     }
     @Test
-    public void addTimeBuffPositiveAfterTimeStart() {
+    public void addTimeBuffPositiveAfterTimeStart() throws InterruptedException {
         cd.startTimer();
+        Thread.sleep(1800);
         cd.addTimeBuff();
-        assertEquals("Time remaining: 10:59", cd.displayTimeInsideArt());
+        assertEquals("Time remaining: 10:58", cd.displayTimeInsideArt());
     }
     @Test
     public void addTimeBuffPositiveTimeAtOneSecond() {
@@ -34,7 +35,7 @@ public class CountdownTest {
     @Test
     public void startTimerPositive() throws InterruptedException {
         cd.startTimer();
-        Thread.sleep(2000);
+        Thread.sleep(1800);
         long timeFrozen = cd.getTimeLeft();
         assertEquals(598000, timeFrozen);
     }
