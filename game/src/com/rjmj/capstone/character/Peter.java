@@ -21,7 +21,7 @@ public class Peter implements Character {
                 "He will not let you continue unless you correctly answer this math question:\n");
 
         for (String peter : peterInput) {
-            Thread.sleep(1000);
+            Thread.sleep(sleep);
             System.out.println(peter);
         }
 

@@ -18,7 +18,7 @@ public class John implements Character {
         };
 
         for (String john : johnInput) {
-            Thread.sleep(1000);
+            Thread.sleep(sleep);
             System.out.println(john);
         }
 

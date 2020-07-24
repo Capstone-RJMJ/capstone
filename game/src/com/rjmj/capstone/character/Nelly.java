@@ -16,7 +16,7 @@ public class Nelly implements Character {
         };
 
         for (String nelly : nellyInput) {
-            Thread.sleep(1000);
+            Thread.sleep(sleep);
             System.out.println(nelly);
         }
 

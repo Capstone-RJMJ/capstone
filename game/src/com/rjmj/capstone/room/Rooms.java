@@ -61,16 +61,19 @@ public class Rooms {
             entry("LAB", Map.of(
                     "room", "Lab",
                     "item", "Needle",
-                    "left", "Library" )),
+                    "left", "Library",
+                    "picture", GameTextArt.labDisplay())),
             entry("KITCHEN",Map.of(
                     "room", "Kitchen",
                     "character", "Tom",
                     "up", "Hall",
-                    "left", "bathroom")),
+                    "left", "bathroom",
+                    "picture", GameTextArt.kitchenDisplay())),
             entry("BATHROOM",Map.of(
                     "room", "Bathroom",
                     "item", "Plunger",
-                    "right", "Kitchen"))
+                    "right", "Kitchen",
+                    "picture", GameTextArt.bathroomDisplay()))
     );
 
     public String lookAround(String currentRoom, Inventory inventory) {
@@ -104,6 +107,7 @@ public class Rooms {
             }
         }
         String result = sb.toString();
+        System.out.println(rm.get("picture"));
         System.out.println(result);
         return result;
     }
