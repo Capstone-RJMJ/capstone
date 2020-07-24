@@ -97,7 +97,7 @@ public class GameTextArt {
         };
 
         for (String messages : infoText) {
-            Thread.sleep(750);
+            Thread.sleep(650);
             System.out.println(messages);
         }
     }

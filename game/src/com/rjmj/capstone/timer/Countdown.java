@@ -26,7 +26,7 @@ public class Countdown {
         timer.scheduleAtFixedRate(new TimerTask() {
             public void run() {
                 updateTimeLeft();
-                if (getTimeLeft() < 0) {
+                if (getTimeLeft() <= 0) {
                     System.out.println("Game Over, times up your are dead");
                     timer.cancel();
                     System.exit(1);
