@@ -12,6 +12,8 @@ public class MovementEngineTest {
 
     @Test
     public void changeRoom() {
+        MovementEngine movementEngine = new MovementEngine();
+
     }
 
     @Test

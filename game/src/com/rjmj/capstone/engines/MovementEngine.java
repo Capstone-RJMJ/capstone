@@ -54,7 +54,14 @@ public class MovementEngine {
         return userChoice;
     }
 
+    public void clearScreen() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println("\b");
+        }
+    }
+
     public String changeRoom(Inventory inventory, String userChoice, Countdown cd) throws IOException, InterruptedException {
+        clearScreen();
         String result = getCurrentRoom();
         Map<String,String> rm = getRoom().getROOMS().get(getCurrentRoom());
         if(rm.get("room").equals("Bedroom") && userChoice.equals("left")){
