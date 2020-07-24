@@ -24,7 +24,7 @@ public class Jay implements Character {
         java.awt.Desktop.getDesktop().browse(java.net.URI.create(url_open));
 
         for (String jay : jayInput) {
-            Thread.sleep(1000);
+            Thread.sleep(sleep);
             System.out.println(jay);
         }
 
