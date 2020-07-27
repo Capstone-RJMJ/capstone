@@ -67,7 +67,7 @@ public class MovingTutorial {
         String[] movingTutorialIntroStringArray = {
                 "Welcome to the moving tutorial.",
                 "Moving is a very important part of Apprenticeship.  Apprenticeship has a total of 12 rooms for you to" +
-                        "navigate through.",
+                        " navigate through.",
                 "You can move a total of 4 different directions: Up, Down, Left, and Right.",
                 "Each room you enter will have a specific direction(s) you can move.",
                 "",
