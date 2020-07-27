@@ -55,6 +55,7 @@ public class Player {
                 break;
             case "TUTORIAL":
                 tutorial.startTutorial();
+                backToMenu();
                 break;
             case "EXIT":
                 System.exit(0);
