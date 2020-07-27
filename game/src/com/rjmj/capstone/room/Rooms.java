@@ -146,6 +146,12 @@ public class Rooms {
         return rm.get("item");
     }
 
+    public static void clr() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println("\b");
+        }
+    }
+
     public Map<String, Map<String,String>> getROOMS() {
         return ROOMS;
     }

@@ -85,6 +85,7 @@ public class Inventory {
                     if (item.equals(zach.getItem())) {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
+                            Recipe.recipeArt();
                         //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
