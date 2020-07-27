@@ -2,6 +2,7 @@ package com.rjmj.capstone.player;
 
 
 import com.rjmj.capstone.character.*;
+import com.rjmj.capstone.engines.MovementEngine;
 import com.rjmj.capstone.room.Rooms;
 import com.rjmj.capstone.timer.Countdown;
 
@@ -26,6 +27,8 @@ public class Inventory {
     // TODO: Currently they are commented to allow for the display to give all of the UI information.
 
     public String talkToCharacter(Rooms room, String currentRoom, Inventory inventory, Countdown cd) throws IOException, InterruptedException {
+        MovementEngine movementEngine = new MovementEngine();
+        movementEngine.clearScreen();
         String item;
         Map<String,String> rm = room.getROOMS().get(currentRoom);
         if(rm.get("character") != null){
