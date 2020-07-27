@@ -5,6 +5,7 @@ import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
 public class Countdown {
+    private long delay = 1000; //milliseconds
     private final Timer timer = new Timer();
     private long timeLeft = 600000;
     public static final String ANSI_PURPLE = "\u001B[35m";
@@ -42,9 +43,10 @@ public class Countdown {
     }
 
     public String convertTimeLeftToMmSs(long timeLeft) {
-        return String.format("%02d:%02d",
+        String ms = String.format("%02d:%02d",
                 TimeUnit.MILLISECONDS.toMinutes(timeLeft) % TimeUnit.HOURS.toMinutes(1),
                 TimeUnit.MILLISECONDS.toSeconds(timeLeft) % TimeUnit.MINUTES.toSeconds(1));
+        return ms;
     }
 
     // This is so the timer will reset when the player starts a new game via Exit - otherwise it will continue.
@@ -53,8 +55,6 @@ public class Countdown {
     }
 
     public long getDelay() {
-        //milliseconds
-        long delay = 1000;
         return delay;
     }
 

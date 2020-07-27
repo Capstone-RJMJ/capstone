@@ -108,6 +108,7 @@ public class Rooms {
             }
         }
         String result = sb.toString();
+        clr();
         System.out.println(rm.get("picture"));
         System.out.println(result);
         return result;
@@ -137,6 +138,12 @@ public class Rooms {
             System.out.println("there aren't any items to take in here!");
         }
         return rm.get("item");
+    }
+
+    public static void clr() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println("\b");
+        }
     }
 
     public Map<String, Map<String,String>> getROOMS() {

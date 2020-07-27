@@ -25,6 +25,8 @@ public class Player {
     private static final String ANSI_GREEN = "\u001B[32m";
     private GameTextArt gameTextArt = new GameTextArt();
     private ArrayList pi = getInventory().getPlyrInv();
+    private Recipe recipe = new Recipe();
+
 
 
     public String play() {
@@ -39,6 +41,7 @@ public class Player {
         switch (input) {
             case "START":
                 collectPlayerName();
+                recipe.mixRandomRecipe();
                 backToMenu();
                 break;
             case "INTRO":
@@ -89,14 +92,20 @@ public class Player {
 
         switch(input) {
             case "MOVE":
+//                clr();
+
                 movementEngine.changeRoom(getInventory(), movementEngine.roomChoices(),cd);
                 backToMenu();
                 break;
             case "LOOK AROUND":
+//                clr();
+
                 room.lookAround(movementEngine.getCurrentRoom(), getInventory());
                 backToMenu();
                 break;
             case "TALK":
+//                clr();
+
                 getInventory().talkToCharacter(room, movementEngine.getCurrentRoom(), getInventory(),cd);
                 backToMenu();
 
@@ -106,6 +115,8 @@ public class Player {
                 backToMenu();
                 break;
             case "MIX":
+
+                recipe.setPlayerMix();
                 winCheck();
                 break;
             case "MAP":
@@ -118,6 +129,12 @@ public class Player {
             default:
                 System.out.println("Error, please select a valid item.\n");
                 backToMenu();
+        }
+    }
+
+    public static void clr() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println("\b");
         }
     }
 
@@ -147,11 +164,12 @@ public class Player {
     }
 
     private void winCheck() throws IOException, InterruptedException {
-        if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")
-                && pi.contains("Recipe")){
+        if(recipe.isMatch()){
+//        if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")
+//                && pi.contains("Recipe")){
             gameTextArt.winningArtDisplay();
         } else {
-            System.out.println("You do not have all of the required items, keep looking around.");
+//            System.out.println("You do not have all of the required items, keep looking around.");
             backToMenu();
         }
     }

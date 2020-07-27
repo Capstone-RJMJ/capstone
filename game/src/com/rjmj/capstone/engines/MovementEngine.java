@@ -40,8 +40,8 @@ public class MovementEngine {
             }
         }
 //        TODO: Trailing Comma doesn't come off!!! Tried the two following ways :(
-        sb.toString().replaceAll(",$", "");
-        sb.toString().substring(0, sb.toString().length() - 1);
+//        sb.toString().replaceAll(",$", "");
+//        sb.toString().substring(0, sb.toString().length() - 1);
 
         sb.append(" )");
         return sb.toString();
@@ -50,8 +50,7 @@ public class MovementEngine {
 
     public String roomChoices(){
         UserInput input = new UserInput();
-        String userChoice = input.getInput(questionBuilder());
-        return userChoice;
+        return input.getInput(questionBuilder());
     }
 
     public String changeRoom(Inventory inventory, String userChoice, Countdown cd) throws IOException, InterruptedException {
