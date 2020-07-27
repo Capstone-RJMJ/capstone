@@ -81,6 +81,7 @@ public class GameTextArt {
                     "|                                                      |\n" +
                     "|   Start the Game           [Command: Start]          |\n" +
                     "|   Read the Intro           [Command: Intro]          |\n" +
+                    "|   Play the Tutorial        [Command: Tutorial]       |\n" +
                     "|   Exit this Program        [Command: Exit]           |\n" +
                     "|                                                      |\n" +
                     "|  Developed by Michael Lennerblom, Josh Jensen and    |\n" +
