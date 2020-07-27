@@ -83,7 +83,7 @@ public class Player {
                 break;
             case "TUTORIAL":
                 tutorial.startTutorial();
-                backToMenu();
+                playGame(play());
                 break;
             case "EXIT":
                 System.exit(0);
