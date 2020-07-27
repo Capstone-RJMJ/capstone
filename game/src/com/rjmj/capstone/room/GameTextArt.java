@@ -1,5 +1,6 @@
 package com.rjmj.capstone.room;
 
+import com.rjmj.capstone.engines.MovementEngine;
 import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class GameTextArt {
     public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
     public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
     public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+
+    MovementEngine movementEngine = new MovementEngine();
 
     public void winningArtDisplay() {
         System.out.println(ANSI_GREEN + "_______________________________________________________\n" +
@@ -238,6 +241,7 @@ public class GameTextArt {
         Scanner scanner = new Scanner(System.in);
         System.out.println(ANSI_CYAN + "Type back to return." + ANSI_RESET);
         scanner.next();
+        movementEngine.clearScreen();
     }
 
 }

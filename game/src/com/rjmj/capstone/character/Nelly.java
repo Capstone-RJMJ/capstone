@@ -10,8 +10,8 @@ public class Nelly implements Character {
         String[] nellyInput = {
                 ANSI_CYAN,
                 "Nelly: \"To get you started here is a Syringe.  You will need to find the remaining items.\"",
-                "Nelly: \"Once you have all of the items required, the mix command will become available for you.\"",
-                "Nelly: \"Type Start or any other entry if you are ready to get started.\"",
+                "Once you have all of the items required, the mix command will become available for you.",
+                "Type Start or any other entry if you are ready to get started.",
                 ANSI_RESET
         };
 

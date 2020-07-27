@@ -1,5 +1,6 @@
 package com.rjmj.capstone.room;
 
+import com.rjmj.capstone.engines.MovementEngine;
 import com.rjmj.capstone.player.Inventory;
 import com.rjmj.capstone.timer.Countdown;
 
@@ -8,11 +9,15 @@ import static java.util.Map.entry;
 import java.util.Map;
 import java.util.Set;
 
+
+
 public class Rooms {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_PURPLE = "\u001B[35m";
+
+
 
     private Map<String,Map<String,String>> ROOMS = Map.ofEntries(
             entry("DINING ROOM", Map.of(
@@ -78,6 +83,8 @@ public class Rooms {
     );
 
     public String lookAround(String currentRoom, Inventory inventory) {
+        MovementEngine movementEngine = new MovementEngine();
+        movementEngine.clearScreen();
         Map<String,String> rm = ROOMS.get(currentRoom);
         StringBuilder sb = new StringBuilder();
         sb.append("\nAs you look around the " + currentRoom + ":\n");
@@ -108,8 +115,7 @@ public class Rooms {
             }
         }
         String result = sb.toString();
-        clr();
-        System.out.println(rm.get("picture"));
+        //System.out.println(rm.get("picture"));
         System.out.println(result);
         return result;
     }
