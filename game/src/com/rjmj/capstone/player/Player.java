@@ -30,6 +30,7 @@ public class Player {
     private GameTextArt gameTextArt = new GameTextArt();
     private ArrayList pi = getInventory().getPlyrInv();
     private Recipe recipe = new Recipe();
+    private String lookAroundMsg = "";
 
 
 
@@ -81,7 +82,10 @@ public class Player {
     public String collectPlayerActionInput() {
         Scanner userInput = new Scanner(System.in);
         currentLocationDisplay();
-
+        if(!getLookAroundMsg().equals("")){
+            System.out.println(getLookAroundMsg());
+            setLookAroundMsg("");
+        }
         if (pi.contains(ANSI_RED + "Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")){
             System.out.println("You can do the following actions:" +ANSI_RESET + ANSI_GREEN + "Look Around, " +ANSI_RESET + ANSI_PURPLE + "Talk, " +ANSI_RESET + ANSI_BLUE + "Take Item, " +ANSI_RESET + ANSI_YELLOW + "Move, " +ANSI_RESET + ANSI_WHITE + "Map, " +ANSI_RESET + ANSI_PURPLE + " Mix, " +ANSI_RESET + ANSI_RED + "Exit" + ANSI_RESET);
         } else {
@@ -106,7 +110,8 @@ public class Player {
                 backToMenu();
                 break;
             case "LOOK AROUND":
-                room.lookAround(movementEngine.getCurrentRoom(), getInventory());
+                setLookAroundMsg(room.lookAround(movementEngine.getCurrentRoom(), getInventory()));
+//                room.lookAround(movementEngine.getCurrentRoom(), getInventory());
                 backToMenu();
                 break;
             case "TALK":
@@ -207,5 +212,13 @@ public class Player {
 
     public void setPlayerActionSelection(String playerActionSelection) {
         this.playerActionSelection = playerActionSelection;
+    }
+
+    public String getLookAroundMsg() {
+        return lookAroundMsg;
+    }
+
+    public void setLookAroundMsg(String lookAroundMsg) {
+        this.lookAroundMsg = lookAroundMsg;
     }
 }
