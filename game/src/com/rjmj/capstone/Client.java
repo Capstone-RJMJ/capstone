@@ -1,8 +1,6 @@
 package com.rjmj.capstone;
 
 import com.rjmj.capstone.player.Player;
-import com.rjmj.capstone.player.Recipe;
-import com.rjmj.capstone.room.GameTextArt;
 
 import java.io.IOException;
 
