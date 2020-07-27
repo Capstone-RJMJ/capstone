@@ -1,6 +1,8 @@
 package com.rjmj.capstone.room;
 
 import com.rjmj.capstone.engines.MovementEngine;
+import com.rjmj.capstone.player.Color;
+import com.rjmj.capstone.player.Recipe;
 import org.w3c.dom.stylesheets.LinkStyle;
 
 import java.util.ArrayList;
@@ -197,6 +199,39 @@ public class GameTextArt {
                 "      ___________        __                       \\  | | _        _  | ||\n" +
                 "    __                              _________      \\ | |_____________| ||\n" +
                 "               ___________                          \\|_________________||" + ANSI_RESET);
+    }
+
+    public void recipeArt(Recipe recipe) {
+        System.out.println("Zach has given you the recipe to mix the vaccine!");
+        List<String> arr = new ArrayList<>();
+        for(Color color : recipe.getColorMix()){
+            String clr = color.toString().toUpperCase();
+            if(clr.equals("RED")){
+                clr = "RED ";
+                arr.add(clr);
+            }
+            else {
+                arr.add(clr);
+            }
+        }
+        String color1 = arr.get(0);
+        String color2 = arr.get(1);
+        String color3 = arr.get(2);
+        System.out.println("        _________   _________\n" +
+                "   ____/      452\\ /     453 \\____\n" +
+                " /| ------------- |  ------------ |\\\n" +
+                "||| ------------- | ------------- |||\n" +
+                "||| -----" + color1 + "---- | ------------- |||\n" +
+                "||| ------- ----- | ------------- |||\n" +
+                "||| -----" + color2 + "---- | ------------- |||\n" +
+                "||| ----------- - | ------------- |||\n" +
+                "|||  ---" + color3 + "----- | ----------    |||\n" +
+                "||| ------------- |  ------------ |||\n" +
+                "||| ------------- | ------------- |||\n" +
+                "||| ------------- | ------ -----  |||\n" +
+                "||| ------------  | ------------- |||\n" +
+                "|||_____________  |  _____________|||\n" +
+                "L/_____/--------\\\\_//W-------\\_____\\J");
     }
 
     public void mapDisplay() {

@@ -16,6 +16,10 @@ public class Countdown {
                 "this is no ordinary box, you just unlocked Time itself and rolled back 1 minute!" + ANSI_RESET);
         setTimeLeft(getTimeLeft() + getTimeBuff());
     }
+    public void subTimePenalty() {
+        System.out.println("You mixed the vaccine in the wrong order, 1 minute has been subtracted from your time left.");
+        setTimeLeft(getTimeLeft() + getTimePenalty());
+    }
 
     public void updateTimeLeft() {
         setTimeLeft(getTimeLeft() - getDelay());
@@ -69,5 +73,9 @@ public class Countdown {
     public long getTimeBuff() {
         long timeBuff = 60000;
         return timeBuff;
+    }
+    public long getTimePenalty() {
+        long timePenalty = -60000;
+        return timePenalty;
     }
 }

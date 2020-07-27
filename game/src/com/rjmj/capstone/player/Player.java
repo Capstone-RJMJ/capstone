@@ -100,20 +100,14 @@ public class Player {
 
         switch(input) {
             case "MOVE":
-//                clr();
-
                 movementEngine.changeRoom(getInventory(), movementEngine.roomChoices(),cd);
                 backToMenu();
                 break;
             case "LOOK AROUND":
-//                clr();
-
                 room.lookAround(movementEngine.getCurrentRoom(), getInventory());
                 backToMenu();
                 break;
             case "TALK":
-//                clr();
-
                 getInventory().talkToCharacter(room, movementEngine.getCurrentRoom(), getInventory(),cd);
                 backToMenu();
                 break;
@@ -122,8 +116,7 @@ public class Player {
                 backToMenu();
                 break;
             case "MIX":
-
-                recipe.setPlayerMix();
+                recipe.setPlayerMix(cd);
                 winCheck();
                 break;
             case "MAP":
@@ -177,6 +170,7 @@ public class Player {
         if(recipe.isMatch()){
 //        if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")
 //                && pi.contains("Recipe")){
+            System.out.println("That is correct, you just cured yourself!");
             gameTextArt.winningArtDisplay();
         } else {
 //            System.out.println("You do not have all of the required items, keep looking around.");

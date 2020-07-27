@@ -1,13 +1,18 @@
 package com.rjmj.capstone.player;
 
 import com.rjmj.capstone.engine.UserInput;
+import com.rjmj.capstone.timer.Countdown;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Recipe {
-    private List<Color> colorMix = new ArrayList(3);
+    public static List<Color> colorMix = new ArrayList(3);
+    private static final String ANSI_RED = "\u001B[31m";
+    private static final String ANSI_BLUE = "\u001B[34m";
+    private static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_RESET = "\u001B[0m";
     private List<Color> playerMix = new ArrayList(3);
     private final Color[] clrEnum = {Color.RED, Color.BLUE, Color.GREEN};
     private boolean isMatch = false;
@@ -22,7 +27,7 @@ public class Recipe {
         System.out.println("recipe is: " + getColorMix().toString());
     }
 
-    public void setPlayerMix() {
+    public void setPlayerMix(Countdown cd) {
         int count = 1;
         UserInput input = new UserInput();
         System.out.println("The recipe needs to be mixed in a specific order.\nEach ingredient is only used once.\n");
@@ -40,22 +45,59 @@ public class Recipe {
             }
             count++;
         }
-        setMatch(isRecipeMatch(getPlayerMix()));
+        setMatch(isRecipeMatch(getPlayerMix(),cd));
     }
 
-    public boolean isRecipeMatch(List<Color> formula){
+    public boolean isRecipeMatch(List<Color> formula, Countdown cd){
         boolean result = false;
         for(int i = 0; i < colorMix.size(); i++) {
             if (!formula.get(i).equals(getColorMix().get(i))) {
                 System.out.println("Dude, that's not the right. Try again.");
+                cd.subTimePenalty();
                 playerMix = new ArrayList(3);
                 return false;
             } else {
-                System.out.println("That is correct, you just cured yourself!");
                 result = true;
             }
         }
         return result;
+    }
+
+    public static void recipeArt() {
+
+        System.out.println("Zach has given you the recipe to mix the vaccine!");
+        List<String> arr = new ArrayList<>();
+        for(Color color : getColorMix()){
+            String clr = color.toString().toUpperCase();
+            if(clr.equals("RED")){
+                clr = ANSI_RED + "RED--" + ANSI_RESET;
+            }
+            else if(clr.equals("BLUE")){
+                clr = ANSI_BLUE + "BLUE-" + ANSI_RESET;
+            }
+            else {
+                clr = ANSI_GREEN + "GREEN" + ANSI_RESET;
+            }
+            arr.add(clr);
+        }
+        String color1 = arr.get(0);
+        String color2 = arr.get(1);
+        String color3 = arr.get(2);
+        System.out.println("        _________   _________\n" +
+                "   ____/      452\\ /     453 \\____\n" +
+                " /| ------------- |  ------------ |\\\n" +
+                "||| ------------- | ------------- |||\n" +
+                "||| ----" + color1 + "---- | ------------- |||\n" +
+                "||| ------- ----- | ------------- |||\n" +
+                "||| ----" + color2 + "---- | ------------- |||\n" +
+                "||| ----------- - | ------------- |||\n" +
+                "|||  ---" + color3 + "---- | ----------    |||\n" +
+                "||| ------------- |  ------------ |||\n" +
+                "||| ------------- | ------------- |||\n" +
+                "||| ------------- | ------ -----  |||\n" +
+                "||| ------------  | ------------- |||\n" +
+                "|||_____________  |  _____________|||\n" +
+                "L/_____/--------\\\\_//W-------\\_____\\J\n\n");
     }
 
     public void playerFormula(Color color){
@@ -66,7 +108,7 @@ public class Recipe {
         return (int) (0 + Math.floor((Math.random() * 3)));
     }
 
-    public List<Color> getColorMix() {
+    public static List<Color> getColorMix() {
         return colorMix;
     }
 
