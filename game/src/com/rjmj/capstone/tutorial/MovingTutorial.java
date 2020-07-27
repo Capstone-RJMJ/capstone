@@ -8,7 +8,7 @@ public class MovingTutorial {
     private final int delay = 1000;
 
     public void startMovingTutorial() throws InterruptedException {
-        clearScreenTimeDelay(delay);
+        clearScreenTimeDelay();
         movingTutorialInformationPrompt();
         movementEngine();
     }
@@ -26,7 +26,7 @@ public class MovingTutorial {
             } else {
                 System.out.println("Invalid Selection, please try again.");
             }
-            clearScreenTimeDelay(delay);
+            clearScreenTimeDelay();
             movementEngine();
         }
 
@@ -42,7 +42,7 @@ public class MovingTutorial {
             } else if (result.equals("LEFT")) {
                 setPlayerLocation("HALL");
                 System.out.println("You've entered the Hall!");
-                clearScreenTimeDelay(delay);
+                clearScreenTimeDelay();
                 movementEngine();
             } else {
                 System.out.println("Invalid Selection, please try again.");
@@ -58,8 +58,8 @@ public class MovingTutorial {
         movingTutorialMovementInputCollection();
     }
 
-    private void clearScreenTimeDelay(int TIME_DELAY) throws InterruptedException {
-        Thread.sleep(TIME_DELAY);
+    private void clearScreenTimeDelay() throws InterruptedException {
+        Thread.sleep(delay);
         clearScreen();
     }
 
