@@ -24,7 +24,6 @@ public class Recipe {
                 colorMix.add(ranColor);
             }
         }
-        System.out.println("recipe is: " + getColorMix().toString());
     }
 
     public void setPlayerMix(Countdown cd) {

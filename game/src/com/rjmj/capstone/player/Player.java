@@ -111,7 +111,6 @@ public class Player {
                 break;
             case "LOOK AROUND":
                 setLookAroundMsg(room.lookAround(movementEngine.getCurrentRoom(), getInventory()));
-//                room.lookAround(movementEngine.getCurrentRoom(), getInventory());
                 backToMenu();
                 break;
             case "TALK":
