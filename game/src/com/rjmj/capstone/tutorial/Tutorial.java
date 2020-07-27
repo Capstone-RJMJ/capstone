@@ -9,6 +9,5 @@ public class Tutorial {
         talkingTutorial.startTalkingTutorial();
         movingTutorial.startMovingTutorial();
         lookAroundItemTutorial.startLookAroundTutorial();
-        System.out.println("DONE");
     }
 }
