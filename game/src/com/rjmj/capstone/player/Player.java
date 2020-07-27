@@ -29,36 +29,9 @@ public class Player {
     private static final String ANSI_BLACK = "\u001B[30m";
     private GameTextArt gameTextArt = new GameTextArt();
     private ArrayList pi = getInventory().getPlyrInv();
+    private Recipe recipe = new Recipe();
+    private String lookAroundMsg = "";
 
-
-
-
-
-
-    //[Syringe, Blue Liquid, Plunger, Key, Red Liquid, Box, Beaker, Green Liquid, Recipe, Needle]
-    private void currentLocationDisplay() {
-        StringBuilder sb = new StringBuilder();
-        sb.append(ANSI_CYAN + "___________________________________________________________________________________________________________________________________________________________________________                                    \n" +
-                "|                                                                                                                                                                          |\n" +
-                "|                You are currently in the:  "+ANSI_RESET + ANSI_RED + movementEngine.getCurrentRoom() + ANSI_RESET + ANSI_CYAN +"                                            \n" +
-                "|                                                                                                                                                                          |\n" +
-                "|   Move to a new location      [Command:"+ANSI_RESET + ANSI_YELLOW +" Move"+ ANSI_RESET + ANSI_CYAN +"]                                                                                                                            |\n" +
-                "|   Look Around the Room        [Command:"+ANSI_RESET + ANSI_GREEN +" Look Around"+ ANSI_RESET + ANSI_CYAN +"]                        Current Inventory                                                                            |\n" +
-                "|   Talk to someone             [Command:"+ANSI_RESET + ANSI_PURPLE +" Talk"+ ANSI_RESET + ANSI_CYAN +"]                             "+ inventory.getPlyrInv() +"                                                                   \n" +
-                "|   Take any available item     [Command:"+ANSI_RESET + ANSI_BLUE +" Take Item"+ ANSI_RESET + ANSI_CYAN +"]                                                                                                                       |\n"+
-                "|   Display the game map        [Command:"+ANSI_RESET + ANSI_WHITE +" Map"+ ANSI_RESET + ANSI_CYAN +"]                                                                                                                             |\n" +
-                "|   Exit this Program           [Command:"+ANSI_RESET + ANSI_RED +" Exit"+ ANSI_RESET + ANSI_CYAN +"]                                                                                                                            |\n");
-
-        if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")) {
-            System.out.println(ANSI_PURPLE + "You now have all the items necessary to Mix the vaccine ingredients...you will need to find the recipe now." + ANSI_RESET);
-            sb.append("|   Mix the vaccine ingredients [Command: MIX]                                                                                                                             |\n");
-        }
-        sb.append("|                                                                                                                                                                          |\n" +
-                "|                                                                                                                                                                          |\n" +
-                "|              "+ cd.displayTimeInsideArt() +"                                                                                                                                       |\n" +
-                "|__________________________________________________________________________________________________________________________________________________________________________|\n" + ANSI_RESET);
-        System.out.println(sb.toString());
-        }
 
 
     public String play() {
@@ -69,11 +42,11 @@ public class Player {
         return getPlayInput();
     }
 
-
     public void playGame(String input) throws IOException, InterruptedException {
         switch (input) {
             case "START":
                 collectPlayerName();
+                recipe.mixRandomRecipe();
                 backToMenu();
                 break;
             case "INTRO":
@@ -109,7 +82,10 @@ public class Player {
     public String collectPlayerActionInput() {
         Scanner userInput = new Scanner(System.in);
         currentLocationDisplay();
-
+        if(!getLookAroundMsg().equals("")){
+            System.out.println(getLookAroundMsg());
+            setLookAroundMsg("");
+        }
         if (pi.contains(ANSI_RED + "Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")){
             System.out.println("You can do the following actions:" +ANSI_RESET + ANSI_GREEN + "Look Around, " +ANSI_RESET + ANSI_PURPLE + "Talk, " +ANSI_RESET + ANSI_BLUE + "Take Item, " +ANSI_RESET + ANSI_YELLOW + "Move, " +ANSI_RESET + ANSI_WHITE + "Map, " +ANSI_RESET + ANSI_PURPLE + " Mix, " +ANSI_RESET + ANSI_RED + "Exit" + ANSI_RESET);
         } else {
@@ -119,6 +95,8 @@ public class Player {
         setPlayerActionSelection(userInput.nextLine().toUpperCase());
         return getPlayerActionSelection();
     }
+
+
 
 
 
@@ -132,7 +110,8 @@ public class Player {
                 backToMenu();
                 break;
             case "LOOK AROUND":
-                room.lookAround(movementEngine.getCurrentRoom(), getInventory());
+                setLookAroundMsg(room.lookAround(movementEngine.getCurrentRoom(), getInventory()));
+//                room.lookAround(movementEngine.getCurrentRoom(), getInventory());
                 backToMenu();
                 break;
             case "TALK":
@@ -144,6 +123,7 @@ public class Player {
                 backToMenu();
                 break;
             case "MIX":
+                recipe.setPlayerMix(cd);
                 winCheck();
                 break;
             case "MAP":
@@ -160,12 +140,47 @@ public class Player {
         }
     }
 
+    public static void clr() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println("\b");
+        }
+    }
+
+    //[Syringe, Blue Liquid, Plunger, Key, Red Liquid, Box, Beaker, Green Liquid, Recipe, Needle]
+    private void currentLocationDisplay() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(ANSI_CYAN + "___________________________________________________________________________________________________________________________________________________________________________                                    \n" +
+                "|                                                                                                                                                                          |\n" +
+                "|                You are currently in the:  "+ANSI_RESET + ANSI_RED + movementEngine.getCurrentRoom() + ANSI_RESET + ANSI_CYAN +"                                            \n" +
+                "|                                                                                                                                                                          |\n" +
+                "|   Move to a new location      [Command:"+ANSI_RESET + ANSI_YELLOW +" Move"+ ANSI_RESET + ANSI_CYAN +"]                                                                                                                            |\n" +
+                "|   Look Around the Room        [Command:"+ANSI_RESET + ANSI_GREEN +" Look Around"+ ANSI_RESET + ANSI_CYAN +"]                        Current Inventory                                                                            |\n" +
+                "|   Talk to someone             [Command:"+ANSI_RESET + ANSI_PURPLE +" Talk"+ ANSI_RESET + ANSI_CYAN +"]                             "+ inventory.getPlyrInv() +"                                                                   \n" +
+                "|   Take any available item     [Command:"+ANSI_RESET + ANSI_BLUE +" Take Item"+ ANSI_RESET + ANSI_CYAN +"]                                                                                                                       |\n"+
+                "|   Display the game map        [Command:"+ANSI_RESET + ANSI_WHITE +" Map"+ ANSI_RESET + ANSI_CYAN +"]                                                                                                                             |\n" +
+                "|   Exit this Program           [Command:"+ANSI_RESET + ANSI_RED +" Exit"+ ANSI_RESET + ANSI_CYAN +"]                                                                                                                            |\n");
+
+        if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")) {
+            System.out.println(ANSI_PURPLE + "You now have all the items necessary to Mix the vaccine ingredients...you will need to find the recipe now." + ANSI_RESET);
+            sb.append("|   Mix the vaccine ingredients [Command: MIX]                                                                                                                             |\n");
+        }
+        sb.append("|                                                                                                                                                                          |\n" +
+                "|                                                                                                                                                                          |\n" +
+                "|              "+ cd.displayTimeInsideArt() +"                                                                                                                                       |\n" +
+                "|__________________________________________________________________________________________________________________________________________________________________________|\n" + ANSI_RESET);
+        System.out.println(sb.toString());
+    }
+
+
+
     private void winCheck() throws IOException, InterruptedException {
-        if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")
-                && pi.contains("Recipe")){
+        if(recipe.isMatch()){
+//        if(pi.contains(ANSI_RED +"Red Liquid" + ANSI_CYAN) && pi.contains(ANSI_BLUE + "Blue Liquid" + ANSI_CYAN) && pi.contains(ANSI_GREEN + "Green Liquid" + ANSI_CYAN) && pi.contains("Beaker")
+//                && pi.contains("Recipe")){
+            System.out.println("That is correct, you just cured yourself!");
             gameTextArt.winningArtDisplay();
         } else {
-            System.out.println("You do not have all of the required items, keep looking around.");
+//            System.out.println("You do not have all of the required items, keep looking around.");
             backToMenu();
         }
     }
@@ -197,5 +212,13 @@ public class Player {
 
     public void setPlayerActionSelection(String playerActionSelection) {
         this.playerActionSelection = playerActionSelection;
+    }
+
+    public String getLookAroundMsg() {
+        return lookAroundMsg;
+    }
+
+    public void setLookAroundMsg(String lookAroundMsg) {
+        this.lookAroundMsg = lookAroundMsg;
     }
 }
