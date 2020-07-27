@@ -7,6 +7,7 @@ public class TalkingTutorial {
 
     public void startTalkingTutorial() throws InterruptedException {
         tutorialIntroductionDisplay();
+        clearScreenDelay();
         talkingTutorialPrompt();
         talkingTutorialDisplay(talkingTutorialInputCollection());
     }
@@ -54,6 +55,17 @@ public class TalkingTutorial {
         } else {
             System.out.println("Sorry, invalid command entry, please try again using \"Talk\"");
             talkingTutorialDisplay(talkingTutorialInputCollection());
+        }
+    }
+
+    private void clearScreenDelay() throws InterruptedException {
+        Thread.sleep(1000);
+        clearScreen();
+    }
+
+    private void clearScreen() {
+        for(int i = 0; i < 50; i++) {
+            System.out.println("\b");
         }
     }
 }

@@ -53,7 +53,7 @@ public class MovingTutorial {
 
     private void finishMovementTutorial() {
         if (getPlayerLocation().equals("MOVIE ROOM")) {
-            System.out.println("You've beaten the movement tutorial, type exit to head back.");
+            System.out.println("You've beaten the movement tutorial, type next to head into the next tutorial.");
         }
         movingTutorialMovementInputCollection();
     }
