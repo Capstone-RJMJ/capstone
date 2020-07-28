@@ -29,7 +29,7 @@ public class Inventory {
     public String talkToCharacter(Rooms room, String currentRoom, Inventory inventory, Countdown cd) throws IOException, InterruptedException {
         MovementEngine movementEngine = new MovementEngine();
         movementEngine.clearScreen();
-        String item;
+        String item = "";
         Map<String,String> rm = room.getROOMS().get(currentRoom);
         if(rm.get("character") != null){
             String character = rm.get("character");
@@ -85,7 +85,7 @@ public class Inventory {
                     if (item.equals(zach.getItem())) {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
-                            Recipe.recipeArt();
+                            item = Recipe.recipeArt();
                         //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
@@ -108,7 +108,7 @@ public class Inventory {
         else {
             System.out.println("No one is around, you say hello to yourself.\n");
     }
-        return "item";//return the item i guess
+        return item;//return the item i guess
     }
 //    public void inventoryMsg(String item, int num){
 //        System.out.println("The " + item + " was added to your inventory\n" +
