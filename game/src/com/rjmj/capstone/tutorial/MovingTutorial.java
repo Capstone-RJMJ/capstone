@@ -5,22 +5,32 @@ import java.util.Scanner;
 public class MovingTutorial {
     private Scanner userInput = new Scanner(System.in);
     private String playerLocation = "HALL";
-    private final int delay = 1000;
+    private final int delay = 700;
     private final String ANSI_RESET = "\u001B[0m";
     private final String ANSI_CYAN = "\u001B[36m";
-    private final String ANSI_MAGENTA = "\u001B[29m";
     private final String ANSI_RED = "\u001B[31m";
 
 
     public void startMovingTutorial() throws InterruptedException {
-        clearScreenTimeDelay();
+        clearScreen();
         movingTutorialInformationPrompt();
         movementEngine();
     }
 
     private void movementEngine() throws InterruptedException {
+        switch(getPlayerLocation()) {
+            case "HALL":
+                mapDisplay();
+                hallRoomEngine();
+                break;
+            case "BALL ROOM":
+                mapDisplay();
+                diningRoomEngine();
+                break;
+        }
+    }
 
-        mapDisplay();
+    private void hallRoomEngine() throws InterruptedException {
         if (getPlayerLocation().equals("HALL")) {
             System.out.println(ANSI_CYAN + "Please select a direction to move, you are currently in the " + getPlayerLocation() + ANSI_RESET);
             System.out.println(ANSI_CYAN + "Available Options: Right." + ANSI_RESET);
@@ -31,10 +41,12 @@ public class MovingTutorial {
             } else {
                 System.out.println(ANSI_RED + "Invalid Selection, please try again." + ANSI_RESET);
             }
-            clearScreenTimeDelay();
+            clearScreen();
             movementEngine();
         }
+    }
 
+    private void diningRoomEngine() throws InterruptedException {
         if (getPlayerLocation().equals("BALL ROOM")) {
             System.out.println(ANSI_CYAN + "Please select a direction to move, you are currently in the " + getPlayerLocation() + ANSI_RESET);
             System.out.println(ANSI_CYAN + "Available Options: Right, Left." + ANSI_RESET);
@@ -42,12 +54,12 @@ public class MovingTutorial {
 
             if (result.equals("RIGHT")) {
                 setPlayerLocation("MOVIE ROOM");
-                System.out.println(ANSI_MAGENTA + "You've entered the Movie Room!\n" + ANSI_RESET);
+                System.out.println(ANSI_RED + "You've entered the Movie Room!\n" + ANSI_RESET);
                 finishMovementTutorial();
             } else if (result.equals("LEFT")) {
                 setPlayerLocation("HALL");
                 System.out.println(ANSI_CYAN + "You've entered the Hall!" + ANSI_RESET);
-                clearScreenTimeDelay();
+                clearScreen();
                 movementEngine();
             } else {
                 System.out.println(ANSI_RED + "Invalid Selection, please try again." + ANSI_RESET);
@@ -61,11 +73,6 @@ public class MovingTutorial {
             System.out.println(ANSI_CYAN + "You've beaten the movement tutorial, type next to head into the next tutorial." + ANSI_RESET);
         }
         movingTutorialMovementInputCollection();
-    }
-
-    private void clearScreenTimeDelay() throws InterruptedException {
-        Thread.sleep(delay);
-        clearScreen();
     }
 
     private void movingTutorialInformationPrompt() throws InterruptedException {
@@ -85,7 +92,7 @@ public class MovingTutorial {
         };
 
         for (String movingTutorial : movingTutorialIntroStringArray) {
-            Thread.sleep(700);
+            Thread.sleep(delay);
             System.out.println(movingTutorial);
         }
         userInput.next();
@@ -109,7 +116,8 @@ public class MovingTutorial {
         return userInput.next().toUpperCase().trim();
     }
 
-    private void clearScreen(){
+    private void clearScreen() throws InterruptedException {
+        Thread.sleep(delay);
         for(int i = 0; i < 50; i++) {
             System.out.println("\b");
         }
