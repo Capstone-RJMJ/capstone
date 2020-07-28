@@ -5,47 +5,64 @@ import java.util.Scanner;
 public class MovingTutorial {
     private Scanner userInput = new Scanner(System.in);
     private String playerLocation = "HALL";
-    private final int delay = 1000;
+    private final int delay = 700;
+    private final String ANSI_RESET = "\u001B[0m";
+    private final String ANSI_CYAN = "\u001B[36m";
+    private final String ANSI_RED = "\u001B[31m";
+
 
     public void startMovingTutorial() throws InterruptedException {
-        clearScreenTimeDelay();
+        clearScreen();
         movingTutorialInformationPrompt();
         movementEngine();
     }
 
     private void movementEngine() throws InterruptedException {
+        switch(getPlayerLocation()) {
+            case "HALL":
+                mapDisplay();
+                hallRoomEngine();
+                break;
+            case "BALL ROOM":
+                mapDisplay();
+                diningRoomEngine();
+                break;
+        }
+    }
 
-        mapDisplay();
+    private void hallRoomEngine() throws InterruptedException {
         if (getPlayerLocation().equals("HALL")) {
-            System.out.println("Please select a direction to move, you are currently in the " + getPlayerLocation());
-            System.out.println("Available Options: Right.");
+            System.out.println(ANSI_CYAN + "Please select a direction to move, you are currently in the " + getPlayerLocation() + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "Available Options: Right." + ANSI_RESET);
 
             if (movingTutorialMovementInputCollection().equals("RIGHT")) {
                 setPlayerLocation("BALL ROOM");
-                System.out.println("You've entered the Ball Room!\n");
+                System.out.println(ANSI_CYAN + "You've entered the Ball Room!\n" + ANSI_RESET);
             } else {
-                System.out.println("Invalid Selection, please try again.");
+                System.out.println(ANSI_RED + "Invalid Selection, please try again." + ANSI_RESET);
             }
-            clearScreenTimeDelay();
+            clearScreen();
             movementEngine();
         }
+    }
 
+    private void diningRoomEngine() throws InterruptedException {
         if (getPlayerLocation().equals("BALL ROOM")) {
-            System.out.println("Please select a direction to move, you are currently in the " + getPlayerLocation());
-            System.out.println("Available Options: Right, Left.");
+            System.out.println(ANSI_CYAN + "Please select a direction to move, you are currently in the " + getPlayerLocation() + ANSI_RESET);
+            System.out.println(ANSI_CYAN + "Available Options: Right, Left." + ANSI_RESET);
             String result = movingTutorialMovementInputCollection();
 
             if (result.equals("RIGHT")) {
                 setPlayerLocation("MOVIE ROOM");
-                System.out.println("You've entered the Movie Room!\n");
+                System.out.println(ANSI_RED + "You've entered the Movie Room!\n" + ANSI_RESET);
                 finishMovementTutorial();
             } else if (result.equals("LEFT")) {
                 setPlayerLocation("HALL");
-                System.out.println("You've entered the Hall!");
-                clearScreenTimeDelay();
+                System.out.println(ANSI_CYAN + "You've entered the Hall!" + ANSI_RESET);
+                clearScreen();
                 movementEngine();
             } else {
-                System.out.println("Invalid Selection, please try again.");
+                System.out.println(ANSI_RED + "Invalid Selection, please try again." + ANSI_RESET);
                 movementEngine();
             }
         }
@@ -53,18 +70,14 @@ public class MovingTutorial {
 
     private void finishMovementTutorial() {
         if (getPlayerLocation().equals("MOVIE ROOM")) {
-            System.out.println("You've beaten the movement tutorial, type next to head into the next tutorial.");
+            System.out.println(ANSI_CYAN + "You've beaten the movement tutorial, type next to head into the next tutorial." + ANSI_RESET);
         }
         movingTutorialMovementInputCollection();
     }
 
-    private void clearScreenTimeDelay() throws InterruptedException {
-        Thread.sleep(delay);
-        clearScreen();
-    }
-
     private void movingTutorialInformationPrompt() throws InterruptedException {
         String[] movingTutorialIntroStringArray = {
+                ANSI_CYAN,
                 "Welcome to the moving tutorial.",
                 "Moving is a very important part of Apprenticeship.  Apprenticeship has a total of 12 rooms for you to" +
                         " navigate through.",
@@ -74,18 +87,19 @@ public class MovingTutorial {
                 "",
                 "For this tutorial you will have three rooms in a single line for you to move between.",
                 "You will be starting off in the Hall",
-                "Type \"Start\" or any other command prompt to get started."
+                "Type \"Start\" or any other command prompt to get started.",
+                ANSI_RESET
         };
 
         for (String movingTutorial : movingTutorialIntroStringArray) {
-            Thread.sleep(700);
+            Thread.sleep(delay);
             System.out.println(movingTutorial);
         }
         userInput.next();
     }
 
     private void mapDisplay() {
-            System.out.println(
+            System.out.println( ANSI_CYAN +
                             "___________________________________________________________________________________________\n" +
                             "|                            |                                |                             |\n"+
                             "|          Hall              |          Ball Room             |          Movie Room         |\n"+
@@ -94,7 +108,7 @@ public class MovingTutorial {
                             "|                            |                                |                             |\n"+
                             "|                            |                                |                             |\n"+
                             "-----------------------------|--------------------------------|-----------------------------|\n"
-
+            + ANSI_RESET
             );
     }
 
@@ -102,7 +116,8 @@ public class MovingTutorial {
         return userInput.next().toUpperCase().trim();
     }
 
-    private void clearScreen(){
+    private void clearScreen() throws InterruptedException {
+        Thread.sleep(delay);
         for(int i = 0; i < 50; i++) {
             System.out.println("\b");
         }
