@@ -7,14 +7,13 @@ import java.util.Scanner;
 public class LookAroundItemTutorial {
     private Scanner userInput = new Scanner(System.in);
     private String playerLocation = "HALL";
-    private final int delay = 1000;
+    private final int delay = 700;
     private List<String> playerInventory = new ArrayList<>();
     private List<String> hallInventory = new ArrayList<>();
     private List<String> ballRoomInventory = new ArrayList<>();
     private List<String> movieRoomInventory = new ArrayList<>();
     private final String ANSI_RESET = "\u001B[0m";
     private final String ANSI_CYAN = "\u001B[36m";
-    private final String ANSI_MAGENTA = "\u001B[29m";
     private final String ANSI_RED = "\u001B[31m";
 
 
@@ -22,7 +21,7 @@ public class LookAroundItemTutorial {
         hallInventory.add("MacBook Pro");
         ballRoomInventory.add("Ultrawide Monitor");
         movieRoomInventory.add("Cell Phone");
-        clearScreenTimeDelay();
+        clearScreen();
         lookAroundTakeItemIntroText();
         lookAroundEngine();
     }
@@ -43,16 +42,28 @@ public class LookAroundItemTutorial {
         };
 
         for (String lookAroundTakeItem : lookAroundTakeItemText) {
-            Thread.sleep(700);
+            Thread.sleep(delay);
             System.out.println(lookAroundTakeItem);
         }
 
         lookAroundTutorialInputCollection();
     }
 
-
     private void lookAroundEngine() throws InterruptedException {
-        mapDisplay();
+        switch(getPlayerLocation()) {
+            case "HALL":
+                mapDisplay();
+                hallRoomEngine();
+                break;
+            case "BALL ROOM":
+                mapDisplay();
+                ballRoomEngine();
+                break;
+        }
+    }
+
+
+    private void hallRoomEngine() throws InterruptedException {
         if (getPlayerLocation().equals("HALL")) {
             System.out.println(ANSI_CYAN + "Please select a direction to move, you are currently in the " + getPlayerLocation() + ANSI_RESET);
             System.out.println(ANSI_CYAN + "Available Options: Right, Look Around, Take Item." + ANSI_RESET);
@@ -62,7 +73,7 @@ public class LookAroundItemTutorial {
                 case "RIGHT":
                     setPlayerLocation("BALL ROOM");
                     System.out.println(ANSI_CYAN + "You've entered the Ball Room!\n" + ANSI_RESET);
-                    clearScreenTimeDelay();
+                    clearScreen();
                     lookAroundEngine();
                     break;
                 case "LOOK AROUND":
@@ -90,7 +101,9 @@ public class LookAroundItemTutorial {
                     break;
             }
         }
+    }
 
+    private void ballRoomEngine() throws InterruptedException {
         if (getPlayerLocation().equals("BALL ROOM")) {
             System.out.println(ANSI_CYAN + "Please select a direction to move, you are currently in the " + getPlayerLocation() + ANSI_RESET);
             System.out.println(ANSI_CYAN + "Available Options: Right, Left, Look Around, Take Item." + ANSI_RESET);
@@ -99,7 +112,7 @@ public class LookAroundItemTutorial {
             switch (result) {
                 case "RIGHT":
                     setPlayerLocation("MOVIE ROOM");
-                    System.out.println(ANSI_MAGENTA + "You've entered the Movie Room!\n" + ANSI_RESET);
+                    System.out.println(ANSI_RED + "You've entered the Movie Room!\n" + ANSI_RESET);
                     finishMovementTutorial();
                     break;
                 case "LEFT":
@@ -135,6 +148,7 @@ public class LookAroundItemTutorial {
     }
 
     private void finishMovementTutorial() {
+        Scanner finalInput = new Scanner(System.in);
         mapDisplay();
         System.out.println(ANSI_CYAN + "Available Options: Look Around, Take Item." + ANSI_RESET);
         String result = lookAroundTutorialInputCollection();
@@ -161,15 +175,17 @@ public class LookAroundItemTutorial {
             finishMovementTutorial();
         }
 
-        if (playerInventory.contains("Cell Phone")) {
+        if (playerInventory.size() == 3) {
             System.out.println(ANSI_CYAN + "You've beaten the look around and take item tutorial!  Press next to continue." + ANSI_RESET);
-            userInput.nextLine();
+            finalInput.nextLine();
         }
     }
 
-    private void clearScreenTimeDelay() throws InterruptedException {
+    private void clearScreen() throws InterruptedException {
         Thread.sleep(delay);
-        clearScreen();
+        for(int i = 0; i < 50; i++) {
+            System.out.println("\b");
+        }
     }
 
     private void mapDisplay() {
@@ -190,12 +206,6 @@ public class LookAroundItemTutorial {
         return userInput.nextLine().toUpperCase();
     }
 
-    private void clearScreen(){
-        for(int i = 0; i < 50; i++) {
-            System.out.println("\b");
-        }
-    }
-
     public String getPlayerLocation() {
         return playerLocation;
     }
@@ -203,5 +213,4 @@ public class LookAroundItemTutorial {
     public void setPlayerLocation(String playerLocation) {
         this.playerLocation = playerLocation;
     }
-
 }
