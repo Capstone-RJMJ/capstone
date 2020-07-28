@@ -11,7 +11,7 @@ public class TalkingTutorial {
 
     public void startTalkingTutorial() throws InterruptedException {
         tutorialIntroductionDisplay();
-        clearScreenDelay();
+        clearScreen();
         talkingTutorialPrompt();
         talkingTutorialDisplay(talkingTutorialInputCollection());
     }
@@ -49,10 +49,6 @@ public class TalkingTutorial {
         }
     }
 
-    private String talkingTutorialInputCollection() {
-        return userInput.next().toUpperCase();
-    }
-
     private void talkingTutorialDisplay(String input) throws InterruptedException {
         if (input.equals("TALK")) {
             System.out.println(ANSI_CYAN + "Jeannette: \"Hello there!  You did it.  Please type \"Next\" when you are ready, " +
@@ -66,14 +62,14 @@ public class TalkingTutorial {
         }
     }
 
-    private void clearScreenDelay() throws InterruptedException {
+    private void clearScreen() throws InterruptedException {
         Thread.sleep(1000);
-        clearScreen();
-    }
-
-    private void clearScreen() {
         for(int i = 0; i < 50; i++) {
             System.out.println("\b");
         }
+    }
+
+    private String talkingTutorialInputCollection() {
+        return userInput.next().toUpperCase();
     }
 }
