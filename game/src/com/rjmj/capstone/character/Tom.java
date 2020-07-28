@@ -35,7 +35,6 @@ public class Tom implements Character {
             result = getItem();
         } else {
             System.out.println("Incorrect, please try again.");
-            askTheQuestionAndCollectInput();
         }
         return result;
     }
