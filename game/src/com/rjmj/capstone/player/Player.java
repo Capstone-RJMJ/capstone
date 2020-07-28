@@ -142,7 +142,6 @@ public class Player {
             case "MIX":
                 movementEngine.clearScreen();
                 recipe.setPlayerMix(cd);
-//                winCheck();
                 mixCheck = true;
                 backToMenu();
                 break;
