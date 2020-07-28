@@ -6,7 +6,6 @@ public class TalkingTutorial {
     private Scanner userInput = new Scanner(System.in);
     private final String ANSI_RESET = "\u001B[0m";
     private final String ANSI_CYAN = "\u001B[36m";
-    private final String ANSI_MAGENTA = "\u001B[29m";
     private final String ANSI_RED = "\u001B[31m";
 
 
