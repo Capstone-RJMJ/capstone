@@ -124,13 +124,13 @@ public class Rooms {
         Map<String,String> rm = ROOMS.get(currentRoom);
         if(rm.get("item") != null) {
             //add a check for if the item is a box and you have the key in the inventory to add the time buff to the timer
-            if((rm.get("item").equals("Box") && inventory.getPlyrInv().contains("Key"))) {
-                cd.addTimeBuff();
-                result = ANSI_PURPLE + "You see that the box is locked so you use your key to unlock it\n" +
-                        "this is no ordinary box, you just unlocked Time itself and rolled back 1 minute!" + ANSI_RESET;
-            }
             if(inventory.getPlyrInv().contains(rm.get("item"))){
                 result = "You already took the " + rm.get("item");
+            }
+            else if((rm.get("item").equals("Box") && inventory.getPlyrInv().contains("Key"))) {
+                result = ANSI_PURPLE + "You see that the box is locked so you use your key to unlock it\n" +
+                        "this is no ordinary box, you just unlocked Time itself and rolled back 1 minute!" + ANSI_RESET;
+                cd.addTimeBuff();
             }
             else {
                 inventory.setPlyrInv(rm.get("item"));
@@ -142,12 +142,6 @@ public class Rooms {
             result = "there aren't any items to take in here!";
         }
         return result;
-    }
-
-    public static void clr() {
-        for(int i = 0; i < 50; i++) {
-            System.out.println("\b");
-        }
     }
 
     public Map<String, Map<String,String>> getROOMS() {
