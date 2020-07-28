@@ -163,7 +163,7 @@ public class LookAroundItemTutorial {
 
         if (playerInventory.contains("Cell Phone")) {
             System.out.println(ANSI_CYAN + "You've beaten the look around and take item tutorial!  Press next to continue." + ANSI_RESET);
-            lookAroundTutorialInputCollection();
+            userInput.nextLine();
         }
     }
 
