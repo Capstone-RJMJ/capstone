@@ -51,8 +51,8 @@ public class Recipe {
         boolean result = false;
         for(int i = 0; i < colorMix.size(); i++) {
             if (!formula.get(i).equals(getColorMix().get(i))) {
-                System.out.println("Dude, that's not the right. Try again.");
-                cd.subTimePenalty();
+//                System.out.println("Dude, that's not the right. Try again.");
+//                cd.subTimePenalty();
                 playerMix = new ArrayList(3);
                 return false;
             } else {
@@ -67,10 +67,10 @@ public class Recipe {
         for(Color color : getColorMix()){
             String clr = color.toString().toUpperCase();
             if(clr.equals("RED")){
-                clr = ANSI_RED + "RED" + ANSI_RESET + "--";
+                clr = ANSI_RED + "RED" + ANSI_RESET + "~~";
             }
             else if(clr.equals("BLUE")){
-                clr = ANSI_BLUE + "BLUE"+ ANSI_RESET + "-" ;
+                clr = ANSI_BLUE + "BLUE"+ ANSI_RESET + "~" ;
             }
             else {
                 clr = ANSI_GREEN + "GREEN" + ANSI_RESET;
@@ -81,21 +81,29 @@ public class Recipe {
         String color2 = arr.get(1);
         String color3 = arr.get(2);
         return ("Zach has given you the recipe to mix the vaccine!\n" +
-                "        _________   _________\n" +
-                "   ____/      452\\ /     453 \\____\n" +
-                " /| ------------- |  ------------ |\\\n" +
-                "||| ------------- | ------------- |||\n" +
-                "||| ----" + color1 + "---- | ------------- |||\n" +
-                "||| ------- ----- | ------------- |||\n" +
-                "||| ----" + color2 + "---- | ------------- |||\n" +
-                "||| ----------- - | ------------- |||\n" +
-                "|||  ---" + color3 + "---- | ----------    |||\n" +
-                "||| ------------- |  ------------ |||\n" +
-                "||| ------------- | ------------- |||\n" +
-                "||| ------------- | ------ -----  |||\n" +
-                "||| ------------  | ------------- |||\n" +
-                "|||_____________  |  _____________|||\n" +
-                "L/_____/--------\\\\_//W-------\\_____\\J\n\n");
+//                "        _________   _________\n" +
+//                "   ____/      452\\ /     453 \\____\n" +
+//                " /| ------------- |  ------------ |\\\n" +
+//                "||| ------------- | ------------- |||\n" +
+//                "||| ----" + color1 + "---- | ------------- |||\n" +
+//                "||| ------- ----- | ------------- |||\n" +
+//                "||| ----" + color2 + "---- | ------------- |||\n" +
+//                "||| ----------- - | ------------- |||\n" +
+//                "|||  ---" + color3 + "---- | ----------    |||\n" +
+//                "||| ------------- |  ------------ |||\n" +
+//                "||| ------------- | ------------- |||\n" +
+//                "||| ------------- | ------ -----  |||\n" +
+//                "||| ------------  | ------------- |||\n" +
+//                "|||_____________  |  _____________|||\n" +
+//                "L/_____/--------\\\\_//W-------\\_____\\J\n\n");
+
+                "         __________  \n" +
+                "        ()_________)\n" +
+                "          \\ ~" + color1 + "~ \\\n" +
+                "            \\ ~" + color2 + "  \\\n" +
+                "              \\ ~" + color3 + "  \\\n" +
+                "                \\_________\\\n" +
+                "                ()__________)");
     }
 
     public void playerFormula(Color color){

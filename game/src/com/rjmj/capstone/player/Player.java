@@ -33,6 +33,7 @@ public class Player {
     private String lookAroundMsg = "";
     private String talkMsg = "";
     private String takeItemMsg = "";
+    private boolean mixCheck = false;
 
 
 
@@ -81,7 +82,7 @@ public class Player {
         cd.resetTimerNewGame();
     }
 
-    public String collectPlayerActionInput() {
+    public String collectPlayerActionInput() throws IOException, InterruptedException {
         Scanner userInput = new Scanner(System.in);
         currentLocationDisplay();
         if(!getLookAroundMsg().equals("")){
@@ -95,6 +96,10 @@ public class Player {
         if(!getTakeItemMsg().equals("")){
             System.out.println(getTakeItemMsg());
             setTakeItemMsg("");
+        }
+        if(mixCheck) {
+            winCheck();
+            mixCheck = false;
         }
 
         if (itemsCheck()){
@@ -130,12 +135,16 @@ public class Player {
                 backToMenu();
                 break;
             case "TAKE ITEM":
+                movementEngine.clearScreen();
                 setTakeItemMsg(room.getItem(getInventory(), movementEngine.getCurrentRoom(), cd));
                 backToMenu();
                 break;
             case "MIX":
+                movementEngine.clearScreen();
                 recipe.setPlayerMix(cd);
-                winCheck();
+//                winCheck();
+                mixCheck = true;
+                backToMenu();
                 break;
             case "MAP":
                 movementEngine.clearScreen();
@@ -191,8 +200,9 @@ public class Player {
             System.out.println("That is correct, you just cured yourself!");
             gameTextArt.winningArtDisplay();
         } else {
-//            System.out.println("You do not have all of the required items, keep looking around.");
-            backToMenu();
+            System.out.println("Dude, that's not the right. Try again.");
+            cd.subTimePenalty();
+//            backToMenu();
         }
     }
 
