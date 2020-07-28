@@ -62,17 +62,15 @@ public class Recipe {
         return result;
     }
 
-    public static void recipeArt() {
-
-        System.out.println("Zach has given you the recipe to mix the vaccine!");
+    public static String recipeArt() {
         List<String> arr = new ArrayList<>();
         for(Color color : getColorMix()){
             String clr = color.toString().toUpperCase();
             if(clr.equals("RED")){
-                clr = ANSI_RED + "RED--" + ANSI_RESET;
+                clr = ANSI_RED + "RED" + ANSI_RESET + "--";
             }
             else if(clr.equals("BLUE")){
-                clr = ANSI_BLUE + "BLUE-" + ANSI_RESET;
+                clr = ANSI_BLUE + "BLUE"+ ANSI_RESET + "-" ;
             }
             else {
                 clr = ANSI_GREEN + "GREEN" + ANSI_RESET;
@@ -82,7 +80,8 @@ public class Recipe {
         String color1 = arr.get(0);
         String color2 = arr.get(1);
         String color3 = arr.get(2);
-        System.out.println("        _________   _________\n" +
+        return ("Zach has given you the recipe to mix the vaccine!\n" +
+                "        _________   _________\n" +
                 "   ____/      452\\ /     453 \\____\n" +
                 " /| ------------- |  ------------ |\\\n" +
                 "||| ------------- | ------------- |||\n" +

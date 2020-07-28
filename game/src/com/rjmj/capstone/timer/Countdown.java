@@ -12,8 +12,8 @@ public class Countdown {
     public static final String ANSI_RESET = "\u001B[0m";
 
     public void addTimeBuff(){
-        System.out.println(ANSI_PURPLE + "You see that the box is locked so you use your key to unlock it\n" +
-                "this is no ordinary box, you just unlocked Time itself and rolled back 1 minute!" + ANSI_RESET);
+//        System.out.println(ANSI_PURPLE + "You see that the box is locked so you use your key to unlock it\n" +
+//                "this is no ordinary box, you just unlocked Time itself and rolled back 1 minute!" + ANSI_RESET);
         setTimeLeft(getTimeLeft() + getTimeBuff());
     }
     public void subTimePenalty() {

@@ -116,34 +116,32 @@ public class Rooms {
         }
         String result = sb.toString();
         //System.out.println(rm.get("picture"));
-        System.out.println(result);
         return result;
     }
 
     public String getItem(Inventory inventory, String currentRoom, Countdown cd) {
+        String result = "";
         Map<String,String> rm = ROOMS.get(currentRoom);
         if(rm.get("item") != null) {
             //add a check for if the item is a box and you have the key in the inventory to add the time buff to the timer
             if((rm.get("item").equals("Box") && inventory.getPlyrInv().contains("Key"))) {
                 cd.addTimeBuff();
+                result = ANSI_PURPLE + "You see that the box is locked so you use your key to unlock it\n" +
+                        "this is no ordinary box, you just unlocked Time itself and rolled back 1 minute!" + ANSI_RESET;
             }
             if(inventory.getPlyrInv().contains(rm.get("item"))){
-                System.out.println("You already took the " + rm.get("item"));
+                result = "You already took the " + rm.get("item");
             }
             else {
                 inventory.setPlyrInv(rm.get("item"));
-                System.out.println("The " + rm.get("item") + ANSI_RESET + " was added to your inventory\n" +
-                        "You now have " + inventory.getPlyrInv().size() + " items in your inventory:");
-            // print items currently in Player inventory
-//                for(String item : inventory.getPlyrInv()){
-//                    System.out.println("  - " + item);
-//                }
+                result = "The " + rm.get("item") + ANSI_RESET + " was added to your inventory\n" +
+                        "You now have " + inventory.getPlyrInv().size() + " items in your inventory:";
             }
         }
         else {
-            System.out.println("there aren't any items to take in here!");
+            result = "there aren't any items to take in here!";
         }
-        return rm.get("item");
+        return result;
     }
 
     public static void clr() {
