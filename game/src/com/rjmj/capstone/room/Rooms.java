@@ -9,15 +9,11 @@ import static java.util.Map.entry;
 import java.util.Map;
 import java.util.Set;
 
-
-
 public class Rooms {
     public static final String ANSI_GREEN = "\u001B[32m";
     public static final String ANSI_CYAN = "\u001B[36m";
     public static final String ANSI_RESET = "\u001B[0m";
     public static final String ANSI_PURPLE = "\u001B[35m";
-
-
 
     private Map<String,Map<String,String>> ROOMS = Map.ofEntries(
             entry("DINING ROOM", Map.of(
@@ -115,7 +111,6 @@ public class Rooms {
             }
         }
         String result = sb.toString();
-        //System.out.println(rm.get("picture"));
         return result;
     }
 
@@ -147,5 +142,4 @@ public class Rooms {
     public Map<String, Map<String,String>> getROOMS() {
         return ROOMS;
     }
-
 }
