@@ -74,9 +74,9 @@ public class Inventory {
                 case "Peter":
                     item = peter.processQuestionAnswer(peter.askTheQuestionAndCollectInput());
                     if (item.equals(peter.getItem())) {
-                        System.out.println("\nPeter has granted you access to the Library " +
+                        item = "\nPeter has granted you access to the Library " +
                                 "and there is a secret CAVE behind the bookshelves!!!\n" +
-                                "and a Lab behind another set of books.");
+                                "and a Lab behind another set of books.";
                     } else {
                         talkToCharacter(room, currentRoom, inventory,cd);
                     }

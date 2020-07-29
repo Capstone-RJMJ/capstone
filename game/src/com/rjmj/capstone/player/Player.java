@@ -7,6 +7,7 @@ import com.rjmj.capstone.timer.Countdown;
 import com.rjmj.capstone.tutorial.Tutorial;
 
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -33,6 +34,7 @@ public class Player {
     private String lookAroundMsg = "";
     private String talkMsg = "";
     private String takeItemMsg = "";
+    private String moveMsg = "";
     private boolean mixCheck = false;
 
 
@@ -85,6 +87,10 @@ public class Player {
     public String collectPlayerActionInput() throws IOException, InterruptedException {
         Scanner userInput = new Scanner(System.in);
         currentLocationDisplay();
+        if(getMoveMsg().length() > 20){
+            System.out.println(getMoveMsg());
+            setMoveMsg("");
+        }
         if(!getLookAroundMsg().equals("")){
             System.out.println(getLookAroundMsg());
             setLookAroundMsg("");
@@ -121,7 +127,7 @@ public class Player {
 
         switch(input) {
             case "MOVE":
-                movementEngine.changeRoom(getInventory(), movementEngine.roomChoices(),cd);
+                setMoveMsg(movementEngine.changeRoom(getInventory(), movementEngine.roomChoices(),cd));
                 backToMenu();
                 break;
             case "LOOK AROUND":
@@ -134,7 +140,7 @@ public class Player {
                 break;
             case "TAKE ITEM":
                 movementEngine.clearScreen();
-                setTakeItemMsg(room.getItem(getInventory(), movementEngine.getCurrentRoom(), cd));
+                setTakeItemMsg(room.getItem(getInventory(), movementEngine.getCurrentRoom(), cd));;
                 backToMenu();
                 break;
             case "MIX":
@@ -198,7 +204,7 @@ public class Player {
             System.out.println("That is correct, you just cured yourself!");
             gameTextArt.winningArtDisplay();
         } else {
-            System.out.println("Dude, that's not the right. Try again.");
+            System.out.println("That's not the right mixture. Try again.");
             cd.subTimePenalty();
 //            backToMenu();
         }
@@ -255,5 +261,13 @@ public class Player {
 
     public void setTakeItemMsg(String takeItemMsg) {
         this.takeItemMsg = takeItemMsg;
+    }
+
+    public String getMoveMsg() {
+        return moveMsg;
+    }
+
+    public void setMoveMsg(String moveMsg) {
+        this.moveMsg = moveMsg;
     }
 }
