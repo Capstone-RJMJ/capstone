@@ -107,7 +107,6 @@ public class Player {
         } else {
             System.out.println(ANSI_CYAN + "You can do the following actions:" +ANSI_RESET + ANSI_GREEN + "Look Around, " +ANSI_RESET + ANSI_PURPLE + "Talk, " +ANSI_RESET + ANSI_BLUE + "Take Item, " +ANSI_RESET + ANSI_YELLOW + "Move, " +ANSI_RESET + ANSI_WHITE + "Map, " +ANSI_RESET + ANSI_RED + "Exit" +ANSI_RESET);
         }
-
         setPlayerActionSelection(userInput.nextLine().toUpperCase());
         return getPlayerActionSelection();
     }
@@ -153,6 +152,7 @@ public class Player {
                 play();
                 break;
             default:
+                movementEngine.clearScreen();
                 System.out.println("Error, please select a valid item.\n");
                 backToMenu();
         }

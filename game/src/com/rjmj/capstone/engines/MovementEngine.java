@@ -72,6 +72,7 @@ public class MovementEngine {
         }
         else {
             System.out.println("Invalid Selection, try again.");
+            clearScreen();
             roomChoices();
         }
 
