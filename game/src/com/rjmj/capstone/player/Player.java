@@ -101,7 +101,6 @@ public class Player {
             winCheck();
             mixCheck = false;
         }
-
         if (itemsCheck()){
             System.out.println(ANSI_PURPLE + "You now have all the items necessary to Mix the vaccine ingredients...you will need to find the recipe now." + ANSI_RESET);
             System.out.println("You can do the following actions:" +ANSI_RESET + ANSI_GREEN + "Look Around, " +ANSI_RESET + ANSI_PURPLE + "Talk, " +ANSI_RESET + ANSI_BLUE + "Take Item, " +ANSI_RESET + ANSI_YELLOW + "Move, " +ANSI_RESET + ANSI_WHITE + "Map, " +ANSI_RESET + ANSI_PURPLE + " Mix, " +ANSI_RESET + ANSI_RED + "Exit" + ANSI_RESET);
@@ -136,7 +135,7 @@ public class Player {
                 break;
             case "TAKE ITEM":
                 movementEngine.clearScreen();
-                setTakeItemMsg(room.getItem(getInventory(), movementEngine.getCurrentRoom(), cd));
+                setTakeItemMsg(room.getItem(getInventory(), movementEngine.getCurrentRoom(), cd));;
                 backToMenu();
                 break;
             case "MIX":
