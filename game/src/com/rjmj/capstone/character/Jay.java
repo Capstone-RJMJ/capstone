@@ -1,7 +1,5 @@
 package com.rjmj.capstone.character;
 
-import com.rjmj.capstone.room.GameTextArt;
-
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -34,7 +32,7 @@ public class Jay implements Character {
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) throws IOException, InterruptedException {
+    public String processQuestionAnswer(String questionAnswer) {
         String result = "";
         if (questionAnswer.toUpperCase().equals("C")) {
             System.out.println("Correct");

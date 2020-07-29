@@ -30,7 +30,7 @@ public class John implements Character {
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) throws InterruptedException {
+    public String processQuestionAnswer(String questionAnswer) {
         MovementEngine movementEngine = new MovementEngine();
         String result = "";
         if (questionAnswer.toUpperCase().equals("C")) {
