@@ -1,30 +1,22 @@
 package com.rjmj.capstone.player;
 
-
 import com.rjmj.capstone.character.*;
 import com.rjmj.capstone.engines.MovementEngine;
 import com.rjmj.capstone.room.Rooms;
 import com.rjmj.capstone.timer.Countdown;
 
 import java.io.IOException;
-import java.lang.Character;
 import java.util.ArrayList;
 import java.util.Map;
 
 public class Inventory {
-
-        Jay jay = new Jay();
-        John john = new John();
-        Tom tom = new Tom();
-        Nelly nelly = new Nelly();
-        Zach zach = new Zach();
-        Peter peter = new Peter();
-
-        private ArrayList<String> plyrInv = new ArrayList<>();
-
-
-    // TODO: Uncomment out the inventoryMsg and each display of them if the Ascii Art panel is scrapped.
-    // TODO: Currently they are commented to allow for the display to give all of the UI information.
+    private Jay jay = new Jay();
+    private John john = new John();
+    private Tom tom = new Tom();
+    private Nelly nelly = new Nelly();
+    private Zach zach = new Zach();
+    private Peter peter = new Peter();
+    private ArrayList<String> plyrInv = new ArrayList<>();
 
     public String talkToCharacter(Rooms room, String currentRoom, Inventory inventory, Countdown cd) throws IOException, InterruptedException {
         MovementEngine movementEngine = new MovementEngine();
@@ -41,7 +33,6 @@ public class Inventory {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
                             item = "Tom has given you " + item;
-                        //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
                         talkToCharacter(room, currentRoom, inventory, cd);
@@ -53,7 +44,6 @@ public class Inventory {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
                             item = "Jay has given you " + item;
-                        //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
                         talkToCharacter(room, currentRoom, inventory, cd);
@@ -68,7 +58,6 @@ public class Inventory {
                             if (inventory.getPlyrInv().contains("Box")){
                                 cd.addTimeBuff();
                             }
-                        //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
                         talkToCharacter(room, currentRoom, inventory, cd);
@@ -90,7 +79,6 @@ public class Inventory {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
                             item = Recipe.recipeArt();
-                        //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
                         talkToCharacter(room, currentRoom, inventory, cd);
@@ -101,7 +89,6 @@ public class Inventory {
                     if (item.equals(nelly.getItem())) {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
-                            //   inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
                         talkToCharacter(room, currentRoom, inventory,cd);
@@ -114,13 +101,6 @@ public class Inventory {
     }
         return item;//return the item i guess
     }
-//    public void inventoryMsg(String item, int num){
-//        System.out.println("The " + item + " was added to your inventory\n" +
-//                "You now have " + num + " items in your inventory:");
-//        for (String playerItems : getPlyrInv()) {
-//            System.out.println("- " + playerItems);
-//        }
-//    }
 
     public ArrayList<String> getPlyrInv() {
         return plyrInv;
@@ -128,13 +108,5 @@ public class Inventory {
 
     public void setPlyrInv(String item) {
         plyrInv.add(item);
-    }
-
-    public String textArtDisplayInventory() {
-        String result = "";
-        for (String playerItems : getPlyrInv()) {
-            result = playerItems;
-        }
-        return result;
     }
 }

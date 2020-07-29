@@ -5,7 +5,6 @@ import com.rjmj.capstone.timer.Countdown;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class Recipe {
     public static List<Color> colorMix = new ArrayList(3);
@@ -113,4 +112,3 @@ public class Recipe {
         isMatch = match;
     }
 }
-

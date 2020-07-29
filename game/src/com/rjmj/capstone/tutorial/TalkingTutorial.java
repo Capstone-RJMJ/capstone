@@ -8,7 +8,6 @@ public class TalkingTutorial {
     private final String ANSI_CYAN = "\u001B[36m";
     private final String ANSI_RED = "\u001B[31m";
 
-
     public void startTalkingTutorial() throws InterruptedException {
         tutorialIntroductionDisplay();
         clearScreen();
@@ -49,7 +48,7 @@ public class TalkingTutorial {
         }
     }
 
-    private void talkingTutorialDisplay(String input) throws InterruptedException {
+    private void talkingTutorialDisplay(String input) {
         if (input.equals("TALK")) {
             System.out.println(ANSI_CYAN + "Jeannette: \"Hello there!  You did it.  Please type \"Next\" when you are ready, " +
                     "or any other command you prefer to proceed to the next tutorial area.\"" + ANSI_RESET);

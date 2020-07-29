@@ -31,7 +31,7 @@ public class Peter implements Character {
     }
 
     @Override
-    public String processQuestionAnswer(String questionAnswer) throws InterruptedException {
+    public String processQuestionAnswer(String questionAnswer) {
         String result = "";
         if (questionAnswer.toUpperCase().equals("D")) {
             System.out.println("Correct");

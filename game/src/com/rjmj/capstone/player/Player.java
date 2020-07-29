@@ -7,7 +7,6 @@ import com.rjmj.capstone.timer.Countdown;
 import com.rjmj.capstone.tutorial.Tutorial;
 
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -116,10 +115,6 @@ public class Player {
         setPlayerActionSelection(userInput.nextLine().toUpperCase());
         return getPlayerActionSelection();
     }
-
-
-
-
 
     // availableActions() will prompt the player with a list of actions they can choose, based on current room.
     private void availableActions(String input) throws IOException, InterruptedException {
