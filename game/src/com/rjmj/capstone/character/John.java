@@ -1,5 +1,7 @@
 package com.rjmj.capstone.character;
 
+import com.rjmj.capstone.engines.MovementEngine;
+
 import java.util.Scanner;
 
 public class John implements Character {
@@ -29,11 +31,14 @@ public class John implements Character {
 
     @Override
     public String processQuestionAnswer(String questionAnswer) throws InterruptedException {
+        MovementEngine movementEngine = new MovementEngine();
         String result = "";
         if (questionAnswer.toUpperCase().equals("C")) {
+            movementEngine.clearScreen();
             System.out.println("Correct");
             result = getItem();
         } else {
+            movementEngine.clearScreen();
             System.out.println("Incorrect, please try again.");
         }
         return result;
