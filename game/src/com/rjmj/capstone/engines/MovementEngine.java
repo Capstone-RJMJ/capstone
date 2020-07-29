@@ -7,7 +7,6 @@ import com.rjmj.capstone.timer.Countdown;
 
 import java.io.IOException;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.Set;
 
 public class MovementEngine {
