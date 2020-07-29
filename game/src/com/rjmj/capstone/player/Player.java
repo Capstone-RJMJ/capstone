@@ -204,7 +204,7 @@ public class Player {
             System.out.println("That is correct, you just cured yourself!");
             gameTextArt.winningArtDisplay();
         } else {
-            System.out.println("Dude, that's not the right. Try again.");
+            System.out.println("That's not the right mixture. Try again.");
             cd.subTimePenalty();
 //            backToMenu();
         }

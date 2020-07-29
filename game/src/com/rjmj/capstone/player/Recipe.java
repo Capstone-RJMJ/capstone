@@ -42,6 +42,10 @@ public class Recipe {
             else if(choice.startsWith("G")){
                 playerMix.add(Color.GREEN);
             }
+            else {
+                System.out.println("Invalid ingredient, please try again.");
+                continue;
+            }
             count++;
         }
         setMatch(isRecipeMatch(getPlayerMix(),cd));
