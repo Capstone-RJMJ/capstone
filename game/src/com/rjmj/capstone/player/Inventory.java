@@ -40,6 +40,7 @@ public class Inventory {
                     if (item.equals(tom.getItem())) {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
+                            item = "Tom has given you " + item;
                         //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
@@ -51,6 +52,7 @@ public class Inventory {
                     if (item.equals(jay.getItem())) {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
+                            item = "Jay has given you " + item;
                         //    inventoryMsg(item, inventory.getPlyrInv().size());
                         }
                     } else {
@@ -62,6 +64,7 @@ public class Inventory {
                     if (item.equals(john.getItem())) {
                         if (!inventory.getPlyrInv().contains(item)) {
                             inventory.setPlyrInv(item);
+                            item = "John has given you a " + item;
                             if (inventory.getPlyrInv().contains("Box")){
                                 cd.addTimeBuff();
                             }
